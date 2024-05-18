@@ -4,7 +4,7 @@ const BASE_URL = import.meta.env.VITE_RNTS_PUBLIC_API;
 
 export const fetcher = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true,
+  withCredentials: false,
 });
 
 fetcher.interceptors.request.use((configOrigin) => {

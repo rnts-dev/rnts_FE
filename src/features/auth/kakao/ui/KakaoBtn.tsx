@@ -9,9 +9,9 @@ const KakaoBtn = () => {
     fetcher.post('/api/test/', 'asdl');
   };
 
-  useEffect(() => {
-    test();
-  }, []);
+  // useEffect(() => {
+  //   test();
+  // }, []);
 
   return (
     <Link to="https://kauth.kakao.com/oauth/authorize?response_type=code&redirect_uri=http://localhost:3000/kakao/callback&client_id=0e789afb0122a1a5e770cc58fe2de55c">
