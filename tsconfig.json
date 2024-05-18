@@ -5,6 +5,7 @@
       "@/*": ["src/*"],
       "@/pages/*": ["src/pages/*"]
     },
+    "types": ["kakao.maps.d.ts"],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
