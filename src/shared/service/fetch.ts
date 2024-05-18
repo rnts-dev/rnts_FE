@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { getAccessToken } from '@/shared/utils/axios/axiosUtils';
-
-const baseURL = process.env.RNTS_PUBLIC_API;
+const BASE_URL = import.meta.env.VITE_RNTS_PUBLIC_API;
 
 export const fetcher = axios.create({
-  baseURL,
+  baseURL: BASE_URL,
   withCredentials: true,
 });
 
