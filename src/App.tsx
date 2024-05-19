@@ -15,6 +15,7 @@ import CreateAppointmentSchedule from './pages/appointments/create/CreateAppoint
 import CreateAppointmentPlace from './pages/appointments/create/CreateAppointmentPlace';
 import EditAppointmentType from './pages/appointments/edit/EditAppointmentType';
 import EditAppointmentSchedule from './pages/appointments/edit/EditAppointmentSchedule';
+import PreviewPage from '@/pages/preview/PreviewPage';
 
 const colors = {
   personal: '',
@@ -45,6 +46,8 @@ function App() {
 
           <Route path="penalty" element={<PenaltyListPage />} />
           <Route path="penalty/send" element={<SendPenaltyPage />} />
+
+          <Route path="dev-preview" element={<PreviewPage />} />
 
           <Route path="mypage" element={<MyPage />} />
 
