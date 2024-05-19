@@ -23,6 +23,7 @@
     "react-kakao-maps-sdk": "^1.1.26",
     "react-router-dom": "^6.23.1",
     "tui-date-picker": "^4.3.3",
+    "tui-time-picker": "^2.1.6",
     "vite-plugin-html": "^3.2.2"
   },
   "devDependencies": {

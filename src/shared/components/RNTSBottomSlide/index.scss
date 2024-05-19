@@ -1,0 +1,13 @@
+.bottom-slide {
+  &__content {
+    width: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    z-index: 11;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+  }
+}
