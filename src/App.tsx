@@ -7,11 +7,14 @@ import LoginPage from './pages/auth/LoginPage';
 import SelectTendencyPage from './pages/tendency/SelectTendencyPage';
 import HomePage from './pages/HomePage';
 import AppointmentsListPage from './pages/appointments/AppointmentsListPage';
-import CreateAppointmentPage from './pages/appointments/CreateAppointmentPage';
-import EditAppointmentPage from './pages/appointments/EditAppointmentPage';
 import PenaltyListPage from './pages/penalty/PenaltyListPage';
 import SendPenaltyPage from './pages/penalty/SendPenaltyPage';
 import MyPage from './pages/MyPage';
+import CreateAppointmentType from './pages/appointments/create/CreateAppointmentType';
+import CreateAppointmentSchedule from './pages/appointments/create/CreateAppointmentSchedule';
+import CreateAppointmentPlace from './pages/appointments/create/CreateAppointmentPlace';
+import EditAppointmentType from './pages/appointments/edit/EditAppointmentType';
+import EditAppointmentSchedule from './pages/appointments/edit/EditAppointmentSchedule';
 
 const colors = {
   personal: '',
@@ -33,8 +36,12 @@ function App() {
           <Route path="tendency/select" element={<SelectTendencyPage />} />
 
           <Route path="appointment" element={<AppointmentsListPage />} />
-          <Route path="appointment/create" element={<CreateAppointmentPage />} />
-          <Route path="appointment/edit" element={<EditAppointmentPage />} />
+          <Route path="appointment/create/type" element={<CreateAppointmentType />} />
+          <Route path="appointment/create/schedule" element={<CreateAppointmentSchedule />} />
+          <Route path="appointment/create/place" element={<CreateAppointmentPlace />} />
+
+          <Route path="appointment/edit/type" element={<EditAppointmentType />} />
+          <Route path="appointment/edit/schedule" element={<EditAppointmentSchedule />} />
 
           <Route path="penalty" element={<PenaltyListPage />} />
           <Route path="penalty/send" element={<SendPenaltyPage />} />
