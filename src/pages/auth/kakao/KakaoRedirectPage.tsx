@@ -1,5 +1,4 @@
 import { fetcher } from '@/shared/service/fetch';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 const BASE_URL = import.meta.env.VITE_RNTS_PUBLIC_API;
 
@@ -26,6 +25,7 @@ export default function KakaoRedirectPage() {
         // TODO : 하고 홈화면 이동 시키기!
         .then((response) => {
           setUser(response.data);
+          console.log(user);
         });
     });
   }, []);
