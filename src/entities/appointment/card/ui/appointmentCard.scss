@@ -1,0 +1,75 @@
+.card {
+  border-radius: 13px;
+  background: #d9d9d9;
+
+  margin-top: -35px;
+  margin-left: 65px;
+  width: 100%;
+  height: 170px;
+  border-radius: 13px;
+  margin-bottom: 30px;
+  padding: 18px 16px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .title {
+    color: #202020;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+  }
+
+  .option {
+    display: flex;
+    gap: 10px;
+
+    .share {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #c1c1c1;
+      padding: 4px 0px;
+
+      p {
+        color: #000;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: -0.6px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.profile_container {
+  display: flex;
+}
+
+.profile {
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.48) 100%);
+
+  &:not(:first-child) {
+    margin-left: -15px;
+    border: 1px solid #e3e3e3;
+  }
+}
+
+.schedule {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+
+  p {
+    color: #202020;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.6px;
+  }
+}
