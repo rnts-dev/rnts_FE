@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import DatePicker from 'tui-date-picker';
 import './tui-date-picker.scss';
-import { Button, Container, Flex, SimpleGrid, Stack } from '@chakra-ui/react';
+import { Button, Flex, Stack } from '@chakra-ui/react';
 
 interface Props {
   onSave: (date: Date) => void;
