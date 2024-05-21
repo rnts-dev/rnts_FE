@@ -4,17 +4,14 @@ import TimePicker from 'tui-time-picker';
 import './index.scss';
 
 interface Props {
-  onSave: (date: Date) => void;
+  onSave: (time: string) => void;
 }
 
 export default function RNTSTimePicker(props: Props) {
   const { onSave } = props;
-  const timePickerRef = useRef<TimePicker | null>(null);
+  const timePickerRef = useRef<any>(null);
 
   useEffect(() => {
-    console.log('init calendar !');
-    const today = new Date();
-
     timePickerRef.current = new TimePicker('#timepicker', {
       initialHour: 15,
       initialMinute: 33,
@@ -31,7 +28,7 @@ export default function RNTSTimePicker(props: Props) {
     const hour = timePickerRef.current?.getHour();
     const minute = timePickerRef.current?.getMinute();
     console.log('dateValue : ', hour, minute);
-    // dateValue && onSave(dateValue);
+    minute && onSave(`${hour} : ${minute}`);
   };
 
   return (

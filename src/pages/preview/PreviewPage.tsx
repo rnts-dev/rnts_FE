@@ -1,19 +1,17 @@
-import { Tabs, TabList, TabPanels, Tab, TabPanel, Divider } from '@chakra-ui/react';
-import RNTSDatePicker from '@/shared/components/RNTSDatePicker/RNTSDatePicker';
-import './preview.scss';
-import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
 import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide';
+import RNTSDatePicker from '@/shared/components/RNTSDatePicker/RNTSDatePicker';
 import RNTSTimePicker from '@/shared/components/RNTSTimePicker';
+import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import './preview.scss';
 
 export default function PreviewPage() {
   return (
     <div className="preview-page">
-      <RNTSDatePicker onSave={() => console.log('날짜 선택')} />
-      <Divider />
       <Tabs isLazy>
         <TabList>
           <Tab>DatePicker</Tab>
-          <Tab>timeline</Tab>
+          <Tab>Timeline</Tab>
           <Tab>BottomSlide</Tab>
           <Tab>TimePicker</Tab>
           <Tab>..</Tab>
@@ -24,7 +22,7 @@ export default function PreviewPage() {
             <RNTSDatePicker onSave={() => console.log('날짜 선택')} />
           </TabPanel>
           <TabPanel>
-            <p>timeline component</p>
+            <Timeline />
           </TabPanel>
           <TabPanel>
             <RNTSBottomSlide>
