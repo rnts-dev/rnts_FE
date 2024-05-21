@@ -1,11 +1,11 @@
-.card {
+.appointment_card {
   border-radius: 13px;
-  background: #d9d9d9;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--System-Color-white, #fff);
 
-  margin-top: -35px;
+  margin-top: -52px;
   margin-left: 65px;
   width: 100%;
-  height: 170px;
   border-radius: 13px;
   margin-bottom: 30px;
   padding: 18px 16px;
@@ -17,35 +17,16 @@
   justify-content: space-between;
 
   .title {
-    color: #202020;
-    font-size: 16px;
-    font-weight: 700;
+    color: var(--Primary-Color-black, #000);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
     letter-spacing: -0.6px;
-  }
-
-  .option {
-    display: flex;
-    gap: 10px;
-
-    .share {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: #c1c1c1;
-      padding: 4px 0px;
-
-      p {
-        color: #000;
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: -0.6px;
-        text-align: center;
-      }
-    }
   }
 }
 
 .profile_container {
+  margin-top: 16px;
   display: flex;
 }
 
@@ -57,7 +38,7 @@
 
   &:not(:first-child) {
     margin-left: -15px;
-    border: 1px solid #e3e3e3;
+    border: 1px solid #fff;
   }
 }
 

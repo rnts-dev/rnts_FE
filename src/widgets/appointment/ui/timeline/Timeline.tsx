@@ -1,4 +1,4 @@
-import AppointmentCard from '@/entities/appointment/card/ui/AppointmentCard';
+import AppointmentCard from '@/entities/appointment/ui/card/AppointmentCard';
 import './timeline.scss';
 
 import { Step, StepIndicator, StepSeparator, StepStatus, Stepper, useSteps } from '@chakra-ui/react';

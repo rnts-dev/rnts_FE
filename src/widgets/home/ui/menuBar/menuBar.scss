@@ -1,0 +1,44 @@
+.menubar {
+  margin: 148px 0px 38px;
+  display: flex;
+  width: 228px;
+  padding: 14px 12px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 20px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--System-Color-white, #fff);
+}
+
+.move_home_btn {
+  display: flex;
+  width: 46px;
+  height: 48px;
+  padding: 17px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 13px;
+  background: var(--Primary-Color-black, #000);
+}
+
+.add_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 48px;
+  border-radius: 18px;
+}
+
+.penalty_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 46px;
+  height: 48px;
+}

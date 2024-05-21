@@ -1,5 +1,5 @@
-import Header from '@/widgets/appointment/header/ui/Header';
-import Timeline from '@/widgets/appointment/timeline/ui/Timeline';
+import Header from '@/widgets/appointment/ui/header/Header';
+import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
 import { Outlet } from 'react-router-dom';
 
 const AppointmentsListPage = () => {

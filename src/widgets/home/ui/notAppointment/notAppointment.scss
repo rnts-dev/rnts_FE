@@ -1,0 +1,23 @@
+.not_appointment_content {
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 27px;
+}
+
+.character {
+  border: 1px solid var(--System-Color-gray-600, #a1b2ca);
+  background: var(--System-Color-gray-200, #eef1f6);
+  height: 196px;
+  width: 187px;
+  border-radius: 13px;
+}
+
+.description {
+  color: #202020;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
