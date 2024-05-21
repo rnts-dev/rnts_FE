@@ -1,10 +1,9 @@
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Divider } from '@chakra-ui/react';
 import RNTSDatePicker from '@/shared/components/RNTSDatePicker/RNTSDatePicker';
 import './preview.scss';
 import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
 import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide';
 import RNTSTimePicker from '@/shared/components/RNTSTimePicker';
-
 
 export default function PreviewPage() {
   return (
