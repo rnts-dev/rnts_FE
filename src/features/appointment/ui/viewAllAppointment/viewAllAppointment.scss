@@ -6,8 +6,8 @@
   align-items: center;
   gap: 4px;
 
-  p {
-    color: #202020;
+  .view_appointment_text {
+    color: var(--System-Color-gray-700, #546174);
     text-align: center;
     font-size: 14px;
     font-weight: 500;

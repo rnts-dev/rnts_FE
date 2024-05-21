@@ -13,6 +13,12 @@
   height: 196px;
   width: 187px;
   border-radius: 13px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--System-Color-gray-600, #a1b2ca);
 }
 
 .description {
