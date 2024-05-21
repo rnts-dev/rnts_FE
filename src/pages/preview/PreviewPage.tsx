@@ -10,8 +10,6 @@ export default function PreviewPage() {
     <div className="preview-page">
       <RNTSDatePicker onSave={() => console.log('날짜 선택')} />
       <Divider />
-      <Timeline />
-      <Divider />
       <Tabs isLazy>
         <TabList>
           <Tab>DatePicker</Tab>
