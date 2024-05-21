@@ -12,6 +12,7 @@ export default function RNTSDatePicker(props: Props) {
   const datepickerRef = useRef<DatePicker | null>(null);
 
   useEffect(() => {
+    console.log('init calendar !');
     const today = new Date();
     datepickerRef.current = new DatePicker('#datepicker', {
       date: today,
@@ -35,12 +36,12 @@ export default function RNTSDatePicker(props: Props) {
   };
 
   return (
-    <Stack>
+    <>
       <div id="datepicker" />
       <Flex>
         <Button onClick={handleBtnClick}>닫기</Button>
         <Button onClick={handleBtnClick}>선택 완료</Button>
       </Flex>
-    </Stack>
+    </>
   );
 }
