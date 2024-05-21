@@ -1,13 +1,13 @@
 import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide';
 import RNTSDatePicker from '@/shared/components/RNTSDatePicker/RNTSDatePicker';
 import RNTSTimePicker from '@/shared/components/RNTSTimePicker';
-import useGlobalDialog from '@/shared/manager/useGlobalModal';
+import useGlobalModal from '@/shared/manager/modal/useGlobalModal';
 import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
 import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import './preview.scss';
 
 export default function PreviewPage() {
-  const { prompt } = useGlobalDialog();
+  const { prompt } = useGlobalModal();
 
   const handleOpenConfirmModal = async () => {
     const modal = await prompt({

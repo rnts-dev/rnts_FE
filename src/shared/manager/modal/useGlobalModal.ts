@@ -19,7 +19,7 @@ type ConfirmType = BaseType & { type?: 'confirm' } & Pick<ModalType, 'confirmTit
 
 type UnionPrompt = BaseType & { type?: 'alert' } & ConfirmType;
 
-export default function useGlobalModal() {
+const useGlobalModal = () => {
   const [confirmMessage, setConfirmMessage] = useAtom(modalState);
   const [resolve, setResolve] = useAtom(modalResolveState);
   const isViewConfirm = !!confirmMessage && confirmMessage?.type !== 'error';
@@ -49,4 +49,6 @@ export default function useGlobalModal() {
     confirm,
     deny,
   };
-}
+};
+
+export default useGlobalModal;

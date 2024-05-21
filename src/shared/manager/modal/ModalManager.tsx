@@ -1,6 +1,6 @@
 'use client';
 
-import useGlobalDialog from '@/shared/manager/useGlobalModal';
+import useGlobalDialog from '@/shared/manager/modal/useGlobalModal';
 import { Button, Container, Flex, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import { createPortal } from 'react-dom';
 import './modal.scss';

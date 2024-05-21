@@ -1,7 +1,7 @@
 import MapSearch from '@/entities/map/ui/MapSearch';
 import PreviewPage from '@/pages/preview/PreviewPage';
 import RNTSNavigation from '@/shared/components/RNTSNavigation';
-import ModalManager from '@/shared/manager/ModalManager';
+import ModalManager from '@/shared/manager/modal/ModalManager';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AppointmentsListPage from './pages/appointments/AppointmentsListPage';
