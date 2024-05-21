@@ -1,6 +1,7 @@
 import MapSearch from '@/entities/map/ui/MapSearch';
 import PreviewPage from '@/pages/preview/PreviewPage';
 import RNTSNavigation from '@/shared/components/RNTSNavigation';
+import ModalManager from '@/shared/manager/ModalManager';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AppointmentsListPage from './pages/appointments/AppointmentsListPage';
@@ -54,6 +55,7 @@ function App() {
             <Route key={menu.title} path={menu.url} element={menu.page} />
           ))}
         </Routes>
+        <ModalManager />
       </BrowserRouter>
     </ChakraProvider>
   );

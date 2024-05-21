@@ -1,0 +1,49 @@
+.header {
+  &__container {
+    width: 100%;
+    height: auto;
+  }
+
+  &__text {
+    text-align: center;
+  }
+}
+
+.description {
+  &__container {
+    width: 100%;
+    height: auto;
+  }
+
+  &__text {
+    text-align: center;
+  }
+}
+
+.body {
+  &__container {
+    width: 100%;
+    height: auto;
+    min-height: 167px;
+  }
+
+  &__text {
+    text-align: center;
+  }
+}
+
+.bottom {
+  &__btn-group {
+    display: flex;
+    width: 100%;
+    height: auto;
+    gap: 2%;
+    > button {
+      width: 100%;
+    }
+  }
+
+  &__text {
+    text-align: center;
+  }
+}
