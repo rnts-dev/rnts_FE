@@ -4,8 +4,12 @@ import addIcon from '@/assets/addIcon.svg';
 import fiAchive from '@/assets/fiArchive.svg';
 import { useScrollEndFixed } from '../../model/useScrollEndFixed';
 
-const MenuBar = () => {
-  const { menubarFixed } = useScrollEndFixed();
+interface MenuBarProps {
+  isFixed?: boolean;
+}
+
+const MenuBar = ({ isFixed }: MenuBarProps) => {
+  const { menubarFixed } = useScrollEndFixed(isFixed);
 
   return (
     <div className={menubarFixed ? 'menubar_blur' : 'menubar_nonblur'}>

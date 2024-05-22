@@ -8,7 +8,7 @@ export default function KakaoRedirectPage() {
   useEffect(() => {
     const url = new URL(window.location.href);
     const code = url.searchParams.get('code');
-
+    console.log(code);
     // TODO : 위에서 얻은 인가코드를 백엔드의 카카로 로그인주소로 보냄.
     fetcher.get(`${BASE_URL}auth/kakao?code=${code}`).then((res) => {
       // ok respone 확인하고, 이후 작업 해야함(유저로그인시키기, 토큰 브라우저에 저장)

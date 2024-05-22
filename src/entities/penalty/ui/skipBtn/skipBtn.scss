@@ -1,0 +1,14 @@
+.penalty_send_skip_container {
+  display: flex;
+  padding: 25px 70px;
+  justify-content: center;
+  align-items: center;
+}
+
+.penalty_send_skip_btn {
+  color: var(--System-Color-gray-500, #bac7da);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.6px;
+}

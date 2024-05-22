@@ -29,7 +29,7 @@ const theme = extendTheme({ colors });
 const navMeta = [
   { title: '대시보드', url: '/', page: <HomePage /> },
   { title: '로그인', url: 'login', page: <LoginPage /> },
-  { title: '카카오(re)', url: 'kakao-redirect', page: <KakaoRedirectPage /> },
+  { title: '카카오(re)', url: 'login/oauth2/code/kakao', page: <KakaoRedirectPage /> },
   { title: '지도', url: 'map', page: <MapSearch /> },
   { title: '유형', url: 'tendency/select', page: <SelectTendencyPage /> },
   { title: '약속', url: 'appointment', page: <AppointmentsListPage /> },

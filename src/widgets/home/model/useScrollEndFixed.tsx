@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 
-export const useScrollEndFixed = () => {
-  const [menubarFixed, setMenubarFixed] = useState(true);
+export const useScrollEndFixed = (isFixed = false) => {
+  const [menubarFixed, setMenubarFixed] = useState(isFixed);
 
   useEffect(() => {
+    const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+    if (isAtBottom) {
+      setMenubarFixed(false);
+    }
     const handleScroll = () => {
       setMenubarFixed(false);
     };
