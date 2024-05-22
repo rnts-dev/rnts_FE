@@ -25,6 +25,11 @@
   }
 }
 
+.appointment_card_option_container {
+  display: flex;
+  gap: 8px;
+}
+
 .profile_container {
   margin-top: 16px;
   display: flex;
@@ -53,4 +58,26 @@
     font-weight: 400;
     letter-spacing: -0.6px;
   }
+}
+
+.appointment_card_checkin_btn_wrap {
+  margin-top: 18px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appointment_card_checkin_btn {
+  width: 100%;
+  padding: 12px 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  border-radius: 8px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--Primary-Color-green, #b0f93c);
 }

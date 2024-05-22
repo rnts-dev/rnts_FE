@@ -6,7 +6,7 @@ const AppointmentsListPage = () => {
   return (
     <div style={{ padding: '0px 25px' }}>
       <Header />
-      <Timeline />
+      <Timeline isFlag />
       <Outlet />
     </div>
   );

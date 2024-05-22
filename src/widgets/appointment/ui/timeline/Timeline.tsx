@@ -1,6 +1,5 @@
 import AppointmentCard from '@/entities/appointment/ui/card/AppointmentCard';
 import './timeline.scss';
-
 import { Step, StepIndicator, StepSeparator, StepStatus, Stepper, useSteps } from '@chakra-ui/react';
 
 const mockData = [
@@ -13,17 +12,22 @@ function Circle() {
   return <div className="circle"></div>;
 }
 
-function Timeline() {
+interface TimelineProps {
+  isFlag?: boolean;
+  isHome?: boolean;
+}
+
+function Timeline({ isFlag, isHome }: TimelineProps) {
   const { activeStep } = useSteps({
     index: 1,
     count: mockData.length,
   });
 
   return (
-    <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" className="container">
+    <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" className="chakra_stepper_container">
       {mockData.map((step, index) => (
         <Step key={index}>
-          {step.test && (
+          {step.test && isFlag && (
             <div className="flag">
               <p>{step.test2}</p>
               <div className="flag_line"></div>
@@ -32,7 +36,8 @@ function Timeline() {
           <StepIndicator className="indicator">
             <StepStatus complete={<Circle />} incomplete={<Circle />} active={<Circle />} />
           </StepIndicator>
-          <AppointmentCard />
+          {isHome ? <AppointmentCard isCheckinBtn isShared /> : <AppointmentCard />}
+
           <StepSeparator className="separator" />
         </Step>
       ))}

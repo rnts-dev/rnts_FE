@@ -1,5 +1,27 @@
+.menubar_blur {
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  height: 253px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  backdrop-filter: blur(1px);
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.5)); /* 상단에서 하단으로 점점 투명도가 증가하는 그라디언트 */
+}
+
+.menubar_nonblur {
+  z-index: 0;
+  height: 100px;
+  margin-bottom: 88px;
+  backdrop-filter: none;
+}
+
 .menubar {
-  margin: 138px 0px 38px;
+  margin: 40px 0px 38px;
+
   display: flex;
   width: 228px;
   padding: 14px 12px;
