@@ -7,7 +7,7 @@ import SendPenaltyContent from '@/widgets/penalty/ui/sendPenaltyContent/SendPena
 const SendPenaltyPage = () => {
   return (
     <PagePadding>
-      <Header />
+      <Header title="지각비 걷기" description="지각자에게 매운맛을 보여 주세요!" />
       <SendPenaltyContent />
       <PrimaryBtn
         text="다음"
