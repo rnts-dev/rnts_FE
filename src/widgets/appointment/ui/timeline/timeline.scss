@@ -1,11 +1,15 @@
-.container .chakra-step {
+.chakra_stepper_container {
+  height: 100% !important;
+}
+
+.chakra_stepper_container .chakra-step {
   display: flex;
   flex-direction: column;
   width: calc(100% - 65px);
   margin-top: 30px;
 }
 
-.container .flag {
+.chakra_stepper_container .flag {
   border-radius: 0px 5px 5px 0px;
   background: #000;
   width: 50px;
@@ -30,7 +34,7 @@
   }
 }
 
-.container .flag_line {
+.chakra_stepper_container .flag_line {
   position: absolute;
   left: 0;
   top: 0;
@@ -39,7 +43,7 @@
   background: #000;
 }
 
-.container .indicator {
+.chakra_stepper_container .indicator {
   background: #b0f93c !important;
   border-color: #b0f93c !important;
   z-index: 1;
@@ -47,8 +51,8 @@
   height: 48px;
 }
 
-.container .separator {
+.chakra_stepper_container .separator {
   background: #000 !important;
-  min-height: 120% !important;
+  min-height: 100% !important;
   margin-left: 7px;
 }
