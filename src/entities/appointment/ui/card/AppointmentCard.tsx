@@ -1,8 +1,9 @@
-import './appointmentCard.scss';
-import fiMoreVertical from '@/assets/fiMoreVertical.svg';
-import fiMapFin from '@/assets/fiMapFin.svg';
 import fiClock from '@/assets/fiClock.svg';
+import fiMapFin from '@/assets/fiMapFin.svg';
+import fiMoreVertical from '@/assets/fiMoreVertical.svg';
 import fiShare from '@/assets/fiShare.svg';
+import useHandleCheckIn from '@/entities/appointment/\bhook/useHandleCheckIn';
+import './appointmentCard.scss';
 
 interface AppoinmentCardProps {
   isShared?: boolean;
@@ -14,6 +15,8 @@ interface AppoinmentCardProps {
 }
 
 const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time }: AppoinmentCardProps) => {
+  const { handleCheckInModal } = useHandleCheckIn();
+
   return (
     <div className="appointment_card">
       <div className="top">
@@ -44,7 +47,9 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
       </div>
       {isCheckinBtn && (
         <div className="appointment_card_checkin_btn_wrap">
-          <button className="appointment_card_checkin_btn">도착 체크인</button>
+          <button className="appointment_card_checkin_btn" onClick={handleCheckInModal}>
+            도착 체크인
+          </button>
         </div>
       )}
     </div>

@@ -28,7 +28,7 @@ export default function DialogManager() {
 
         <ModalBody>
           <div className="body__container">
-            <p className="body__text">{confirmMessage.contents}</p>
+            <p className="body__content">{confirmMessage.contents}</p>
           </div>
         </ModalBody>
 
@@ -41,7 +41,7 @@ export default function DialogManager() {
 
           {confirmMessage.type === 'confirm' && (
             <Flex className="bottom__btn-group">
-              <Button onClick={deny}>{confirmMessage.cancelTitle}</Button>
+              {/* <Button onClick={deny}>{confirmMessage.cancelTitle}</Button> */}
               <Button onClick={confirm}>{confirmMessage.confirmTitle}</Button>
             </Flex>
           )}

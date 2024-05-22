@@ -11,21 +11,17 @@ export type ModalType = {
   cancelTitle: React.ReactNode;
 };
 
-type BaseType = Partial<Pick<ModalType, 'header' | 'description' | 'contents' | 'confirmTitle'>>;
-
-type AlertType = BaseType & { type?: 'alert' };
-
-type ConfirmType = BaseType & { type?: 'confirm' } & Pick<ModalType, 'confirmTitle'> & Pick<ModalType, 'cancelTitle'>;
-
-type UnionPrompt = BaseType & { type?: 'alert' } & ConfirmType;
+export type BaseType = Partial<Pick<ModalType, 'header' | 'description' | 'contents' | 'confirmTitle'>>;
+export type AlertType = BaseType & { type?: 'alert' };
+export type ConfirmType = BaseType & { type?: 'confirm' } & Pick<ModalType, 'confirmTitle'> & Pick<ModalType, 'cancelTitle'>;
 
 const useGlobalModal = () => {
   const [confirmMessage, setConfirmMessage] = useAtom(modalState);
   const [resolve, setResolve] = useAtom(modalResolveState);
   const isViewConfirm = !!confirmMessage && confirmMessage?.type !== 'error';
 
-  const prompt = async (options: AlertType | ConfirmType): Promise<boolean> => {
-    const { header = '', description = '', contents = '', type = 'alert', confirmTitle = '', cancelTitle = '' } = options as UnionPrompt;
+  const prompt = async (options: any): Promise<boolean> => {
+    const { header = '', description = '', contents = '', type = '', confirmTitle = '', cancelTitle = '' } = options as any;
 
     return new Promise((resolve) => {
       setConfirmMessage({ header, description, contents, type, confirmTitle, cancelTitle });
