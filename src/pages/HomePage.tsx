@@ -8,7 +8,7 @@ import TimelinePadding from '@/widgets/home/ui/timelinePadding/TimelinePadding';
 import { useState } from 'react';
 
 const HomePage = () => {
-  const [isAppointment, setIsAppopintment] = useState(true);
+  const [isAppointment, setIsAppopintment] = useState(false);
 
   return (
     <>
@@ -18,13 +18,20 @@ const HomePage = () => {
       <Header />
       <AppointmentHeader />
       {isAppointment && (
-        <TimelinePadding>
-          <Timeline isHome />
-        </TimelinePadding>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <TimelinePadding>
+            <Timeline isHome />
+          </TimelinePadding>
+          <MenuBar isFixed />
+        </div>
       )}
       <HomeContentLayout>
-        {!isAppointment && <NotAppointment />}
-        <MenuBar />
+        {!isAppointment && (
+          <>
+            <NotAppointment />
+            <MenuBar isFixed={false} />
+          </>
+        )}
       </HomeContentLayout>
     </>
   );
