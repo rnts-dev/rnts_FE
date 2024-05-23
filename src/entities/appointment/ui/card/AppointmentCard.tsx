@@ -1,20 +1,30 @@
-import './appointmentCard.scss';
-import fiMoreVertical from '@/assets/fiMoreVertical.svg';
-import testImg from '@/assets/kakaoLogin.png';
-import fiMapFin from '@/assets/fiMapFin.svg';
 import fiClock from '@/assets/fiClock.svg';
+import fiMapFin from '@/assets/fiMapFin.svg';
+import fiMoreVertical from '@/assets/fiMoreVertical.svg';
 import fiShare from '@/assets/fiShare.svg';
+import CheckinModal from '@/entities/checkin/ui/checkinModal/CheckinModal';
+import { checkinStep } from '@/shared/store/atoms/checkin';
+import { modalState } from '@/shared/store/atoms/modal';
+import { useSetAtom } from 'jotai';
+import './appointmentCard.scss';
 
 interface AppoinmentCardProps {
   isShared?: boolean;
   isCheckinBtn?: boolean;
+  title: string;
+  profileImgList: string[];
+  place: string;
+  time: Date;
 }
 
-const AppointmentCard = ({ isShared, isCheckinBtn }: AppoinmentCardProps) => {
+const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time }: AppoinmentCardProps) => {
+  const setModalOpen = useSetAtom(modalState);
+  const setStep = useSetAtom(checkinStep);
+
   return (
     <div className="appointment_card">
       <div className="top">
-        <p className="title">밥 약속</p>
+        <p className="title">{title}</p>
         <div className="appointment_card_option_container">
           {isShared && (
             <button>
@@ -27,23 +37,32 @@ const AppointmentCard = ({ isShared, isCheckinBtn }: AppoinmentCardProps) => {
         </div>
       </div>
       <div className="profile_container">
-        <img className="profile" src={testImg} alt="profleImg" />
-        <img className="profile" src={testImg} alt="profleImg" />
-        <img className="profile" src={testImg} alt="profleImg" />
+        {profileImgList.map((item) => {
+          return <img className="profile" src={item} alt="profile_img" />;
+        })}
       </div>
       <div className="schedule">
         <img src={fiMapFin} alt="dotImg" />
-        <p>00 대학교 00관 301호</p>
+        <p>{place}</p>
       </div>
       <div className="schedule">
         <img src={fiClock} alt="dotImg" />
-        <p>5월 18일 토요일 오후 10시</p>
+        <p>{String(time)}</p>
       </div>
       {isCheckinBtn && (
         <div className="appointment_card_checkin_btn_wrap">
-          <button className="appointment_card_checkin_btn">도착 체크인</button>
+          <button
+            className="appointment_card_checkin_btn"
+            onClick={() => {
+              setModalOpen(true);
+              setStep('init-checkin');
+            }}>
+            도착 체크인
+          </button>
         </div>
       )}
+
+      <CheckinModal />
     </div>
   );
 };

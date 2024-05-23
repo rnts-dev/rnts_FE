@@ -1,53 +1,41 @@
-'use client';
-
-import useGlobalDialog from '@/shared/manager/modal/useGlobalModal';
-import { Button, Container, Flex, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
-import { createPortal } from 'react-dom';
+import BottomButton from '@/entities/checkin/ui/button/BottomButton';
+import { checkinStep } from '@/shared/store/atoms/checkin';
+import { modalState } from '@/shared/store/atoms/modal';
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
+import { useAtom, useAtomValue } from 'jotai';
+import { ReactNode, useEffect } from 'react';
 import './modal.scss';
 
-export default function DialogManager() {
-  const { confirmMessage, isViewConfirm, confirm, deny } = useGlobalDialog();
+const ModalManager = ({ title, description, children }: { title: string; description: string; children: ReactNode }) => {
+  const [modalOpen, setModalOpen] = useAtom(modalState);
+  const step = useAtomValue(checkinStep);
 
-  if (!isViewConfirm) {
-    return null;
-  }
+  const handleCloseModal = () => setModalOpen(false);
 
-  return createPortal(
-    <Modal size="sm" isOpen onClose={() => {}} isCentered>
+  useEffect(() => {
+    if (step === 'completed') {
+      handleCloseModal();
+    }
+  }, [step]);
+
+  return (
+    <Modal isOpen={modalOpen} onClose={handleCloseModal} size="sm">
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <div className="header__container">
-            <p className="header__text">{confirmMessage.header}</p>
-          </div>
-        </ModalHeader>
 
-        <div className="description__container">
-          <p className="description__text">{confirmMessage.description}</p>
+      <ModalContent>
+        <div className="header">
+          <p className="title">{title}</p>
+          <p className="description">{description}</p>
         </div>
 
-        <ModalBody>
-          <div className="body__container">
-            <p className="body__text">{confirmMessage.contents}</p>
-          </div>
-        </ModalBody>
+        <ModalBody>{children}</ModalBody>
 
         <ModalFooter>
-          {confirmMessage.type === 'alert' && (
-            <Container className="bottom__btn-group">
-              <Button onClick={confirm}>{confirmMessage.confirmTitle}</Button>
-            </Container>
-          )}
-
-          {confirmMessage.type === 'confirm' && (
-            <Flex className="bottom__btn-group">
-              <Button onClick={deny}>{confirmMessage.cancelTitle}</Button>
-              <Button onClick={confirm}>{confirmMessage.confirmTitle}</Button>
-            </Flex>
-          )}
+          <BottomButton />
         </ModalFooter>
       </ModalContent>
-    </Modal>,
-    document.querySelector('#root') || document.body,
+    </Modal>
   );
-}
+};
+
+export default ModalManager;

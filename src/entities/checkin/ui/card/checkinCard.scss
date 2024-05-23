@@ -1,0 +1,12 @@
+.checkin__body {
+  display: flex;
+  min-height: 196px;
+  padding: 80px 45px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 13px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--System-Color-white, #fff);
+}

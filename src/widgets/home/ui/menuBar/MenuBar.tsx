@@ -1,5 +1,5 @@
 import './menuBar.scss';
-import fiCalendar from '@/assets/fiCalendar.svg';
+import fiCalender from '@/assets/fiCalendar.svg';
 import addIcon from '@/assets/addIcon.svg';
 import fiAchive from '@/assets/fiArchive.svg';
 import { useScrollEndFixed } from '../../model/useScrollEndFixed';
@@ -15,7 +15,7 @@ const MenuBar = ({ isFixed }: MenuBarProps) => {
     <div className={menubarFixed ? 'menubar_blur' : 'menubar_nonblur'}>
       <div className="menubar">
         <div className="move_home_btn">
-          <img src={fiCalendar} alt="calendar" />
+          <img src={fiCalender} alt="calendar" />
         </div>
         <div className="add_btn">
           <img src={addIcon} alt="add_icon" />
