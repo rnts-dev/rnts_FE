@@ -1,5 +1,5 @@
 import SkipBtn from '@/entities/penalty/ui/skipBtn/SkipBtn';
-import PrimaryBtn from '@/shared/components/PrimaryBtn/PrimaryBtn';
+import PrimaryBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 import Header from '@/widgets/penalty/ui/header/Header';
 import PagePadding from '@/widgets/penalty/ui/pagePadding/PagePadding';
 import SendPenaltyContent from '@/widgets/penalty/ui/sendPenaltyContent/SendPenaltyContent';
