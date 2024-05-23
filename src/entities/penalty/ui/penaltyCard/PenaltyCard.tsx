@@ -4,24 +4,35 @@ import fiClock from '@/assets/fiClock.svg';
 
 interface PenaltyCardProps {
   type: string;
+  from: string;
+  appointmentTitle: string;
+  penaltyTitle: string;
+  profileImgList: string[];
+  appointmentPlace: string;
+  appointmentTime: string;
+  labelTime: string;
 }
 
-const PenaltyCard = ({ type }: PenaltyCardProps) => {
+const PenaltyCard = ({ type, from, appointmentTitle, penaltyTitle, profileImgList, appointmentPlace, appointmentTime, labelTime }: PenaltyCardProps) => {
+  const profileImgSlice = profileImgList.slice(0, 6);
+  const otherProfileImgLength = profileImgList.slice(6, -1).length;
+
   return (
     <div>
       <div className="penalty_card_info">
         <div className="penalty_card_appointment_info">
           <p>
-            From.홍길동 · <span>야구 경기 직관</span>
+            From.{from} · <span>{appointmentTitle}</span>
           </p>
-          <div className={type === '받은 패널티' ? 'penalty_card_late_label' : 'penalty_card_early_label'}>4분 지각</div>
+          <div className={type === '받은 패널티' ? 'penalty_card_late_label' : 'penalty_card_early_label'}>{labelTime}분 지각</div>
         </div>
-        <p className="penalty_card_title">길거리에서 숏폼 찍기</p>
+        <p className="penalty_card_title">{penaltyTitle}</p>
         {type === '받은 패널티' && (
           <div className="penalty_card_profile_container">
-            <img className="penalty_card_profile_img" src="" alt="profile_img" />
-            <img className="penalty_card_profile_img" src="" alt="profile_img" />
-            <img className="penalty_card_profile_img" src="" alt="profile_img" />
+            {profileImgSlice.map((profileImg) => {
+              return <img className="penalty_card_profile_img" src={profileImg} alt="profile_img" />;
+            })}
+            {otherProfileImgLength > 0 && <div className="penalty_card_other_profile_length">{`+${otherProfileImgLength}`}</div>}
           </div>
         )}
       </div>
@@ -29,11 +40,11 @@ const PenaltyCard = ({ type }: PenaltyCardProps) => {
       <div className="penalty_card_schedule">
         <div>
           <img src={fiMapFin} alt="fi_map_fin" />
-          <p>서울특별시 동작구 동작대로 83</p>
+          <p>{appointmentPlace}</p>
         </div>
         <div>
           <img src={fiClock} alt="fi_clock" />
-          <p>5월 18일 오전 10시 30분</p>
+          <p>{appointmentTime}</p>
         </div>
       </div>
     </div>

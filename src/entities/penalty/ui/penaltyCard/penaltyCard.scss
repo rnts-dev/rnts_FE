@@ -102,3 +102,15 @@
   border-radius: 50%;
   background: red;
 }
+
+.penalty_card_other_profile_length {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: var(--Primary-Color-black, #000);
+  border-radius: 50%;
+
+  color: #fff;
+}
