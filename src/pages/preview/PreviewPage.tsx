@@ -1,7 +1,7 @@
 import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide';
 import RNTSDatePicker from '@/shared/components/RNTSDatePicker/RNTSDatePicker';
 import RNTSTimePicker from '@/shared/components/RNTSTimePicker';
-import useGlobalModal from '@/shared/manager/modal/useGlobalModal';
+import useGlobalModal from '@/shared/manager/confirm/useHandleConfirm';
 import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
 import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import './preview.scss';

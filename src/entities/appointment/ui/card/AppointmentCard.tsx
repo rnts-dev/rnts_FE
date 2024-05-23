@@ -2,7 +2,10 @@ import fiClock from '@/assets/fiClock.svg';
 import fiMapFin from '@/assets/fiMapFin.svg';
 import fiMoreVertical from '@/assets/fiMoreVertical.svg';
 import fiShare from '@/assets/fiShare.svg';
-import useHandleCheckIn from '@/entities/appointment/\bhook/useHandleCheckIn';
+import CheckinModal from '@/entities/checkin/ui/checkinModal/CheckinModal';
+import { checkinStep } from '@/shared/store/atoms/checkin';
+import { modalState } from '@/shared/store/atoms/modal';
+import { useSetAtom } from 'jotai';
 import './appointmentCard.scss';
 
 interface AppoinmentCardProps {
@@ -15,7 +18,8 @@ interface AppoinmentCardProps {
 }
 
 const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time }: AppoinmentCardProps) => {
-  const { handleCheckInModal } = useHandleCheckIn();
+  const setModalOpen = useSetAtom(modalState);
+  const setStep = useSetAtom(checkinStep);
 
   return (
     <div className="appointment_card">
@@ -47,11 +51,18 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
       </div>
       {isCheckinBtn && (
         <div className="appointment_card_checkin_btn_wrap">
-          <button className="appointment_card_checkin_btn" onClick={handleCheckInModal}>
+          <button
+            className="appointment_card_checkin_btn"
+            onClick={() => {
+              setModalOpen(true);
+              setStep('init-checkin');
+            }}>
             도착 체크인
           </button>
         </div>
       )}
+
+      <CheckinModal />
     </div>
   );
 };

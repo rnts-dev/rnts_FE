@@ -1,4 +1,4 @@
-import { modalResolveState, modalState } from '@/shared/store/atoms/modal';
+import { confirmResolveState, confirmState } from '@/shared/store/atoms/confirm';
 import { useAtom } from 'jotai';
 import * as React from 'react';
 
@@ -15,9 +15,9 @@ export type BaseType = Partial<Pick<ModalType, 'header' | 'description' | 'conte
 export type AlertType = BaseType & { type?: 'alert' };
 export type ConfirmType = BaseType & { type?: 'confirm' } & Pick<ModalType, 'confirmTitle'> & Pick<ModalType, 'cancelTitle'>;
 
-const useGlobalModal = () => {
-  const [confirmMessage, setConfirmMessage] = useAtom(modalState);
-  const [resolve, setResolve] = useAtom(modalResolveState);
+const useHandleConfirm = () => {
+  const [confirmMessage, setConfirmMessage] = useAtom(confirmState);
+  const [resolve, setResolve] = useAtom(confirmResolveState);
   const isViewConfirm = !!confirmMessage && confirmMessage?.type !== 'error';
 
   const prompt = async (options: any): Promise<boolean> => {
@@ -47,4 +47,4 @@ const useGlobalModal = () => {
   };
 };
 
-export default useGlobalModal;
+export default useHandleConfirm;
