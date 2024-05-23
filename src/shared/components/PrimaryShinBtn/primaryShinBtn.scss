@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #ffff;
+  color: var(--Primary-Color-black, #000);
   gap: 10px;
   // font-weight: bold;
   border-radius: 10px;
