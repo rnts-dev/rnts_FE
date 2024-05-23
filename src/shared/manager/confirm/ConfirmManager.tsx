@@ -6,7 +6,7 @@ import { createPortal } from 'react-dom';
 import './confirm.scss';
 
 export default function ConfirmManager() {
-  const { confirmMessage, isViewConfirm, confirm, deny } = useHandleConfirm();
+  const { confirmMessage, isViewConfirm, confirm } = useHandleConfirm();
 
   if (!isViewConfirm) {
     return null;

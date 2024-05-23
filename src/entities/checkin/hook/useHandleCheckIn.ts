@@ -1,9 +1,6 @@
 import BottomButton from '@/entities/checkin/ui/button/BottomButton';
-import useGlobalModal from '@/shared/manager/confirm/useHandleConfirm';
 
 export default function useHandleCheckIn() {
-  const { prompt } = useGlobalModal();
-
   // 정시 도착
   // 일찍 도착
   // 지각

@@ -1,10 +1,10 @@
 import useHandleBottomButton from '@/entities/checkin/\bhook/useHandleBottomButton';
 import { checkinStep } from '@/shared/store/atoms/checkin';
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import './bottomButton.scss';
 
 const BottomButton = () => {
-  const [step, setStep] = useAtom(checkinStep);
+  const setStep = useSetAtom(checkinStep);
   const { handleChangeStep } = useHandleBottomButton();
 
   return (

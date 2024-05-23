@@ -2,13 +2,13 @@ import BottomButton from '@/entities/checkin/ui/button/BottomButton';
 import { checkinStep } from '@/shared/store/atoms/checkin';
 import { modalState } from '@/shared/store/atoms/modal';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { ReactNode, useEffect } from 'react';
 import './modal.scss';
 
 const ModalManager = ({ title, description, children }: { title: string; description: string; children: ReactNode }) => {
   const [modalOpen, setModalOpen] = useAtom(modalState);
-  const [step, setStep] = useAtom(checkinStep);
+  const step = useAtomValue(checkinStep);
 
   const handleCloseModal = () => setModalOpen(false);
 

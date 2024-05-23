@@ -2,10 +2,10 @@ import useHandleCheckIn from '@/entities/checkin/\bhook/useHandleCheckIn';
 import CheckinCard from '@/entities/checkin/ui/card/CheckinCard';
 import ModalManager from '@/shared/manager/modal/ModalManager';
 import { checkinStep } from '@/shared/store/atoms/checkin';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 
 const CheckinModal = () => {
-  const [step, setStep] = useAtom(checkinStep);
+  const step = useAtomValue(checkinStep);
   const { getModalMeta } = useHandleCheckIn();
 
   return (
@@ -19,10 +19,11 @@ const CheckinModal = () => {
       {step === 'make-penalty' && <p>패널티 보러 가기</p>}
       {step === 'view-penalty' && <p>패널티 내용</p>}
 
-      {step === 'view-penalty' && <p>지각</p>}
+      {step === 'my-penalty' && <p>지각 페널티 내용</p>}
 
       {/* 다른 단계별로 분기 처리 */}
       {/* compled 되면 모달 close 처리 */}
+      {/* TODO : 모두 지각 */}
     </ModalManager>
   );
 };

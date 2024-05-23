@@ -1,9 +1,9 @@
 import { checkinStep } from '@/shared/store/atoms/checkin';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
 export default function useHandleBottomButton() {
-  const [step, setStep] = useAtom(checkinStep);
+  const step = useAtomValue(checkinStep);
   const navigate = useNavigate();
 
   const handleChangeStep = () => {
