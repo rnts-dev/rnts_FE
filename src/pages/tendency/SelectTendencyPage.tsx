@@ -1,4 +1,4 @@
-import PrimaryBtn from '@/shared/components/PrimaryBtn/PrimaryBtn';
+import PrimaryBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 import Header from '@/widgets/tendency/header/Header';
 import PagePadding from '@/widgets/tendency/pagePadding/PagePadding';
 import TendencyList from '@/widgets/tendency/tendencyList/TendencyList';
