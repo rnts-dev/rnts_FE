@@ -55,6 +55,7 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
             className="appointment_card_checkin_btn"
             onClick={() => {
               setModalOpen(true);
+              // TODO : api get 해와서 조건에 따라 step 분기 처리
               setStep('init-checkin');
             }}>
             도착 체크인

@@ -5,7 +5,7 @@ import './bottomButton.scss';
 
 const BottomButton = () => {
   const setStep = useSetAtom(checkinStep);
-  const { handleChangeStep } = useHandleBottomButton();
+  const { handleChangeStep, getButtonTitle } = useHandleBottomButton();
 
   return (
     <div className="bottom-button">
@@ -14,9 +14,10 @@ const BottomButton = () => {
         onClick={() => {
           handleChangeStep();
         }}>
-        <div>지각자에게 보낼 패널티 정하기</div>
+        <div>{getButtonTitle()}</div>
       </div>
-      <div className="dismiss" onClick={() => setStep('completed')}>
+      {/* TODO : step별로 show 분기 처리 */}
+      <div className="dismiss" onClick={() => setStep('canceled')}>
         <p>넘어가기</p>
       </div>
     </div>

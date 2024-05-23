@@ -13,7 +13,7 @@ const ModalManager = ({ title, description, children }: { title: string; descrip
   const handleCloseModal = () => setModalOpen(false);
 
   useEffect(() => {
-    if (step === 'completed') {
+    if (step === 'canceled') {
       handleCloseModal();
     }
   }, [step]);
