@@ -8,7 +8,8 @@ export const CheckinKeys = {
   받은패널티보기: 'view-my-penalty',
   확인: 'view-penalty-completed',
 
-  받은패널티: 'my-penalty',
+  내가받은패널티보기: 'my-penalty',
+  패널티확인: 'my-penalty-completed',
 
   모두지각: 'all-late',
   반성문쓰기: 'write-regret',

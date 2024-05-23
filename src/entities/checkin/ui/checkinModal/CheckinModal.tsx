@@ -1,11 +1,8 @@
 import useHandleCheckIn from '@/entities/checkin/\bhook/useHandleCheckIn';
 import CheckinCard from '@/entities/checkin/ui/card/CheckinCard';
 import ModalManager from '@/shared/manager/modal/ModalManager';
-import { checkinStep } from '@/shared/store/atoms/checkin';
-import { useAtomValue } from 'jotai';
 
 const CheckinModal = () => {
-  const step = useAtomValue(checkinStep);
   const { getModalMeta } = useHandleCheckIn();
 
   return (
