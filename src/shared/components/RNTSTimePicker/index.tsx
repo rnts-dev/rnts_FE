@@ -1,7 +1,6 @@
 import { AppointmentState } from '@/shared/store/atoms/appointment';
 import { Button, Flex } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
-import moment from 'moment';
 import { useEffect, useRef } from 'react';
 import TimePicker from 'tui-time-picker';
 import './index.scss';
@@ -31,7 +30,6 @@ export default function RNTSTimePicker(props: Props) {
   const handleBtnClick = () => {
     const hour = timePickerRef.current?.getHour();
     const minute = timePickerRef.current?.getMinute();
-    const formattedTime = moment({ hour, minute }).format('A hh:mm');
 
     minute &&
       setAppointment((prev) => {
