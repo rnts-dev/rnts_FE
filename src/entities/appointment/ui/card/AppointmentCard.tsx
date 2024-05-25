@@ -35,7 +35,7 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
 
   const { mutate } = useMutation({
     mutationFn: (id: number) => {
-      return fetcher.post(`api/userappt/checkin/${id}`).then((res) => res.data);
+      return fetcher.post(`/api/userappt/checkin/${id}`).then((res) => res.data);
     },
     onSuccess: async (data) => {
       if (data.checkInType === 'success') {

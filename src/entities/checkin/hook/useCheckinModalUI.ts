@@ -22,7 +22,7 @@ export default function useCheckinModalUI(id: number) {
 
   const { mutate: postMyPenalty } = useMutation({
     mutationFn: () => {
-      return fetcher.post(`api/penalty/createReceivedPenalty/${id}`).then((res) => res.data);
+      return fetcher.post(`/api/penalty/createReceivedPenalty/${id}`).then((res) => res.data);
     },
   });
 

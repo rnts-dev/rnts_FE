@@ -10,6 +10,7 @@ export default function KakaoRedirectPage() {
     // const url = new URL(window.location.href);
     const code = searchParams.get('code');
     // TODO : 위에서 얻은 인가코드를 백엔드의 카카로 로그인주소로 보냄.
+
     fetcher.post(`/api/user/kakao/login?code=${code}`).then((res) => {
       localStorage.setItem('ACCESS_TOKEN', res.data);
       navigate('/');

@@ -146,7 +146,7 @@ const HomePage = () => {
               confirmTitle="수락"
               cancelTitle="거절"
               onConfirm={async () => {
-                await fetcher.post(`api/userappt/${searchParams.get('id')}`).then((res) => res.data);
+                await fetcher.post(`/api/userappt/${searchParams.get('id')}`).then((res) => res.data);
                 await refetch();
                 await setModal('');
               }}
