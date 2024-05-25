@@ -3,8 +3,11 @@ import Description from '@/entities/appointment/ui/description/Description';
 import PlaceSearchResultList from '@/features/appointment/ui/placeSearchResultList.tsx/PlaceSearchResultList';
 import Input from '@/shared/components/Input/Input';
 import { useDebounce } from '@/shared/hooks/useDebounce';
+import { AppointmentState } from '@/shared/store/atoms/appointment';
 import Layout from '@/widgets/createAppointment/ui/placeSearchLayout/PlaceSearchLayout';
+import { useSetAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 interface ILocation {
   latitude: string | number;
   longitude: string | number;
@@ -18,11 +21,22 @@ declare global {
 }
 
 const CreateAppointmentPlace = () => {
-  const [input, setInput] = useState('');
+  const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>();
+  const [, setInput] = useState('');
   const [result, setResult] = useState<any[]>([]);
   const [, setDestinationLocation] = useState<ILocation>();
-  const inputRef = useRef<HTMLInputElement>();
+  const setAppointment = useSetAtom(AppointmentState);
   // const { location } = useGetLocation();
+
+  const handleAppointmentPlace = () => {
+    setAppointment((prev: any) => {
+      return {
+        ...prev,
+        place: inputRef?.current?.value,
+      };
+    });
+  };
 
   const searchPlaces = () => {
     var ps = new kakao.maps.services.Places();
@@ -49,21 +63,15 @@ const CreateAppointmentPlace = () => {
   return (
     <Layout>
       <Description title="도착지 설정" description="약속 시간을 선택하세요." />
-      <Input
-        inputRef={inputRef}
-        placeholder="지번, 도로명, 건물명으로 검색"
-        onChange={(e) => {
-          setInput(e.target.value);
-        }}
-        value={input}
-      />
+      <Input inputRef={inputRef} placeholder="지번, 도로명, 건물명으로 검색" value={inputRef?.current?.value || ''} onChange={(e) => setInput(e.currentTarget.value)} />
 
       <PlaceSearchResultList result={result} handleSelectDestination={handleSelectDestination} />
 
       <ConfirmButton2
-        onCancel={() => console.log('cancel')}
+        onCancel={() => navigate('/appointment/create/schedule')}
         onConfirm={() => {
-          console.log('이동');
+          handleAppointmentPlace();
+          navigate('/appointment/create/schedule');
         }}
       />
     </Layout>

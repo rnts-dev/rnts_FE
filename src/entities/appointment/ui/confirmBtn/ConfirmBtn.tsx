@@ -2,13 +2,14 @@ import './confirmBtn.scss';
 
 interface ConfirmBtnProps {
   isComplete: boolean;
+  title?: string;
   onClick: () => void;
 }
 
-const ConfirmBtn = ({ isComplete, onClick }: ConfirmBtnProps) => {
+const ConfirmBtn = ({ isComplete, title, onClick }: ConfirmBtnProps) => {
   return (
     <button onClick={onClick} className={isComplete ? 'appointment_create_confirm_btn select' : 'appointment_create_confirm_btn'}>
-      다음
+      {title || '다음'}
     </button>
   );
 };

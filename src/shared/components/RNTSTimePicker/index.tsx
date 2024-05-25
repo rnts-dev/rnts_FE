@@ -1,9 +1,9 @@
+import { AppointmentState } from '@/shared/store/atoms/appointment';
 import { Button, Flex } from '@chakra-ui/react';
+import { useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
 import TimePicker from 'tui-time-picker';
 import './index.scss';
-import { useAtom } from 'jotai';
-import { AppointmentState } from '@/shared/store/atoms/appointment';
 
 interface Props {
   onClose: () => void;
@@ -38,6 +38,8 @@ export default function RNTSTimePicker(props: Props) {
           HHMM: `오전 ${hour}:${minute}`,
         };
       });
+
+    onClose();
   };
 
   return (

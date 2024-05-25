@@ -1,5 +1,5 @@
 import useGetLocation from '@/entities/map/model/useGetLocation';
-import { Button, Flex, Input, Select, Stack } from '@chakra-ui/react';
+import { Badge, Button, Flex, Highlight, Input, Select, Stack } from '@chakra-ui/react';
 import { useState } from 'react';
 
 interface ILocation {
@@ -52,6 +52,32 @@ export default function MapSearch() {
         </Stack>
       ) : (
         ''
+      )}
+
+      {destinationLocation && (
+        <>
+          <Highlight query=" 현재 나의 위치" styles={{ px: '1', py: '1', bg: 'orange.100' }}>
+            현재 나의 위치
+          </Highlight>
+          <p>
+            <Badge>위도</Badge> {location.latitude}
+          </p>
+
+          <p>
+            <Badge>경도</Badge>
+            {location.longitude}
+          </p>
+
+          <Highlight query=" 도착지의 위경도 정보" styles={{ px: '1', py: '1', bg: 'orange.100' }}>
+            도착지의 위경도 정보
+          </Highlight>
+          <p>
+            <Badge>위도</Badge> {destinationLocation.latitude}
+          </p>
+          <p>
+            <Badge>경도</Badge> {destinationLocation.longitude}
+          </p>
+        </>
       )}
     </>
   );

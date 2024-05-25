@@ -4,7 +4,7 @@ import './input.scss';
 interface PrimaryInputProps {
   value: string;
   placeholder: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   inputRef?: any;
 }
 

@@ -1,9 +1,9 @@
+import { AppointmentState } from '@/shared/store/atoms/appointment';
+import { formatDate } from '@/shared/utils/date';
+import { useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
 import DatePicker from 'tui-date-picker';
 import './tui-date-picker.scss';
-import { AppointmentState } from '@/shared/store/atoms/appointment';
-import { useAtom } from 'jotai';
-import { formatDate } from '@/shared/utils/date';
 
 interface Props {
   onClose: () => void;
