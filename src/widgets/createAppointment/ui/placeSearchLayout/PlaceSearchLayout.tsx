@@ -1,4 +1,3 @@
-import ConfirmButton from '@/shared/components/ConfirmButton.tsx';
 import './placeSearchLayout.scss';
 
 interface LayoutProps {
@@ -6,15 +5,7 @@ interface LayoutProps {
 }
 
 const PlaceSearchLayout = ({ children }: LayoutProps) => {
-  return (
-    <div className="layout">
-      {children}
-
-      <div className="bottom-button">
-        <ConfirmButton onCancel={() => console.log('can')} onConfirm={() => console.log('confirm')} />
-      </div>
-    </div>
-  );
+  return <div className="layout">{children}</div>;
 };
 
 export default PlaceSearchLayout;
