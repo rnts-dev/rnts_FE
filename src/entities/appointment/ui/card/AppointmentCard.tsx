@@ -10,6 +10,7 @@ import { formatDateForAppointmentCard } from '@/shared/utils/date';
 import { convertToDate } from '@/widgets/appointment/model/mappingTimeline';
 import { useMutation } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
+import { useState } from 'react';
 import './appointmentCard.scss';
 
 interface AppoinmentCardProps {
@@ -25,14 +26,36 @@ interface AppoinmentCardProps {
 const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time, uaid }: AppoinmentCardProps) => {
   const setModalOpen = useSetAtom(modalState);
   const setStep = useSetAtom(checkinStep);
+  const [, setIsSuccess] = useState(false);
 
-  const postCheckin = useMutation({
+  const { mutate } = useMutation({
     mutationFn: (id: number) => {
-      return fetcher
-        .post('api/userappt/checkin', {
-          id: id,
-        })
-        .then((res) => res.data);
+      return fetcher.post(`api/userappt/checkin/${id}`).then((res) => res.data);
+    },
+    onSuccess: async (data) => {
+      if (data.checkInType === 'success') {
+        await setIsSuccess(data.checkInType === 'success');
+        await setModalOpen(true);
+        // 노지각. 1등
+        if (!data.late && data.first) {
+          await setStep('init-checkin');
+        }
+        // 노지각. 노1등
+        if (!data.late && !data.first) {
+          await setStep('init-checkin-isLast');
+        }
+        // 전부지각
+        if (data.late && data.first) {
+          await setStep('all-late');
+        }
+        // 지각
+        if (data.late && !data.first) {
+          await setStep('init-checkin-isLast');
+        }
+      } else {
+        alert('이미 체크인 했습니다');
+      }
+      return data;
     },
   });
 
@@ -69,11 +92,7 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
           <button
             className="appointment_card_checkin_btn"
             onClick={async () => {
-              // const res = await postCheckin.mutate(uaid);
-              await setModalOpen(true);
-              // res 값에 따라 type 정해서 넣기
-              // console.log('--->', res);
-              await setStep('all-late');
+              await mutate(uaid);
             }}>
             도착 체크인
           </button>
