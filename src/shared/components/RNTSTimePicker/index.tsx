@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
 import TimePicker from 'tui-time-picker';
 import './index.scss';
+import moment from 'moment';
 
 interface Props {
   onClose: () => void;
@@ -30,12 +31,13 @@ export default function RNTSTimePicker(props: Props) {
   const handleBtnClick = () => {
     const hour = timePickerRef.current?.getHour();
     const minute = timePickerRef.current?.getMinute();
+    const formattedTime = moment({ hour, minute }).format('hh:mm A');
 
     minute &&
       setAppointment((prev) => {
         return {
           ...prev,
-          HHMM: `오전 ${hour}:${minute}`,
+          HHMM: formattedTime,
         };
       });
 
