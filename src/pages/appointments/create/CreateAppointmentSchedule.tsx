@@ -1,6 +1,8 @@
 import ConfirmBtn from '@/entities/appointment/ui/confirmBtn/ConfirmBtn';
 import Description from '@/entities/appointment/ui/description/Description';
+import { fetcher } from '@/shared/service/fetch';
 import { AppointmentState } from '@/shared/store/atoms/appointment';
+import { convertToISOString } from '@/shared/utils/date';
 import PagePadding from '@/widgets/appointment/ui/pagePadding/PagePadding';
 import CreateHeader from '@/widgets/createAppointment/ui/createHeader/CreateHeader';
 import PlaceSettingButton from '@/widgets/createAppointment/ui/placeSettingButton/PlaceSettingButton';
@@ -13,18 +15,18 @@ const CreateAppointmentSchedule = () => {
   const appointment = useAtomValue(AppointmentState);
   const isComplete = appointment.place && appointment.YYMMDD && appointment.HHMM;
 
-  // const onClickConfirmBtn = async () => {
-  //   // await fetcher.post('/api/appointment/', {
-  //   //   title: appointment.name,
-  //   //   appointmentType: appointment.appointmentType,
-  //   //   time: convertToISOString(appointment.YYMMDD, appointment.HHMM),
-  //   //   place: appointment.place,
-  //   // });
+  const onClickConfirmBtn = async () => {
+    await fetcher.post('/api/appointment', {
+      title: appointment.name,
+      appointmentType: appointment.appointmentType,
+      time: convertToISOString(appointment.YYMMDD, appointment.HHMM),
+      place: appointment.place,
+      latitude: appointment.latitude,
+      longitude: appointment.longitude,
+    });
 
-  //   await useMutation()
-
-  //   navigate('/');
-  // };
+    navigate('/');
+  };
 
   return (
     <PagePadding>
@@ -32,7 +34,7 @@ const CreateAppointmentSchedule = () => {
       <TimeInputContainer />
       <Description title="약속 장소" description="모일 장소를 선택하세요." />
       <PlaceSettingButton onclick={() => navigate('/appointment/create/place')} />
-      <ConfirmBtn isComplete={!!isComplete} onClick={() => {}} title="완료" />
+      <ConfirmBtn isComplete={!!isComplete} onClick={onClickConfirmBtn} title="완료" />
     </PagePadding>
   );
 };
