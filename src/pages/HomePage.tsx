@@ -92,7 +92,8 @@ const HomePage = () => {
                   fontWeight: '500',
                   lineHeight: 20,
                   wordWrap: 'break-word',
-                }}>
+                }}
+                onClick={() => setModal(false)}>
                 확인
               </button>
             </div>
