@@ -1,8 +1,9 @@
 export interface Appointment {
-  title: string;
-  profileImgList: string[];
-  place: string;
-  time: Date;
+  uaid: number;
+  apTitle: string;
+  apPlace: string;
+  apTime: number[];
+  imageUrl: string[];
   flag?: boolean;
   flagText?: string;
 }

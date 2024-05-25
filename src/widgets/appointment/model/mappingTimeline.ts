@@ -1,10 +1,15 @@
 import { Appointment } from '@/shared/utils/types/appointment.types';
 
+export function convertToDate(apTime: number[]): Date {
+  const [year, month, day, hours, minutes, seconds, milliseconds] = apTime;
+  return new Date(year, month - 1, day, hours, minutes, seconds, milliseconds / 1000000);
+}
+
 // 타밍라인의 날짜 플래그의 text를 만들기 위한 mapping 함수
 export const createFlagTextAppointment = (appointmentList: Appointment[]) => {
   appointmentList.forEach((item) => {
     // 9시간을 밀리초로 변환하여 더해줍니다. --> UTC일 경우에만 적용
-    const adjustedTime = new Date(item.time.getTime() + 9 * 60 * 60 * 1000);
+    const adjustedTime = new Date(convertToDate(item.apTime).getTime() + 9 * 60 * 60 * 1000);
 
     const milliSecond = adjustedTime.getTime() - new Date().getTime();
     const daysDifference = Math.floor(milliSecond / (1000 * 60 * 60 * 24));
