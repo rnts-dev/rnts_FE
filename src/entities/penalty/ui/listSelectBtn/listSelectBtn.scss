@@ -1,0 +1,20 @@
+.selectBtn {
+  text-align: center;
+  width: 50%;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #bac7da;
+
+  p {
+    color: var(--System-Color-gray-500, #bac7da);
+  }
+}
+
+.selectBtn.select {
+  width: 50%;
+  border-bottom: 2px solid #000;
+
+  P {
+    font-weight: 500;
+    color: var(--Primary-Color-black, #000);
+  }
+}

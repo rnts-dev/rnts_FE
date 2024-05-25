@@ -1,10 +1,16 @@
-import { useState } from 'react';
-import { Button, Input, Select, Stack, Badge, Highlight, Flex } from '@chakra-ui/react';
 import useGetLocation from '@/entities/map/model/useGetLocation';
+import { Badge, Button, Flex, Highlight, Input, Select, Stack } from '@chakra-ui/react';
+import { useState } from 'react';
 
 interface ILocation {
   latitude: string | number;
   longitude: string | number;
+}
+
+declare global {
+  interface Window {
+    kakao: any;
+  }
 }
 
 export default function MapSearch() {

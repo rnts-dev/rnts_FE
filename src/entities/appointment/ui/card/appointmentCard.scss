@@ -1,0 +1,83 @@
+.appointment_card {
+  border-radius: 13px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--System-Color-white, #fff);
+
+  margin-top: -52px;
+  margin-left: 65px;
+  width: 100%;
+  border-radius: 13px;
+  margin-bottom: 30px;
+  padding: 18px 16px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .title {
+    color: var(--Primary-Color-black, #000);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: -0.6px;
+  }
+}
+
+.appointment_card_option_container {
+  display: flex;
+  gap: 8px;
+}
+
+.profile_container {
+  margin-top: 16px;
+  display: flex;
+}
+
+.profile {
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.48) 100%);
+
+  &:not(:first-child) {
+    margin-left: -15px;
+    border: 1px solid #fff;
+  }
+}
+
+.schedule {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+
+  p {
+    color: #202020;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.6px;
+  }
+}
+
+.appointment_card_checkin_btn_wrap {
+  margin-top: 18px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appointment_card_checkin_btn {
+  width: 100%;
+  padding: 12px 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  border-radius: 8px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--Primary-Color-green, #b0f93c);
+}

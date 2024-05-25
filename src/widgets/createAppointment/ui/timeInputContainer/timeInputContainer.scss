@@ -1,0 +1,32 @@
+.appointment_create_time_input_container {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 50px;
+}
+
+.appointment_create_picker {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  padding: 12px 18px;
+
+  border-radius: 4px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--System-Color-white, #fff);
+
+  p {
+    overflow: hidden;
+    color: var(--System-Color-gray-400, #cbd4e3);
+    text-overflow: ellipsis;
+    // font-size: 16px;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.6px;
+
+    &.select {
+      color: var(--Primary-Color-black, #000);
+    }
+  }
+}

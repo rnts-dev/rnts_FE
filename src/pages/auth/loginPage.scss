@@ -1,0 +1,51 @@
+.login_page_padding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 24px;
+}
+
+.login_page_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  & h3 {
+    color: var(--Primary-Color-black, #000);
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 34px; /* 141.667% */
+    letter-spacing: -0.6px;
+    margin-bottom: 7px;
+  }
+
+  & p {
+    color: var(--System-Color-gray-700, #546174);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.6px;
+  }
+}
+
+.login_page_content_character {
+  margin-top: 120px;
+  display: flex;
+  height: 196px;
+  width: 196px;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 13px;
+  // border: 1px solid var(--System-Color-gray-600, #a1b2ca);
+
+  color: var(--System-Color-gray-600, #a1b2ca);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+}

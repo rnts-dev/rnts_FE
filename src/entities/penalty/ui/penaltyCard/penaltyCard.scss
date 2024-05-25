@@ -1,0 +1,116 @@
+.penalty_card_info {
+  padding: 22px;
+  border-radius: 13px 13px 0px 0px;
+
+  border: 1px solid var(--Primary-Color-black, #000);
+  // border-bottom: none;
+}
+
+.penalty_card_schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 19px 24px;
+  border-radius: 0px 0px 13px 13px;
+  border: 1px solid var(--Primary-Color-black, #000);
+
+  div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+
+    p {
+      color: var(--Primary-Color-black, #000);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px; /* 142.857% */
+      letter-spacing: -0.6px;
+    }
+  }
+}
+
+.penalty_card_appointment_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 11px;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.6px;
+
+  p {
+    color: var(--Primary-Color-black, #000);
+  }
+
+  span {
+    color: var(--System-Color-gray-700, #546174);
+  }
+}
+
+.penalty_card_late_label {
+  padding: 5px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--Sub-Color-danger, #f74747);
+
+  color: #fff;
+}
+
+.penalty_card_early_label {
+  padding: 5px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--Sub-Color-safe, #3177ff);
+
+  color: #fff;
+}
+
+.penalty_card_title {
+  margin-bottom: 8px;
+
+  color: var(--Primary-Color-black, #000);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px; /* 140% */
+  letter-spacing: -0.6px;
+}
+
+.penalty_card_profile_container {
+  display: flex;
+
+  :not(:first-child) {
+    margin-left: -15px;
+    border: 1px solid #fff;
+  }
+}
+
+.penalty_card_profile_img {
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  background: red;
+}
+
+.penalty_card_other_profile_length {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: var(--Primary-Color-black, #000);
+  border-radius: 50%;
+
+  color: #fff;
+}

@@ -1,17 +1,24 @@
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import MapSearch from '@/entities/map/ui/MapSearch';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NotFoundPage from './pages/NotFoundPage';
+import PreviewPage from '@/pages/preview/PreviewPage';
+import RNTSNavigation from '@/shared/components/RNTSNavigation';
+import ConfirmManager from '@/shared/manager/confirm/ConfirmManager';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AppointmentsListPage from './pages/appointments/AppointmentsListPage';
+import CreateAppointmentPlace from './pages/appointments/create/CreateAppointmentPlace';
+import CreateAppointmentSchedule from './pages/appointments/create/CreateAppointmentSchedule';
+import CreateAppointmentType from './pages/appointments/create/CreateAppointmentType';
+import EditAppointmentSchedule from './pages/appointments/edit/EditAppointmentSchedule';
+import EditAppointmentType from './pages/appointments/edit/EditAppointmentType';
 import KakaoRedirectPage from './pages/auth/kakao/KakaoRedirectPage';
 import LoginPage from './pages/auth/LoginPage';
-import SelectTendencyPage from './pages/tendency/SelectTendencyPage';
 import HomePage from './pages/HomePage';
-import AppointmentsListPage from './pages/appointments/AppointmentsListPage';
-import CreateAppointmentPage from './pages/appointments/CreateAppointmentPage';
-import EditAppointmentPage from './pages/appointments/EditAppointmentPage';
+import MyPage from './pages/MyPage';
+import NotFoundPage from './pages/NotFoundPage';
 import PenaltyListPage from './pages/penalty/PenaltyListPage';
 import SendPenaltyPage from './pages/penalty/SendPenaltyPage';
-import MyPage from './pages/MyPage';
+import SelectTendencyPage from './pages/tendency/SelectTendencyPage';
 
 const colors = {
   personal: '',
@@ -20,31 +27,48 @@ const colors = {
 
 const theme = extendTheme({ colors });
 
+const navMeta = [
+  { title: '대시보드', url: '/', page: <HomePage /> },
+  { title: '로그인', url: 'login', page: <LoginPage /> },
+  { title: '카카오(re)', url: 'login/oauth2/code/kakao', page: <KakaoRedirectPage /> },
+  { title: '지도', url: 'map', page: <MapSearch /> },
+  { title: '유형', url: 'tendency/select', page: <SelectTendencyPage /> },
+  { title: '약속', url: 'appointment', page: <AppointmentsListPage /> },
+  { title: '약속 생성', url: 'appointment/create/type', page: <CreateAppointmentType /> },
+  { title: '약속 생성 스케쥴', url: 'appointment/create/schedule', page: <CreateAppointmentSchedule /> },
+  { title: '약속 생성 장소', url: 'appointment/create/place', page: <CreateAppointmentPlace /> },
+  { title: '약속 편집', url: 'appointment/edit/type', page: <EditAppointmentType /> },
+  { title: '약속 편집 스케쥴', url: 'appointment/edit/schedule', page: <EditAppointmentSchedule /> },
+  { title: '페널티', url: 'penalty', page: <PenaltyListPage /> },
+  { title: '페널티 보내기', url: 'penalty/send', page: <SendPenaltyPage /> },
+  { title: 'UI 개발용 페이지', url: 'dev-preview', page: <PreviewPage /> },
+  { title: '마이페이지', url: 'mypage', page: <MyPage /> },
+  { title: 'NOT FOUND', url: '/*', page: <NotFoundPage /> },
+];
+
 function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
+
   return (
-    <ChakraProvider theme={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="kakao-redirect" element={<KakaoRedirectPage />} />
-          <Route path="map" element={<MapSearch />} />
-
-          <Route path="tendency/select" element={<SelectTendencyPage />} />
-
-          <Route path="appointment" element={<AppointmentsListPage />} />
-          <Route path="appointment/create" element={<CreateAppointmentPage />} />
-          <Route path="appointment/edit" element={<EditAppointmentPage />} />
-
-          <Route path="penalty" element={<PenaltyListPage />} />
-          <Route path="penalty/send" element={<SendPenaltyPage />} />
-
-          <Route path="mypage" element={<MyPage />} />
-
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </BrowserRouter>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <BrowserRouter>
+          <RNTSNavigation />
+          <Routes>
+            {navMeta.map((menu) => (
+              <Route key={menu.title} path={menu.url} element={menu.page} />
+            ))}
+          </Routes>
+          <ConfirmManager />
+        </BrowserRouter>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }
 

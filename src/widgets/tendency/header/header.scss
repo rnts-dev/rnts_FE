@@ -1,0 +1,41 @@
+.tendency_header_container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.tendency_header_back {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--Primary-Color-green, #b0f93c);
+}
+
+.tendency_header_description {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  & h2 {
+    color: var(--Primary-Color-black, #000);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 34px; /* 141.667% */
+    letter-spacing: -0.6px;
+  }
+
+  & p {
+    color: var(--System-Color-gray-700, #546174);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.6px;
+  }
+}
