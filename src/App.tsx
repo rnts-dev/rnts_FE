@@ -1,6 +1,5 @@
 import MapSearch from '@/entities/map/ui/MapSearch';
 import PreviewPage from '@/pages/preview/PreviewPage';
-import RNTSNavigation from '@/shared/components/RNTSNavigation';
 import ConfirmManager from '@/shared/manager/confirm/ConfirmManager';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -59,7 +58,6 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
         <BrowserRouter>
-          <RNTSNavigation />
           <Routes>
             {navMeta.map((menu) => (
               <Route key={menu.title} path={menu.url} element={menu.page} />
