@@ -37,7 +37,7 @@ export default function RNTSTimePicker(props: Props) {
       setAppointment((prev) => {
         return {
           ...prev,
-          HHMM: formattedTime,
+          HHMM: `${hour}:${minute}`,
         };
       });
 
