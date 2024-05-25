@@ -3,9 +3,11 @@ import fiMapFin from '@/assets/fiMapFin.svg';
 import fiMoreVertical from '@/assets/fiMoreVertical.svg';
 import fiShare from '@/assets/fiShare.svg';
 import CheckinModal from '@/entities/checkin/ui/checkinModal/CheckinModal';
+import useGetLocation from '@/entities/map/model/useGetLocation';
 import { fetcher } from '@/shared/service/fetch';
 import { checkinStep } from '@/shared/store/atoms/checkin';
 import { modalState } from '@/shared/store/atoms/modal';
+import { calculrateDistance } from '@/shared/utils/calculator';
 import { formatDateForAppointmentCard } from '@/shared/utils/date';
 import { convertToDate } from '@/widgets/appointment/model/mappingTimeline';
 import { useMutation } from '@tanstack/react-query';
@@ -24,6 +26,9 @@ interface AppoinmentCardProps {
 }
 
 const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time, uaid }: AppoinmentCardProps) => {
+  const { location } = useGetLocation();
+  const destinationRange = calculrateDistance(+location.latitude, +location.longitude, 37.49808633653005, 127.02800140627488);
+
   const setModalOpen = useSetAtom(modalState);
   const setStep = useSetAtom(checkinStep);
   const [, setIsSuccess] = useState(false);
@@ -92,7 +97,9 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
           <button
             className="appointment_card_checkin_btn"
             onClick={async () => {
-              await mutate(uaid);
+              if (destinationRange < 50) {
+                await mutate(uaid);
+              }
             }}>
             도착 체크인
           </button>
