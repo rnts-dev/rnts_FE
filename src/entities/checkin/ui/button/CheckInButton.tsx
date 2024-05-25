@@ -3,9 +3,9 @@ import { checkinStep } from '@/shared/store/atoms/checkin';
 import { useSetAtom } from 'jotai';
 import './checkinButton.scss';
 
-const CheckInButton = ({ id }: { id: number }) => {
+const CheckInButton = ({ id }: { id?: number }) => {
   const setStep = useSetAtom(checkinStep);
-  const { handleChangeStep, getCheckinUI } = useCheckinModalUI(id);
+  const { handleChangeStep, getCheckinUI } = useCheckinModalUI(id as number);
 
   return (
     <div className="checkin-button">

@@ -58,10 +58,10 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
           await setStep('init-checkin-isLast');
         }
       }
-      if (data.checkInType === 'already') {
+      if (data.checkInType === 'Already') {
         alert('이미 체크인 했어요');
       }
-      if (data.checkInType === 'disabled') {
+      if (data.checkInType === 'Disabled') {
         alert('약속 시간 30분 전부터 체크인 가능해요');
       }
       return data;

@@ -11,8 +11,10 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+type Modal = 'request' | 'allow' | '';
+
 const HomePage = () => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState<Modal>('');
   const [searchParams] = useSearchParams();
   const { data } = useQuery({
     queryKey: ['/api/userappt/myappt'],
@@ -22,10 +24,15 @@ const HomePage = () => {
   });
 
   useEffect(() => {
-    if (searchParams.get('id')) {
-      setModal(true);
+    if (searchParams.get('id') && searchParams.get('appointment') !== 'allow') {
+      setModal('request');
+    }
+    if (searchParams.get('id') && searchParams.get('appointment') === 'allow') {
+      setModal('allow');
     }
   }, []);
+
+  const CREAT_URL = `https://rnts-fia8jl95t-jungjihyouns-projects.vercel.app/?id=${searchParams.get('id')}&appointment=allow`;
 
   return (
     <>
@@ -48,8 +55,8 @@ const HomePage = () => {
         )}
       </HomeContentLayout>
 
-      {modal && (
-        <Modal isOpen={modal} onClose={() => setModal(false)} size="sm">
+      {
+        <Modal isOpen={modal === 'request'} onClose={() => setModal('')} size="sm">
           <ModalOverlay />
 
           <ModalContent>
@@ -59,10 +66,10 @@ const HomePage = () => {
             </div>
 
             <ModalBody>
-              {`https://rnts-fia8jl95t-jungjihyouns-projects.vercel.app//?id=${searchParams.get('id')}&appointment=true`}
+              {CREAT_URL}
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText(`https://rnts-fia8jl95t-jungjihyouns-projects.vercel.app//?id=${searchParams.get('id')}&appointment=true`);
+                  navigator.clipboard.writeText(CREAT_URL);
                 }}>
                 handleCopyClipBoard
               </button>
@@ -93,13 +100,28 @@ const HomePage = () => {
                   lineHeight: 20,
                   wordWrap: 'break-word',
                 }}
-                onClick={() => setModal(false)}>
+                onClick={() => setModal('')}>
                 확인
               </button>
             </div>
           </ModalContent>
         </Modal>
-      )}
+      }
+
+      <Modal isOpen={modal === 'allow'} onClose={() => setModal('')} size="sm">
+        <ModalOverlay />
+
+        <ModalContent>
+          <div className="header">
+            <p className="title">초대받은 약속</p>
+            <p className="description">00식당 밥 약속!</p>
+          </div>
+
+          <ModalBody>
+            <p>checkin</p>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 };

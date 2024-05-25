@@ -14,7 +14,6 @@ const CreateAppointmentSchedule = () => {
   const navigate = useNavigate();
   const appointment = useAtomValue(AppointmentState);
   const isComplete = appointment.place && appointment.YYMMDD && appointment.HHMM;
-  // api/appointment/
   const onClickConfirmBtn = async () => {
     const appointmentId = await fetcher
       .post('/api/appointment/', {
