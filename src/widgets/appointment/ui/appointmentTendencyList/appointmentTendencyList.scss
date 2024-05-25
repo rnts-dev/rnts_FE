@@ -25,9 +25,13 @@
 }
 
 .appointment_tendency_grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+}
+
+.appointment_tendency_grid > * {
+  flex: 1 1 25%; /* 각 아이템이 전체 너비의 25%를 차지하도록 설정 */
 }
 
 .appointment_tendency_card {
