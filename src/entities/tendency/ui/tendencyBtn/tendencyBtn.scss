@@ -4,19 +4,16 @@
   padding: 22px;
 
   border-radius: 13px;
-  border: 1px solid var(--Primary-Color-black, #000);
   background: var(--System-Color-white, #fff);
 }
 
 .penalty_select_btn_container.select {
-  border: 1px solid var(--Primary-Color-black, #000);
   background: var(--Primary-Color-black, #000);
 }
 
 .penalty_select_btn_character {
   border-radius: 13px;
-  border: 1px solid var(--System-Color-gray-600, #a1b2ca);
-  background: var(--System-Color-gray-200, #eef1f6);
+
   width: 70px;
   height: 70px;
 
