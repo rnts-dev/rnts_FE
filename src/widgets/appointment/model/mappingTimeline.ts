@@ -1,8 +1,12 @@
 import { Appointment } from '@/shared/utils/types/appointment.types';
 
 export function convertToDate(apTime: number[]): Date {
-  const [year, month, day, hours, minutes] = apTime;
-  return new Date(year, month - 1, day, hours, minutes);
+  if (apTime !== null) {
+    const [year, month, day, hours, minutes] = apTime;
+    return new Date(year, month - 1, day, hours, minutes);
+  }
+
+  return new Date();
 }
 
 // 타밍라인의 날짜 플래그의 text를 만들기 위한 mapping 함수
