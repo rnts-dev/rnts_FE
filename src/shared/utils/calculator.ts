@@ -14,6 +14,7 @@ export function calculrateDistance(lat1: number, lng1: number, lat2: number, lng
    * @param deg 도 단위의 각도
    * @returns 라디안 단위의 각도
    */
+
   function deg2rad(deg: number) {
     return deg * (Math.PI / 180);
   }
@@ -23,5 +24,6 @@ export function calculrateDistance(lat1: number, lng1: number, lat2: number, lng
   var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var d = R * c; // 두 지점 사이의 거리 (단위: km)
+  console.log(d);
   return d;
 }

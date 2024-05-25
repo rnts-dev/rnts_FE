@@ -27,7 +27,18 @@ interface AppoinmentCardProps {
 
 const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time, uaid }: AppoinmentCardProps) => {
   const { location } = useGetLocation();
-  const destinationRange = calculrateDistance(+location.latitude, +location.longitude, 37.49808633653005, 127.02800140627488);
+
+  const onClickCheckin = async () => {
+    const data: any = await fetcher.post(`/api/appointment/searchSingleAppointment/${uaid}`);
+
+    const destination = calculrateDistance(+location.latitude, +location.longitude, data.data.latitude, data.data.longitude);
+
+    if (destination * 1000 < 50) {
+      await mutate(uaid);
+    } else {
+      console.log('거리 밖 구역');
+    }
+  };
 
   const setModalOpen = useSetAtom(modalState);
   const setStep = useSetAtom(checkinStep);
@@ -98,13 +109,7 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
       </div>
       {isCheckinBtn && (
         <div className="appointment_card_checkin_btn_wrap">
-          <button
-            className="appointment_card_checkin_btn"
-            onClick={async () => {
-              if (destinationRange < 50) {
-                await mutate(uaid);
-              }
-            }}>
+          <button className="appointment_card_checkin_btn" onClick={onClickCheckin}>
             도착 체크인
           </button>
         </div>
