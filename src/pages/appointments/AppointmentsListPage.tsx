@@ -1,8 +1,9 @@
-import { fetcher } from '@/shared/service/fetch';
+import getAppointmentHistory from '@/shared/service/appointment/getAppointmentHistory';
 import { Appointment } from '@/shared/utils/types/appointment.types';
 import Header from '@/widgets/appointment/ui/header/Header';
 import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 const AppointmentsListPage = () => {
@@ -14,19 +15,28 @@ const AppointmentsListPage = () => {
   };
 
   const appointmentSelectConfig: Record<string, string> = {
-    '남은 약속': '/api/userappt/myappt/future',
-    '지난 약속': '/api/userappt/myappt/past',
+    '남은 약속': 'future',
+    '지난 약속': 'past',
   };
 
-  useEffect(() => {
-    const getAppointmentList = async () => {
-      const res = await fetcher(appointmentSelectConfig[selected]);
-      const appointmentList = res.data;
-      setAppointmentList(appointmentList);
-    };
+  const {} = useQuery({
+    queryKey: ['appointment_history_list', selected],
+    queryFn: () => {
+      getAppointmentHistory(appointmentSelectConfig[selected]).then((res) => {
+        setAppointmentList(res.data);
+      });
+    },
+  });
 
-    getAppointmentList();
-  }, [selected]);
+  // useEffect(() => {
+  //   const getAppointmentList = async () => {
+  //     const res = await fetcher(appointmentSelectConfig[selected]);
+  //     const appointmentList = res.data;
+  //     setAppointmentList(appointmentList);
+  //   };
+
+  //   getAppointmentList();
+  // }, [selected]);
 
   return (
     <div style={{ padding: '0px 25px' }}>

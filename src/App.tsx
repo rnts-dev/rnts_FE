@@ -18,6 +18,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import PenaltyListPage from './pages/penalty/PenaltyListPage';
 import SendPenaltyPage from './pages/penalty/SendPenaltyPage';
 import SelectTendencyPage from './pages/tendency/SelectTendencyPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const colors = {
   personal: '',
@@ -46,18 +47,22 @@ const navMeta = [
 ];
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <ChakraProvider theme={theme}>
-      <BrowserRouter>
-        <RNTSNavigation />
-        <Routes>
-          {navMeta.map((menu) => (
-            <Route key={menu.title} path={menu.url} element={menu.page} />
-          ))}
-        </Routes>
-        <ConfirmManager />
-      </BrowserRouter>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <BrowserRouter>
+          <RNTSNavigation />
+          <Routes>
+            {navMeta.map((menu) => (
+              <Route key={menu.title} path={menu.url} element={menu.page} />
+            ))}
+          </Routes>
+          <ConfirmManager />
+        </BrowserRouter>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }
 
