@@ -30,7 +30,7 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
 
   const onClickCheckin = async () => {
     const data: any = await fetcher.post(`/api/appointment/searchSingleAppointment/${uaid}`);
-
+    console.log(data);
     const destination = calculrateDistance(+location.latitude, +location.longitude, data.data.latitude, data.data.longitude);
 
     if (destination * 1000 < 50) {
