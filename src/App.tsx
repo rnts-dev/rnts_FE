@@ -50,7 +50,7 @@ function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        retryDelay: false,
+        retry: false,
       },
     },
   });
