@@ -27,11 +27,11 @@ const appointmentTendencyData = [
 const AppointmentTendencyList = () => {
   const [appointment, setAppointment] = useAtom(AppointmentState);
 
-  const handleSelectTendency = (tendency: string) => {
+  const handleSelectTendency = (appointmentType: string) => {
     setAppointment((prev) => {
       return {
         ...prev,
-        tendency,
+        appointmentType,
       };
     });
   };
@@ -41,7 +41,7 @@ const AppointmentTendencyList = () => {
       <Description title="약속 유형" description="약속 유형을 선택하세요." />
       <div className="appointment_tendency_grid">
         {appointmentTendencyData.map((item) => {
-          const isSelected = appointment.tendency === item.title;
+          const isSelected = appointment.appointmentType === item.title;
           return (
             <button key={item.title} onClick={() => handleSelectTendency(item.title)} className="appointment_tendency_card">
               <img src={isSelected ? item.selectedSrc : item.src} className={isSelected ? 'select' : ''} alt="appointment_tendency" />

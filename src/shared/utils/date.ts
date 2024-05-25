@@ -18,3 +18,12 @@ export function formatDateForAppointmentCard(dateString: Date) {
 
   return `${month} ${day}일 (${dayOfWeek}) ${ampm} ${hourFormat}시 ${minutes}분`;
 }
+
+export function convertToISOString(YYMMDD: string, HHMM: string) {
+  const [_, time] = HHMM.split(' ');
+  const [hours, minutes] = time.split(':');
+  const [year, month, day] = YYMMDD.split('-');
+  const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);
+
+  return date.toISOString();
+}

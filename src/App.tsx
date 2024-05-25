@@ -54,6 +54,7 @@ function App() {
       },
     },
   });
+
   return (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>

@@ -27,6 +27,7 @@ const CreateAppointmentPlace = () => {
   const [result, setResult] = useState<any[]>([]);
   const [, setDestinationLocation] = useState<ILocation>();
   const setAppointment = useSetAtom(AppointmentState);
+
   // const { location } = useGetLocation();
 
   const handleAppointmentPlace = () => {
@@ -49,6 +50,13 @@ const CreateAppointmentPlace = () => {
 
   function handleSelectDestination(addressNm: string) {
     const selectedPlace = result.filter((e) => e.address_name === addressNm);
+    setAppointment((prev) => {
+      return {
+        ...prev,
+        latitude: selectedPlace[0].y,
+        longitude: selectedPlace[0].x,
+      };
+    });
     setDestinationLocation({ latitude: selectedPlace[0].y, longitude: selectedPlace[0].x });
   }
 
