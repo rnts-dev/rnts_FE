@@ -14,6 +14,7 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { c } from 'vite/dist/node/types.d-aGj9QkWt';
 
 type Modal = 'request' | 'allow' | '';
 
@@ -29,6 +30,7 @@ const HomePage = () => {
     refetchOnMount: true,
     refetchOnReconnect: true,
   });
+
   const { mutate, data: singleData } = useMutation({
     mutationFn: (id: string) => {
       return fetcher.post(`/api/appointment/searchSingleAppointment/${id}`).then((res) => res.data);
@@ -52,7 +54,6 @@ const HomePage = () => {
 
   const CREAT_URL = `https://rnts-fe.vercel.app/?id=${searchParams.get('id')}&appointment=allow`;
 
-  console.log(data);
   return (
     <>
       <Header />
