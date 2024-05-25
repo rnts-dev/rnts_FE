@@ -11,7 +11,7 @@ export default function KakaoRedirectPage() {
     // TODO : 위에서 얻은 인가코드를 백엔드의 카카로 로그인주소로 보냄.
     fetcher.post(`/api/user/kakao/login?code=${code}`).then((res) => {
       // ok respone 확인하고, 이후 작업 해야함(유저로그인시키기, 토큰 브라우저에 저장)
-      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('ACCESS_TOKEN', res.data);
       navigate('/');
       // fetcher //서버에서 유저정보 요청하는 url
       //   .get(`${BASE_URL}userinfo`, {
