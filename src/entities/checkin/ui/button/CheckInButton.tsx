@@ -1,11 +1,11 @@
-import useHandleBottomButton from '@/entities/checkin/\bhook/useHandleBottomButton';
+import useCheckinModalUI from '@/entities/checkin/hook/useCheckinModalUI';
 import { checkinStep } from '@/shared/store/atoms/checkin';
 import { useSetAtom } from 'jotai';
 import './checkinButton.scss';
 
-const CheckInButton = () => {
+const CheckInButton = ({ id }: { id: number }) => {
   const setStep = useSetAtom(checkinStep);
-  const { handleChangeStep, getCheckinUI } = useHandleBottomButton();
+  const { handleChangeStep, getCheckinUI } = useCheckinModalUI(id);
 
   return (
     <div className="checkin-button">

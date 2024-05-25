@@ -1,7 +1,7 @@
 import './confirmBtn.scss';
 
 interface ConfirmBtnProps {
-  isComplete: boolean;
+  isComplete?: boolean;
   title?: string;
   onClick: () => void;
 }

@@ -2,7 +2,7 @@ import { checkinStep } from '@/shared/store/atoms/checkin';
 import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
-export default function useHandleBottomButton(uaid?: number) {
+export default function useCheckinModalUI(id: number) {
   const [step, setStep] = useAtom(checkinStep);
   const navigate = useNavigate();
 
@@ -11,7 +11,7 @@ export default function useHandleBottomButton(uaid?: number) {
     // selected appointment 상태 관리 하기
     // 조건 추가해야 함 (첫번째 유저인지)
     if (step === 'init-checkin') {
-      navigate(`/penalty/send?uaid=${uaid}`);
+      navigate(`/penalty/send&uaid=${id}`);
     }
 
     if (step === 'init-checkin-isNormal') {

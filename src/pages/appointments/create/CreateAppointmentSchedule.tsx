@@ -2,7 +2,6 @@ import ConfirmBtn from '@/entities/appointment/ui/confirmBtn/ConfirmBtn';
 import Description from '@/entities/appointment/ui/description/Description';
 import { fetcher } from '@/shared/service/fetch';
 import { AppointmentState } from '@/shared/store/atoms/appointment';
-import { convertToISOString } from '@/shared/utils/date';
 import PagePadding from '@/widgets/appointment/ui/pagePadding/PagePadding';
 import CreateHeader from '@/widgets/createAppointment/ui/createHeader/CreateHeader';
 import PlaceSettingButton from '@/widgets/createAppointment/ui/placeSettingButton/PlaceSettingButton';
@@ -14,18 +13,20 @@ const CreateAppointmentSchedule = () => {
   const navigate = useNavigate();
   const appointment = useAtomValue(AppointmentState);
   const isComplete = appointment.place && appointment.YYMMDD && appointment.HHMM;
-
+  // api/appointment/
   const onClickConfirmBtn = async () => {
-    await fetcher.post('/api/appointment', {
-      title: appointment.name,
-      appointmentType: appointment.appointmentType,
-      time: convertToISOString(appointment.YYMMDD, appointment.HHMM),
-      place: appointment.place,
-      latitude: appointment.latitude,
-      longitude: appointment.longitude,
-    });
+    const appointmentId = await fetcher
+      .post('/api/appointment', {
+        title: appointment.name,
+        appointmentType: appointment.appointmentType,
+        time: convertToISOString(appointment.YYMMDD, appointment.HHMM),
+        place: appointment.place,
+        latitude: appointment.latitude,
+        longitude: appointment.longitude,
+      })
+      .then((res: any) => res.data);
 
-    navigate('/');
+    await navigate(`/?id=${appointmentId}`);
   };
 
   return (
@@ -40,3 +41,6 @@ const CreateAppointmentSchedule = () => {
 };
 
 export default CreateAppointmentSchedule;
+function convertToISOString(YYMMDD: string, HHMM: string) {
+  throw new Error('Function not implemented.');
+}
