@@ -9,13 +9,6 @@ const SendPenaltyPage = () => {
       <Header title="지각비 걷기" description="지각자에게 매운맛을 보여 주세요!" />
       <SendPenaltyContent />
       <SendPenaltyBtnContainer />
-      {/* <PrimaryBtn
-        text="다음"
-        onClick={() => {
-          console.log('다음 로직');
-        }}
-      />
-      <SkipBtn /> */}
     </PagePadding>
   );
 };

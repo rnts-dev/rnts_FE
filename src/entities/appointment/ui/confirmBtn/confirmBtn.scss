@@ -1,0 +1,19 @@
+.appointment_create_confirm_btn {
+  width: 100%;
+  display: flex;
+  height: 70px;
+  padding: 25px 70px;
+  justify-content: center;
+  align-items: center;
+  margin: 120px 0px 38px;
+
+  border-radius: 10px;
+  border: 1px solid var(--System-Color-gray-500, #bac7da);
+  background: var(--System-Color-gray-200, #eef1f6);
+
+  &.select {
+    border-radius: 10px;
+    border: 1px solid var(--System-Color-gray-600, #a1b2ca);
+    background: var(--Primary-Color-green, #b0f93c);
+  }
+}
