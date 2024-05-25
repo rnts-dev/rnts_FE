@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import './kakaoBtn.scss';
 
-const KAKAKO_CLIENT_KEY = import.meta.env.VITE_KAKAO_CLIENT_KEY;
-
 const KakaoBtn = () => {
   return (
     <Link
