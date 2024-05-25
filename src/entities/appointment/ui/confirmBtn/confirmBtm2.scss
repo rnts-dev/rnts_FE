@@ -1,0 +1,12 @@
+.bottom-button {
+  display: flex;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 20px 24px 30px 24px;
+  bottom: 0;
+  width: 100%;
+  gap: 14px;
+  background-color: white;
+  z-index: 9;
+}
