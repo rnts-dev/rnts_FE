@@ -1,4 +1,3 @@
-import './timeInputContainer.scss';
 import fiCalendar from '@/assets/fiCalendar.svg';
 import fiClock from '@/assets/fiClock.svg';
 import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide';
@@ -8,6 +7,7 @@ import { AppointmentState } from '@/shared/store/atoms/appointment';
 import { useDisclosure } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
+import './timeInputContainer.scss';
 
 const TimeInputContainer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
