@@ -7,6 +7,8 @@ import { checkinStep } from '@/shared/store/atoms/checkin';
 import { modalState } from '@/shared/store/atoms/modal';
 import { useSetAtom } from 'jotai';
 import './appointmentCard.scss';
+import { convertToDate } from '@/widgets/appointment/model/mappingTimeline';
+import { formatDateForAppointmentCard } from '@/shared/utils/date';
 
 interface AppoinmentCardProps {
   isShared?: boolean;
@@ -14,7 +16,7 @@ interface AppoinmentCardProps {
   title: string;
   profileImgList: string[];
   place: string;
-  time: Date;
+  time: number[];
 }
 
 const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time }: AppoinmentCardProps) => {
@@ -47,7 +49,7 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
       </div>
       <div className="schedule">
         <img src={fiClock} alt="dotImg" />
-        <p>{String(time)}</p>
+        <p>{String(formatDateForAppointmentCard(convertToDate(time)))}</p>
       </div>
       {isCheckinBtn && (
         <div className="appointment_card_checkin_btn_wrap">
