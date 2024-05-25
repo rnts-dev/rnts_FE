@@ -3,12 +3,14 @@ import fiMapFin from '@/assets/fiMapFin.svg';
 import fiMoreVertical from '@/assets/fiMoreVertical.svg';
 import fiShare from '@/assets/fiShare.svg';
 import CheckinModal from '@/entities/checkin/ui/checkinModal/CheckinModal';
+import { fetcher } from '@/shared/service/fetch';
 import { checkinStep } from '@/shared/store/atoms/checkin';
 import { modalState } from '@/shared/store/atoms/modal';
+import { formatDateForAppointmentCard } from '@/shared/utils/date';
+import { convertToDate } from '@/widgets/appointment/model/mappingTimeline';
+import { useMutation } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
 import './appointmentCard.scss';
-import { convertToDate } from '@/widgets/appointment/model/mappingTimeline';
-import { formatDateForAppointmentCard } from '@/shared/utils/date';
 
 interface AppoinmentCardProps {
   isShared?: boolean;
@@ -17,11 +19,22 @@ interface AppoinmentCardProps {
   profileImgList: string[];
   place: string;
   time: number[];
+  uaid: number;
 }
 
-const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time }: AppoinmentCardProps) => {
+const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time, uaid }: AppoinmentCardProps) => {
   const setModalOpen = useSetAtom(modalState);
   const setStep = useSetAtom(checkinStep);
+
+  const postCheckin = useMutation({
+    mutationFn: (id: number) => {
+      return fetcher
+        .post('api/userappt/checkin', {
+          id: id,
+        })
+        .then((res) => res.data);
+    },
+  });
 
   return (
     <div className="appointment_card">
@@ -55,17 +68,19 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
         <div className="appointment_card_checkin_btn_wrap">
           <button
             className="appointment_card_checkin_btn"
-            onClick={() => {
-              setModalOpen(true);
-              // TODO : api get 해와서 조건에 따라 step 분기 처리
-              setStep('my-penalty');
+            onClick={async () => {
+              // const res = await postCheckin.mutate(uaid);
+              await setModalOpen(true);
+              // res 값에 따라 type 정해서 넣기
+              // console.log('--->', res);
+              await setStep('all-late');
             }}>
             도착 체크인
           </button>
         </div>
       )}
 
-      <CheckinModal />
+      <CheckinModal id={uaid} />
     </div>
   );
 };

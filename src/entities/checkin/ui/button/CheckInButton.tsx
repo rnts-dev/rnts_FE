@@ -5,7 +5,7 @@ import './checkinButton.scss';
 
 const CheckInButton = () => {
   const setStep = useSetAtom(checkinStep);
-  const { handleChangeStep, getButtonTitle } = useHandleBottomButton();
+  const { handleChangeStep, getCheckinUI } = useHandleBottomButton();
 
   return (
     <div className="checkin-button">
@@ -14,7 +14,7 @@ const CheckInButton = () => {
         onClick={() => {
           handleChangeStep();
         }}>
-        <div>{getButtonTitle()}</div>
+        <div>{getCheckinUI()?.bottomButton}</div>
       </button>
       {/* TODO : step별로 show 분기 처리 */}
       <button className="dismiss" onClick={() => setStep('canceled')}>

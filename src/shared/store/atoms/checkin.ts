@@ -1,14 +1,16 @@
 import { atom } from 'jotai';
 
 export const CheckinKeys = {
+  // 노지각. 1등
   체크인진입: 'init-checkin',
   패널티정하기: 'make-penalty',
 
-  패널티보러가기: 'view-penalty',
-  받은패널티보기: 'view-my-penalty',
+  // 노지각. 노1등
+  패널티보러가기: 'init-checkin-isNormal',
   확인: 'view-penalty-completed',
 
-  내가받은패널티보기: 'my-penalty',
+  // 지각자
+  내가받은패널티보기: 'init-checkin-isLast',
   패널티확인: 'my-penalty-completed',
 
   모두지각: 'all-late',

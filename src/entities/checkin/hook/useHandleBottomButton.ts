@@ -14,15 +14,15 @@ export default function useHandleBottomButton() {
       navigate('/penalty/send');
     }
 
-    if (step === 'view-penalty') {
+    if (step === 'init-checkin-isNormal') {
       setStep('view-penalty-completed');
     }
 
     if (step === 'all-late') {
-      setStep('write-regret-completed');
+      setStep('canceled');
     }
 
-    if (step === 'my-penalty') {
+    if (step === 'init-checkin-isLast') {
       setStep('my-penalty-completed');
     }
 
@@ -30,34 +30,73 @@ export default function useHandleBottomButton() {
       setStep('canceled');
     }
   };
+  const getLateInfo = () => {
+    const mock_response = {
+      data: {
+        safe: 'early',
+        time: 33,
+        order: 'first',
+      },
+    };
 
-  // 체크인 모달 하단 버튼 텍스트
-  const getButtonTitle = () => {
+    return mock_response.data;
+  };
+  // 체크인 UI
+  const getCheckinUI = () => {
+    // 1등
     if (step === 'init-checkin') {
-      return '지각자에게 보낼 패널티 정하기';
+      return {
+        title: '출발했어?',
+        description: getLateInfo().safe === 'early' ? '3분 빨리 도착했어요' : '딱 맞춰 도착했어요',
+        bottomButton: '지각자에게 보낼 패널티 정하기',
+      };
     }
-    if (step === 'view-penalty') {
-      return '지각자가 받을 페널티 보러 가기';
+    // 2등 이상
+    if (step === 'init-checkin-isNormal') {
+      return {
+        title: '출발했어?',
+        description: getLateInfo().safe === 'early' ? '3분 빨리 도착했어요' : '딱 맞춰 도착했어요',
+        bottomButton: '지각자가 받을 페널티 보러 가기',
+      };
     }
     if (step === 'view-penalty-completed') {
-      return '확인';
+      return {
+        title: '지각자가 받을 페널티',
+        description: 'From. 김길동',
+        bottomButton: '확인',
+      };
     }
-    if (step === 'view-my-penalty') {
-      return '페널티 확인하기';
-    }
-    if (step === 'my-penalty') {
-      return '페널티 확인하기';
+    // 지각자
+    if (step === 'init-checkin-isLast') {
+      return {
+        title: '출발했어?',
+        description: '3분 늦게 도착했어요',
+        bottomButton: '페널티 확인하기',
+      };
     }
     if (step === 'my-penalty-completed') {
-      return '확인';
+      return {
+        title: '받은 페널티',
+        description: 'From. 김길동',
+        bottomButton: '확인',
+      };
     }
+
     if (step === 'all-late') {
-      return '반성문쓰기';
+      return {
+        title: '출발했어?',
+        description: '3분 늦게 도착했어요',
+        bottomButton: '모두 늦었어요.',
+      };
     }
     if (step === 'write-regret-completed') {
-      return '확인';
+      return {
+        title: '단체 반성문 쓰기',
+        description: 'To. 우리 모두',
+        bottomButton: '확인',
+      };
     }
   };
 
-  return { handleChangeStep, getButtonTitle };
+  return { handleChangeStep, getCheckinUI };
 }

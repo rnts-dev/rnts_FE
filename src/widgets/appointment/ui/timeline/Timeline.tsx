@@ -1,8 +1,8 @@
 import AppointmentCard from '@/entities/appointment/ui/card/AppointmentCard';
-import './timeline.scss';
-import { Step, StepIndicator, StepSeparator, StepStatus, Stepper, useSteps } from '@chakra-ui/react';
 import { Appointment } from '@/shared/utils/types/appointment.types';
-import { createFlagTextAppointment, createFlagAppointment } from '../../model/mappingTimeline';
+import { Step, StepIndicator, Stepper, StepSeparator, StepStatus, useSteps } from '@chakra-ui/react';
+import { createFlagAppointment, createFlagTextAppointment } from '../../model/mappingTimeline';
+import './timeline.scss';
 
 function Circle() {
   return <div className="circle"></div>;
@@ -37,9 +37,9 @@ function Timeline({ isFlag, isHome, appointmentList }: TimelineProps) {
             <StepStatus complete={<Circle />} incomplete={<Circle />} active={<Circle />} />
           </StepIndicator>
           {isHome ? (
-            <AppointmentCard isCheckinBtn isShared title={step.apTitle} profileImgList={step.imageUrl} place={step.apPlace} time={step.apTime} />
+            <AppointmentCard isCheckinBtn isShared title={step.apTitle} profileImgList={step.imageUrl} place={step.apPlace} time={step.apTime} uaid={step.uaid} />
           ) : (
-            <AppointmentCard title={step.apTitle} profileImgList={step.imageUrl} place={step.apPlace} time={step.apTime} />
+            <AppointmentCard title={step.apTitle} profileImgList={step.imageUrl} place={step.apPlace} time={step.apTime} uaid={step.uaid} />
           )}
 
           <StepSeparator className="separator" />

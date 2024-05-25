@@ -1,3 +1,7 @@
+import Apology from '@/assets/apology_illust.png';
+import Late from '@/assets/late_illust.png';
+import NoLate from '@/assets/safe_illust.png';
+
 import { checkinStep } from '@/shared/store/atoms/checkin';
 import { useAtomValue } from 'jotai';
 import './checkinCard.scss';
@@ -19,20 +23,40 @@ const CheckinCard = () => {
       {/* 지각한 사람 X */}
       {step === 'init-checkin' && (
         <div className="checkin__body">
-          <div className="element">캐릭터</div>
+          <img src={NoLate} alt="a" className="checkin__img" />
         </div>
       )}
 
       {/* 지각한 사람 X */}
-      {step === 'view-penalty' && <p>노지각 - 다른사람 패널티 보러 가기</p>}
-      {step === 'view-penalty-completed' && <p>패널티 내용</p>}
+      {step === 'init-checkin-isNormal' && (
+        <div className="checkin__body">
+          <img src={NoLate} alt="a" />
+        </div>
+      )}
+      {step === 'view-penalty-completed' && (
+        <div className="checkin__body">
+          <div className="element">지각비 10000원</div>
+        </div>
+      )}
 
       {/* 지각한 사람 O */}
-      {step === 'my-penalty' && <p>지각 - 패널티 보러가기</p>}
-      {step === 'my-penalty-completed' && <p>지각 당사자가 받은 지각 페널티 내용</p>}
+      {step === 'init-checkin-isLast' && (
+        <div className="checkin__body">
+          <img src={Late} alt="a" className="checkin__img" />
+        </div>
+      )}
+      {step === 'my-penalty-completed' && (
+        <div className="checkin__body">
+          <div className="element">지각비 10000원</div>
+        </div>
+      )}
 
       {/* 모두 지각 */}
-      {step === 'all-late' && <p>모두 지각했어요</p>}
+      {step === 'all-late' && (
+        <div className="checkin__body">
+          <img src={Apology} alt="a" className="checkin__img" />
+        </div>
+      )}
       {step === 'write-regret-completed' && <RegretInput />}
     </>
   );
