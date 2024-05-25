@@ -20,7 +20,7 @@ export function formatDateForAppointmentCard(dateString: Date) {
 }
 
 export function convertToISOString(YYMMDD: string, HHMM: string) {
-  const [_, time] = HHMM.split(' ');
+  const [time, _] = HHMM.split(' ');
   const [hours, minutes] = time.split(':');
   const [year, month, day] = YYMMDD.split('-');
   const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);
