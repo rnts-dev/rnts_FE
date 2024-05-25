@@ -14,7 +14,6 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { c } from 'vite/dist/node/types.d-aGj9QkWt';
 
 type Modal = 'request' | 'allow' | '';
 
