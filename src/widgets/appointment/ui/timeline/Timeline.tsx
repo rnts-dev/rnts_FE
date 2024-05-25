@@ -23,7 +23,7 @@ function Circle({ title }: { title: string }) {
   const item = appointmentTendencyData.find((item) => item.title === title);
   return (
     <div className="circle">
-      <img src={item ? item.src : undefined} alt="appointment_tendency" />
+      <img src={item ? item.src : ''} alt="" />
     </div>
   );
 }
