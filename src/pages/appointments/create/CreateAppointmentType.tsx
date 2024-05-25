@@ -20,7 +20,7 @@ const CreateAppointmentType = () => {
     });
   };
 
-  const isComplete = appointment.name && appointment.tendency;
+  const isComplete = appointment.name && appointment.appointmentType;
 
   return (
     <PagePadding>

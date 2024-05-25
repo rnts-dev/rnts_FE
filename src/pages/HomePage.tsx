@@ -1,4 +1,4 @@
-import { getMyAppointment } from '@/shared/service/appointment/getMyAppointment';
+import { fetcher } from '@/shared/service/fetch';
 import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
 import AppointmentHeader from '@/widgets/home/ui/appointmentHeader/AppointmentHeader';
 import HomeContentLayout from '@/widgets/home/ui/contentLayout/HomeContentLayout';
@@ -7,17 +7,12 @@ import MenuBar from '@/widgets/home/ui/menuBar/MenuBar';
 import NotAppointment from '@/widgets/home/ui/notAppointment/NotAppointment';
 import TimelinePadding from '@/widgets/home/ui/timelinePadding/TimelinePadding';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
 
 const HomePage = () => {
-  const [appointmentList, setAppointmentList] = useState();
-
-  const {} = useQuery({
-    queryKey: ['appointment_list'],
+  const { data } = useQuery({
+    queryKey: ['/api/userappt/myappt'],
     queryFn: () => {
-      getMyAppointment().then((res) => {
-        setAppointmentList(res.data);
-      });
+      return fetcher.get('/api/userappt/myappt').then((res) => res.data);
     },
   });
 
@@ -25,16 +20,16 @@ const HomePage = () => {
     <>
       <Header />
       <AppointmentHeader />
-      {appointmentList && (
+      {data && (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <TimelinePadding>
-            <Timeline isHome appointmentList={appointmentList} />
+            <Timeline isHome appointmentList={data} />
           </TimelinePadding>
           <MenuBar isFixed />
         </div>
       )}
       <HomeContentLayout>
-        {!appointmentList && (
+        {!data && (
           <>
             <NotAppointment />
             <MenuBar isFixed={false} />

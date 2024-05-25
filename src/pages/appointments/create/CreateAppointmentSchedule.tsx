@@ -13,13 +13,26 @@ const CreateAppointmentSchedule = () => {
   const appointment = useAtomValue(AppointmentState);
   const isComplete = appointment.place && appointment.YYMMDD && appointment.HHMM;
 
+  // const onClickConfirmBtn = async () => {
+  //   // await fetcher.post('/api/appointment/', {
+  //   //   title: appointment.name,
+  //   //   appointmentType: appointment.appointmentType,
+  //   //   time: convertToISOString(appointment.YYMMDD, appointment.HHMM),
+  //   //   place: appointment.place,
+  //   // });
+
+  //   await useMutation()
+
+  //   navigate('/');
+  // };
+
   return (
     <PagePadding>
       <CreateHeader title="약속 시간" description="약속 시간을 선택하세요." />
       <TimeInputContainer />
       <Description title="약속 장소" description="모일 장소를 선택하세요." />
       <PlaceSettingButton onclick={() => navigate('/appointment/create/place')} />
-      <ConfirmBtn isComplete={!!isComplete} onClick={() => navigate('/appointment/create/schedule')} title="완료" />
+      <ConfirmBtn isComplete={!!isComplete} onClick={() => {}} title="완료" />
     </PagePadding>
   );
 };
