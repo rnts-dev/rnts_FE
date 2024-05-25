@@ -31,7 +31,7 @@ export default function useCheckinModalUI(id: number) {
     // selected appointment 상태 관리 하기
     // 조건 추가해야 함 (첫번째 유저인지)
     if (step === 'init-checkin') {
-      navigate(`/penalty/send&uaid=${id}`);
+      navigate(`/penalty/send?uaid=${id}`);
     }
 
     if (step === 'init-checkin-isNormal') {

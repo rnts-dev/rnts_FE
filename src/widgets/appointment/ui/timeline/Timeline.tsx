@@ -1,14 +1,14 @@
+import ioClass from '@/assets/ioClass.svg';
+import ioDate from '@/assets/ioDate.svg';
+import ioFamliy from '@/assets/ioFamliy.svg';
+import ioHobby from '@/assets/iohobby.svg';
+import ioRestaurant from '@/assets/ioRestaurant.svg';
+import ioThunder from '@/assets/ioThunder.svg';
 import AppointmentCard from '@/entities/appointment/ui/card/AppointmentCard';
 import { Appointment } from '@/shared/utils/types/appointment.types';
 import { Step, StepIndicator, Stepper, StepSeparator, StepStatus, useSteps } from '@chakra-ui/react';
 import { createFlagAppointment, createFlagTextAppointment } from '../../model/mappingTimeline';
 import './timeline.scss';
-import ioRestaurant from '@/assets/ioRestaurant.svg';
-import ioHobby from '@/assets/iohobby.svg';
-import ioThunder from '@/assets/ioThunder.svg';
-import ioClass from '@/assets/ioClass.svg';
-import ioFamliy from '@/assets/ioFamliy.svg';
-import ioDate from '@/assets/ioDate.svg';
 
 const appointmentTendencyData = [
   { src: ioRestaurant, title: '식사' },
