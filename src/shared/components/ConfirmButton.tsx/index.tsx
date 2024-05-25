@@ -4,17 +4,19 @@ import './index.scss';
 interface ConfirmButton {
   onConfirm: () => void;
   onCancel: () => void;
+  confirmTitle?: string;
+  cancelTitle?: string;
 }
 
 const ConfirmButton = (props: ConfirmButton) => {
-  const { onConfirm, onCancel } = props;
+  const { onConfirm, onCancel, cancelTitle, confirmTitle } = props;
   return (
     <>
       <Button onClick={onCancel} textColor="#BAC7DA" width={'100%'} colorScheme="#A1B2CA" variant="outline">
-        취소
+        {cancelTitle || '취소'}
       </Button>
       <Button onClick={onConfirm} borderColor="#A1B2CA" background="#B0F93C" width={'100%'} colorScheme="#A1B2CA" variant="outline">
-        확인
+        {confirmTitle || '확인'}
       </Button>
     </>
   );

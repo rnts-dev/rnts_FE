@@ -26,7 +26,6 @@ const CreateAppointmentSchedule = () => {
       })
       .then((res: any) => res.data);
 
-    console.log('appointmentId', appointmentId);
     await navigate(`/?id=${appointmentId}`);
   };
 

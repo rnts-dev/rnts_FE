@@ -1,3 +1,4 @@
+import ConfirmButton from '@/shared/components/ConfirmButton.tsx';
 import { fetcher } from '@/shared/service/fetch';
 import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
 import AppointmentHeader from '@/widgets/home/ui/appointmentHeader/AppointmentHeader';
@@ -6,7 +7,7 @@ import Header from '@/widgets/home/ui/header/Header';
 import MenuBar from '@/widgets/home/ui/menuBar/MenuBar';
 import NotAppointment from '@/widgets/home/ui/notAppointment/NotAppointment';
 import TimelinePadding from '@/widgets/home/ui/timelinePadding/TimelinePadding';
-import { Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react';
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -16,11 +17,13 @@ type Modal = 'request' | 'allow' | '';
 const HomePage = () => {
   const [modal, setModal] = useState<Modal>('');
   const [searchParams] = useSearchParams();
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['/api/userappt/myappt'],
     queryFn: () => {
       return fetcher.get('/api/userappt/myappt').then((res) => res.data);
     },
+    refetchOnMount: true,
+    refetchOnReconnect: true,
   });
 
   useEffect(() => {
@@ -120,6 +123,21 @@ const HomePage = () => {
           <ModalBody>
             <p>checkin</p>
           </ModalBody>
+
+          <ModalFooter>
+            <ConfirmButton
+              confirmTitle="수락"
+              cancelTitle="거절"
+              onConfirm={async () => {
+                await fetcher.post(`api/userappt/${searchParams.get('id')}`).then((res) => res.data);
+                await refetch();
+                await setModal('');
+              }}
+              onCancel={() => {
+                setModal('');
+              }}
+            />
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
