@@ -1,8 +1,19 @@
 import './loginPage.scss';
 import KakaoBtn from '@/features/auth/kakao/ui/KakaoBtn';
 import characterIllust from '@/assets/onboarding_illust.png';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const LoginPage = () => {
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const id = searchParams.get('id');
+    const appointment = searchParams.get('appointment');
+    id && localStorage.setItem('id', id);
+    appointment && localStorage.setItem('appointment', appointment);
+  }, []);
+
   return (
     <div className="login_page_padding">
       <div className="login_page_content">

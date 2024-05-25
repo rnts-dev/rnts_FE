@@ -1,5 +1,6 @@
 import ConfirmButton from '@/shared/components/ConfirmButton.tsx';
 import { fetcher } from '@/shared/service/fetch';
+import { getAccessToken } from '@/shared/utils/axios/axiosUtils';
 import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
 import AppointmentHeader from '@/widgets/home/ui/appointmentHeader/AppointmentHeader';
 import HomeContentLayout from '@/widgets/home/ui/contentLayout/HomeContentLayout';
@@ -10,11 +11,12 @@ import TimelinePadding from '@/widgets/home/ui/timelinePadding/TimelinePadding';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 type Modal = 'request' | 'allow' | '';
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [modal, setModal] = useState<Modal>('');
   const [searchParams] = useSearchParams();
   const { data, refetch } = useQuery({
@@ -27,6 +29,11 @@ const HomePage = () => {
   });
 
   useEffect(() => {
+    const accessToken = getAccessToken();
+    if (!accessToken) {
+      navigate(`/login?id=${searchParams.get('id')}&appointment=${searchParams.get('appointment')}`);
+    }
+
     if (searchParams.get('id') && searchParams.get('appointment') !== 'allow') {
       setModal('request');
     }
@@ -37,6 +44,7 @@ const HomePage = () => {
 
   const CREAT_URL = `https://rnts-fia8jl95t-jungjihyouns-projects.vercel.app/?id=${searchParams.get('id')}&appointment=allow`;
 
+  console.log(data);
   return (
     <>
       <Header />
