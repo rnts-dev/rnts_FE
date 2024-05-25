@@ -25,6 +25,7 @@ export function convertToISOString(YYMMDD: string, HHMM: string): string {
   const [year, month, day] = YYMMDD.split('-').map(Number);
   const [hour, minute] = HHMM.split(':').map(Number);
   const date = moment()
+    .utc()
     .year(year)
     .month(month - 1)
     .date(day)
