@@ -1,0 +1,29 @@
+.send_penalty_penalty_conatiner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.send_penalty_penalty_box {
+  border-radius: 4px;
+  border: 1px solid var(--Primary-Color-black, #000);
+  background: var(--system-white, #fff);
+
+  display: flex;
+  height: 56px;
+  padding: 12px 18px;
+  align-items: center;
+
+  color: var(--Primary-Color-black, #000);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.6px;
+
+  &.select {
+    border-radius: 4px;
+    background: var(--Primary-Color-black, #000);
+
+    color: var(--System-Color-white, var(--system-white, #fff));
+  }
+}
