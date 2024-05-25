@@ -36,7 +36,7 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
     if (destination * 1000 < 50) {
       await mutate(uaid);
     } else {
-      console.log('거리 밖 구역');
+      alert('아직 체크인 할 수 없어요!\n현재 위치 또는 시간을 확인하세요.\n약속 시간 30분 전부터 체크인 가능해요.');
     }
   };
 
@@ -96,7 +96,7 @@ const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place,
       </div>
       <div className="profile_container">
         {profileImgList.map((item) => {
-          return <img className="profile" src={item} alt="profile_img" />;
+          return <img className="profile" src={item || ''} alt="" />;
         })}
       </div>
       <div className="schedule">
