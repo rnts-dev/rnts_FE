@@ -1,4 +1,6 @@
+import { fetcher } from '@/shared/service/fetch';
 import { checkinStep } from '@/shared/store/atoms/checkin';
+import { useMutation } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,8 +8,26 @@ export default function useCheckinModalUI(id: number) {
   const [step, setStep] = useAtom(checkinStep);
   const navigate = useNavigate();
 
+  // const { data: penaltyInfo } = useQuery({
+  //   queryKey: [`/api/penalty/received`],
+  //   queryFn: () => {
+  //     fetcher.get(`/api/penalty/received`).then((res) => res.data);
+  //   },
+  // });
+  const { mutate: getPenalty } = useMutation({
+    mutationFn: () => {
+      return fetcher.get(`/api/penalty/received`).then((res) => res.data);
+    },
+  });
+
+  const { mutate: postMyPenalty } = useMutation({
+    mutationFn: () => {
+      return fetcher.post(`api/penalty/createReceivedPenalty/${id}`).then((res) => res.data);
+    },
+  });
+
   // 체크인 모달 하단 버튼 액션
-  const handleChangeStep = () => {
+  const handleChangeStep = async () => {
     // selected appointment 상태 관리 하기
     // 조건 추가해야 함 (첫번째 유저인지)
     if (step === 'init-checkin') {
@@ -15,6 +35,7 @@ export default function useCheckinModalUI(id: number) {
     }
 
     if (step === 'init-checkin-isNormal') {
+      await getPenalty();
       setStep('view-penalty-completed');
     }
 
@@ -23,6 +44,10 @@ export default function useCheckinModalUI(id: number) {
     }
 
     if (step === 'init-checkin-isLast') {
+      // TODO : 등록 /api/penalty/createReceivedPenalty/17
+      //  TODO ; 조회 api/penalty/received
+      await getPenalty();
+      await postMyPenalty();
       setStep('my-penalty-completed');
     }
 
