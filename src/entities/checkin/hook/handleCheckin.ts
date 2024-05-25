@@ -1,6 +1,6 @@
 import BottomButton from '@/entities/checkin/ui/button/CheckInButton';
 
-export default function handleCheckin(isLate: string, order: string, time: any) {
+export default function handleCheckin(isLate: string) {
   const getLateInfo = () => {
     const mock_response = {
       data: {
