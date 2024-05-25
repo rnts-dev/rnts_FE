@@ -9,7 +9,9 @@ import MenuBar from '@/widgets/home/ui/menuBar/MenuBar';
 import NotAppointment from '@/widgets/home/ui/notAppointment/NotAppointment';
 import TimelinePadding from '@/widgets/home/ui/timelinePadding/TimelinePadding';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import moment from 'moment';
+import 'moment/locale/ko';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -27,6 +29,11 @@ const HomePage = () => {
     refetchOnMount: true,
     refetchOnReconnect: true,
   });
+  const { mutate, data: singleData } = useMutation({
+    mutationFn: (id: string) => {
+      return fetcher.post(`/api/appointment/searchSingleAppointment/${id}`).then((res) => res.data);
+    },
+  });
 
   useEffect(() => {
     const accessToken = getAccessToken();
@@ -39,6 +46,7 @@ const HomePage = () => {
     }
     if (searchParams.get('id') && searchParams.get('appointment') === 'allow') {
       setModal('allow');
+      mutate(searchParams.get('id') as string);
     }
   }, []);
 
@@ -125,11 +133,12 @@ const HomePage = () => {
         <ModalContent>
           <div className="header">
             <p className="title">초대받은 약속</p>
-            <p className="description">00식당 밥 약속!</p>
+            <p className="description">{singleData?.title}</p>
           </div>
 
           <ModalBody>
-            <p>checkin</p>
+            <p>{singleData?.place}</p>
+            <p>{moment(singleData?.time).format('MMMM Do YYYY, h:mm a')}</p>
           </ModalBody>
 
           <ModalFooter>
