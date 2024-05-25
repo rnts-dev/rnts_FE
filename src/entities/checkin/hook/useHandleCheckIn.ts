@@ -1,6 +1,20 @@
-import BottomButton from '@/entities/checkin/ui/button/BottomButton';
+import BottomButton from '@/entities/checkin/ui/button/CheckInButton';
+import { fetcher } from '@/shared/service/fetch';
+import { useQuery } from '@tanstack/react-query';
 
 export default function useHandleCheckIn() {
+  const query = useQuery<any>({
+    queryKey: ['api/userappt/checkin', 1],
+    queryFn: () =>
+      fetcher
+        .post('api/userappt/checkin', {
+          id: 1,
+        })
+        .then((res) => res.data),
+  });
+
+  console.log('e33', query);
+  // api/userappt/checkin/1
   // 정시 도착
   // 일찍 도착
   // 지각
@@ -9,7 +23,6 @@ export default function useHandleCheckIn() {
   // -> fe 1) response에 따라 모달 UI 다르게 띄워주기
   // -> fe 2) 모달 내용 post or get
   // prompt로 분기 처리
-
   // 1. get mutate api
   const getLateInfo = () => {
     const mock_response = {

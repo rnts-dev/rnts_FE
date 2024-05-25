@@ -1,4 +1,4 @@
-import BottomButton from '@/entities/checkin/ui/button/BottomButton';
+import BottomButton from '@/entities/checkin/ui/button/CheckInButton';
 import { checkinStep } from '@/shared/store/atoms/checkin';
 import { modalState } from '@/shared/store/atoms/modal';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';

@@ -1,27 +1,27 @@
 import useHandleBottomButton from '@/entities/checkin/\bhook/useHandleBottomButton';
 import { checkinStep } from '@/shared/store/atoms/checkin';
 import { useSetAtom } from 'jotai';
-import './bottomButton.scss';
+import './checkinButton.scss';
 
-const BottomButton = () => {
+const CheckInButton = () => {
   const setStep = useSetAtom(checkinStep);
   const { handleChangeStep, getButtonTitle } = useHandleBottomButton();
 
   return (
-    <div className="bottom-button">
-      <div
+    <div className="checkin-button">
+      <button
         className="confirm"
         onClick={() => {
           handleChangeStep();
         }}>
         <div>{getButtonTitle()}</div>
-      </div>
+      </button>
       {/* TODO : step별로 show 분기 처리 */}
-      <div className="dismiss" onClick={() => setStep('canceled')}>
+      <button className="dismiss" onClick={() => setStep('canceled')}>
         <p>넘어가기</p>
-      </div>
+      </button>
     </div>
   );
 };
 
-export default BottomButton;
+export default CheckInButton;
