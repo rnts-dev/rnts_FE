@@ -1,0 +1,11 @@
+.date_picker_confirm_btn {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  border: 1px solid var(--System-Color-gray-600, #a1b2ca);
+  background: var(--Primary-Color-green, #b0f93c);
+}
