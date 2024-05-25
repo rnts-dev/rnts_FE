@@ -8,7 +8,7 @@ import Header from '@/widgets/home/ui/header/Header';
 import MenuBar from '@/widgets/home/ui/menuBar/MenuBar';
 import NotAppointment from '@/widgets/home/ui/notAppointment/NotAppointment';
 import TimelinePadding from '@/widgets/home/ui/timelinePadding/TimelinePadding';
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import moment from 'moment';
 import 'moment/locale/ko';
@@ -50,7 +50,7 @@ const HomePage = () => {
     }
   }, []);
 
-  const CREAT_URL = `https://rnts-fia8jl95t-jungjihyouns-projects.vercel.app/?id=${searchParams.get('id')}&appointment=allow`;
+  const CREAT_URL = `https://rnts-fe.vercel.app/?id=${searchParams.get('id')}&appointment=allow`;
 
   console.log(data);
   return (
@@ -85,13 +85,15 @@ const HomePage = () => {
             </div>
 
             <ModalBody>
-              {CREAT_URL}
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(CREAT_URL);
-                }}>
-                handleCopyClipBoard
-              </button>
+              <div style={{ display: 'flex' }}>
+                {CREAT_URL}
+                <Button
+                  onClick={() => {
+                    navigator.clipboard.writeText(CREAT_URL);
+                  }}>
+                  복사
+                </Button>
+              </div>
             </ModalBody>
 
             <div>

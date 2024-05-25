@@ -13,7 +13,8 @@ export default function KakaoRedirectPage() {
     fetcher.post(`/api/user/kakao/login?code=${code}`).then((res) => {
       // ok respone 확인하고, 이후 작업 해야함(유저로그인시키기, 토큰 브라우저에 저장)
       localStorage.setItem('ACCESS_TOKEN', res.data);
-      navigate('/');
+
+      navigate(`https://rnts-fe.vercel.app/?id=${localStorage.getItem('id')}&appointment=allow`);
       // fetcher //서버에서 유저정보 요청하는 url
       //   .get(`${BASE_URL}userinfo`, {
       //     headers: {
