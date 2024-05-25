@@ -1,4 +1,3 @@
-import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide';
 import RNTSDatePicker from '@/shared/components/RNTSDatePicker/RNTSDatePicker';
 import RNTSTimePicker from '@/shared/components/RNTSTimePicker';
 import useGlobalModal from '@/shared/manager/confirm/useHandleConfirm';
@@ -58,18 +57,18 @@ export default function PreviewPage() {
 
           <TabPanels>
             <TabPanel>
-              <RNTSDatePicker onSave={() => console.log('날짜 선택')} />
+              <RNTSDatePicker onClose={() => {}} />
             </TabPanel>
             <TabPanel>
               <Timeline />
             </TabPanel>
             <TabPanel>
-              <RNTSBottomSlide>
+              {/* <RNTSBottomSlide is>
                 <RNTSDatePicker onSave={() => console.log('날짜 선택')} />
-              </RNTSBottomSlide>
+              </RNTSBottomSlide> */}
             </TabPanel>
             <TabPanel>
-              <RNTSTimePicker onSave={() => console.log('날짜 선택')} />
+              <RNTSTimePicker onClose={() => {}} />
             </TabPanel>
             <TabPanel>
               <Flex flexDirection="column" gap={2}>

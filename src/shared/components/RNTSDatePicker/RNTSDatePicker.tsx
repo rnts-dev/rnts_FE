@@ -1,22 +1,24 @@
-import { Button, Flex } from '@chakra-ui/react';
 import { useEffect, useRef } from 'react';
 import DatePicker from 'tui-date-picker';
 import './tui-date-picker.scss';
+import { AppointmentState } from '@/shared/store/atoms/appointment';
+import { useAtom } from 'jotai';
+import { formatDate } from '@/shared/utils/date';
 
 interface Props {
-  onSave: (date: Date) => void;
+  onClose: () => void;
 }
 
 export default function RNTSDatePicker(props: Props) {
-  const { onSave } = props;
+  const { onClose } = props;
   const datepickerRef = useRef<DatePicker | null>(null);
+  const [_, setAppointment] = useAtom(AppointmentState);
 
   useEffect(() => {
-    console.log('init calendar !');
     const today = new Date();
     datepickerRef.current = new DatePicker('#datepicker', {
       date: today,
-      selectableRanges: [[new Date(today.getFullYear() - 999, today.getMonth(), today.getDate()), today]],
+      selectableRanges: [[new Date(today.getFullYear() - 999, today.getMonth(), today.getDate()), new Date().setMonth(today.getMonth() + 999)]],
       language: 'ko',
       autoClose: false,
       showAlways: true,
@@ -31,17 +33,29 @@ export default function RNTSDatePicker(props: Props) {
 
   const handleBtnClick = () => {
     const dateValue = datepickerRef.current?.getDate();
-    console.log('dateValue : ', dateValue);
-    dateValue && onSave(dateValue);
+    if (dateValue) {
+      setAppointment((prev) => {
+        return {
+          ...prev,
+          YYMMDD: formatDate(String(dateValue)),
+        };
+      });
+
+      onClose();
+    }
   };
 
   return (
     <>
       <div id="datepicker" />
-      <Flex>
-        <Button onClick={handleBtnClick}>닫기</Button>
-        <Button onClick={handleBtnClick}>선택 완료</Button>
-      </Flex>
+      <div className="date_picker_btn_container">
+        <button className="date_picker_calcel_btn" onClick={onClose}>
+          취소
+        </button>
+        <button className="date_picker_confirm_btn" onClick={handleBtnClick}>
+          확인
+        </button>
+      </div>
     </>
   );
 }
