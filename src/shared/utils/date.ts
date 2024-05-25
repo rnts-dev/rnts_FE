@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const year = date.getFullYear();
@@ -19,11 +21,16 @@ export function formatDateForAppointmentCard(dateString: Date) {
   return `${month} ${day}일 (${dayOfWeek}) ${ampm} ${hourFormat}시 ${minutes}분`;
 }
 
-export function convertToISOString(YYMMDD: string, HHMM: string) {
-  const [time, _] = HHMM.split(' ');
-  const [hours, minutes] = time.split(':');
-  const [year, month, day] = YYMMDD.split('-');
-  const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);
+export function convertToISOString(YYMMDD: string, HHMM: string): string {
+  const [year, month, day] = YYMMDD.split('-').map(Number);
+  const [hour, minute] = HHMM.split(':').map(Number);
+  const date = moment()
+    .year(year)
+    .month(month - 1)
+    .date(day)
+    .hour(hour)
+    .minute(minute)
+    .second(0);
 
   return date.toISOString();
 }
