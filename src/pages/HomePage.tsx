@@ -157,7 +157,7 @@ const HomePage = () => {
                 </div>
                 <div style={{ display: 'flex', marginRight: '10px', gap: '4px' }}>
                   <img src={fiClock} alt="s" />
-                  <p>{moment(singleData?.time.filter((e: any, index: number) => index < 4)).format('LLL')}</p>
+                  <p>{moment(singleData?.time.filter((_: any, index: number) => index < 4)).format('LLL')}</p>
                 </div>
               </div>
             )}
