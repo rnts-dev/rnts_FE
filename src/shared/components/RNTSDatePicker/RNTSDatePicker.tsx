@@ -18,7 +18,7 @@ export default function RNTSDatePicker(props: Props) {
     const today = new Date();
     datepickerRef.current = new DatePicker('#datepicker', {
       date: today,
-      selectableRanges: [[new Date(today.getFullYear() - 999, today.getMonth(), today.getDate()), new Date().setMonth(today.getMonth() + 999)]],
+      selectableRanges: [[today, new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())]],
       language: 'ko',
       autoClose: false,
       showAlways: true,

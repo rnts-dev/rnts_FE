@@ -70,7 +70,7 @@ const CreateAppointmentPlace = () => {
 
   return (
     <Layout>
-      <Description title="도착지 설정" description="약속 시간을 선택하세요." />
+      <Description title="도착지 설정" description="약속 장소를 입력해 주세요." />
       <Input inputRef={inputRef} placeholder="지번, 도로명, 건물명으로 검색" value={inputRef?.current?.value || ''} onChange={(e) => setInput(e.currentTarget.value)} />
 
       <PlaceSearchResultList result={result} handleSelectDestination={handleSelectDestination} />

@@ -1,7 +1,7 @@
-import ListSelectBtn from '@/features/appointment/ui/listSelectBtn/ListSelectBtn';
-import './header.scss';
 import chevronLeft from '@/assets/chevronLeft.svg';
-import { Link } from 'react-router-dom';
+import ListSelectBtn from '@/features/appointment/ui/listSelectBtn/ListSelectBtn';
+import { Link, useNavigate } from 'react-router-dom';
+import './header.scss';
 
 interface Props {
   select: string;
@@ -9,10 +9,18 @@ interface Props {
 }
 
 const Header = ({ select, onChangeSelect }: Props) => {
+  const navigate = useNavigate();
   return (
     <div className="appointment_header_container">
       <Link to={'-1'}>
-        <div className="chevron_left_back" onClick={() => history.back()}>
+        <div
+          className="chevron_left_back"
+          onClick={() => {
+            if (window.location.pathname.includes('create/schedule')) {
+              navigate('/appointment/create/type');
+            }
+            history.back();
+          }}>
           <img src={chevronLeft} alt="뒤로 가기" />
         </div>
       </Link>
