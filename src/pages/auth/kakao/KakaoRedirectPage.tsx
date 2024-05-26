@@ -1,6 +1,8 @@
 import { fetcher } from '@/shared/service/fetch';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function KakaoRedirectPage() {
+  const navigate = useNavigate();
   // const [user, setUser] = useState('');
 
   useEffect(() => {
@@ -12,7 +14,7 @@ export default function KakaoRedirectPage() {
       // ok respone 확인하고, 이후 작업 해야함(유저로그인시키기, 토큰 브라우저에 저장)
       localStorage.setItem('ACCESS_TOKEN', res.data);
 
-      location.replace(`https://rnts-fe.vercel.app/login/oauth2/code/kakao/?id=${localStorage.getItem('id')}&appointment=allow`);
+      navigate(`/login/oauth2/code/kakao/?id=${localStorage.getItem('id')}&appointment=allow`);
       // fetcher //서버에서 유저정보 요청하는 url
       //   .get(`${BASE_URL}userinfo`, {
       //     headers: {
