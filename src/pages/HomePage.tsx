@@ -42,6 +42,10 @@ const HomePage = () => {
       navigate(`/login?id=${searchParams.get('id')}&appointment=${searchParams.get('appointment')}`);
     }
 
+    if (searchParams.get('id') === 'null' && searchParams.get('appointment') === 'null') {
+      return;
+    }
+
     if (searchParams.get('id') && searchParams.get('appointment') !== 'allow') {
       setModal('request');
     }
