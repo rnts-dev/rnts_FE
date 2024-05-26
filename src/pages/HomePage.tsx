@@ -1,3 +1,5 @@
+import fiClock from '@/assets/fiClock.svg';
+import fiMapFin from '@/assets/fiMapFin.svg';
 import ConfirmButton from '@/shared/components/ConfirmButton.tsx';
 import { fetcher } from '@/shared/service/fetch';
 import { getAccessToken } from '@/shared/utils/axios/axiosUtils';
@@ -30,7 +32,11 @@ const HomePage = () => {
     refetchOnReconnect: true,
   });
 
-  const { mutate, data: singleData } = useMutation({
+  const {
+    mutate,
+    data: singleData,
+    isSuccess,
+  } = useMutation({
     mutationFn: (id: string) => {
       return fetcher.post(`/api/appointment/searchSingleAppointment/${id}`).then((res) => res.data);
     },
@@ -143,8 +149,18 @@ const HomePage = () => {
           </div>
 
           <ModalBody>
-            <p>{singleData?.place}</p>
-            <p>{moment(singleData?.time).format('MMMM Do YYYY, h:mm a')}</p>
+            {isSuccess && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ display: 'flex', marginRight: '10px', gap: '4px' }}>
+                  <img src={fiMapFin} alt="" />
+                  <p>{singleData?.place}</p>
+                </div>
+                <div style={{ display: 'flex', marginRight: '10px', gap: '4px' }}>
+                  <img src={fiClock} alt="s" />
+                  <p>{moment(singleData?.time.filter((e: any, index: number) => index < 4)).format('LLL')}</p>
+                </div>
+              </div>
+            )}
           </ModalBody>
 
           <ModalFooter>
