@@ -1,4 +1,3 @@
-import MapSearch from '@/entities/map/ui/MapSearch';
 import PreviewPage from '@/pages/preview/PreviewPage';
 import ConfirmManager from '@/shared/manager/confirm/ConfirmManager';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
@@ -18,6 +17,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import PenaltyListPage from './pages/penalty/PenaltyListPage';
 import SendPenaltyPage from './pages/penalty/SendPenaltyPage';
 import SelectTendencyPage from './pages/tendency/SelectTendencyPage';
+import { MapSearch } from './components/map';
 
 const colors = {
   personal: '',

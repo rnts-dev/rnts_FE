@@ -1,7 +1,7 @@
 import getAppointmentHistory from '@/shared/service/appointment/getAppointmentHistory';
 import { Appointment } from '@/shared/utils/types/appointment.types';
-import Header from '@/widgets/appointment/ui/header/Header';
-import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
+import { Header, Timeline } from '@/widgets/appointment';
+
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';

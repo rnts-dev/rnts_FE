@@ -1,10 +1,9 @@
-import ConfirmButton2 from '@/entities/appointment/ui/confirmBtn/ConfirmBtn2';
-import Description from '@/entities/appointment/ui/description/Description';
-import PlaceSearchResultList from '@/features/appointment/ui/placeSearchResultList.tsx/PlaceSearchResultList';
+import { ConfirmButton2, Description, PlaceSearchResultList } from '@/components/appointment';
 import Input from '@/shared/components/Input/Input';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { AppointmentState } from '@/shared/store/atoms/appointment';
-import Layout from '@/widgets/createAppointment/ui/placeSearchLayout/PlaceSearchLayout';
+import { PlaceSearchLayout } from '@/widgets/createAppointment';
+
 import { useSetAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -69,7 +68,7 @@ const CreateAppointmentPlace = () => {
   }, [searchPlaceWithDebounce]);
 
   return (
-    <Layout>
+    <PlaceSearchLayout>
       <Description title="도착지 설정" description="약속 장소를 입력해 주세요." />
       <Input inputRef={inputRef} placeholder="지번, 도로명, 건물명으로 검색" value={inputRef?.current?.value || ''} onChange={(e) => setInput(e.currentTarget.value)} />
 
@@ -82,7 +81,7 @@ const CreateAppointmentPlace = () => {
           navigate('/appointment/create/schedule');
         }}
       />
-    </Layout>
+    </PlaceSearchLayout>
   );
 };
 

@@ -1,7 +1,7 @@
 import './header.scss';
 import chevronLeft from '@/assets/chevronLeft.svg';
 
-const Header = () => {
+export const Header = () => {
   return (
     <header className="tendency_header_container">
       <div className="tendency_header_back">
@@ -17,5 +17,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;
