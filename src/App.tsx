@@ -1,8 +1,10 @@
 import PreviewPage from '@/pages/preview/PreviewPage';
 import ConfirmManager from '@/shared/manager/confirm/ConfirmManager';
+import DialogManger from '@/shared/manager/DialogManager';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { MapSearch } from './components/map';
 import AppointmentsListPage from './pages/appointments/AppointmentsListPage';
 import CreateAppointmentPlace from './pages/appointments/create/CreateAppointmentPlace';
 import CreateAppointmentSchedule from './pages/appointments/create/CreateAppointmentSchedule';
@@ -17,7 +19,6 @@ import NotFoundPage from './pages/NotFoundPage';
 import PenaltyListPage from './pages/penalty/PenaltyListPage';
 import SendPenaltyPage from './pages/penalty/SendPenaltyPage';
 import SelectTendencyPage from './pages/tendency/SelectTendencyPage';
-import { MapSearch } from './components/map';
 
 const colors = {
   personal: '',
@@ -64,6 +65,7 @@ function App() {
             ))}
           </Routes>
           <ConfirmManager />
+          <DialogManger />
         </BrowserRouter>
       </ChakraProvider>
     </QueryClientProvider>
