@@ -1,12 +1,11 @@
+import { ConfirmBtn } from '@/components/appointment';
 import Input from '@/shared/components/Input/Input';
 import { AppointmentState } from '@/shared/store/atoms/appointment';
-
-import { useAtom } from 'jotai';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { AppointmentTendencyList, PagePadding } from '@/widgets/appointment';
 import { CreateHeader } from '@/widgets/createAppointment';
-import { ConfirmBtn } from '@/components/appointment';
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CreateAppointmentType = () => {
   const [appointment, setAppointment] = useAtom(AppointmentState);

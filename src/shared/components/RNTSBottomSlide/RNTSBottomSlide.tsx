@@ -1,7 +1,7 @@
 import { Drawer, DrawerBody, DrawerContent, DrawerOverlay } from '@chakra-ui/react';
-import './index.scss';
+import './RNTSBottomSlide.scss';
 
-export default function RNTSBottomSlide({ children, isOpen, onClose }: { children: React.ReactNode; isOpen: boolean; onClose: () => void }) {
+const RNTSBottomSlide = ({ children, isOpen, onClose }: { children: React.ReactNode; isOpen: boolean; onClose: () => void }) => {
   return (
     <>
       {/* <Button onClick={onOpen}>Open Drawer</Button> */}
@@ -13,4 +13,6 @@ export default function RNTSBottomSlide({ children, isOpen, onClose }: { childre
       </Drawer>
     </>
   );
-}
+};
+
+export default RNTSBottomSlide;
