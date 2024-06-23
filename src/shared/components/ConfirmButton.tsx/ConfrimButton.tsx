@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/react';
-import './index.scss';
+import './confirmButton.scss';
 
 interface ConfirmButton {
   onConfirm: () => void;

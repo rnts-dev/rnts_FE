@@ -3,13 +3,13 @@ import { Button, Flex } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
 import TimePicker from 'tui-time-picker';
-import './index.scss';
+import './RNTSTimePicker.scss';
 
 interface Props {
   onClose: () => void;
 }
 
-export default function RNTSTimePicker(props: Props) {
+const RNTSTimePicker = (props: Props) => {
   const { onClose } = props;
   const timePickerRef = useRef<any>(null);
   const [_, setAppointment] = useAtom(AppointmentState);
@@ -51,4 +51,6 @@ export default function RNTSTimePicker(props: Props) {
       </Flex>
     </>
   );
-}
+};
+
+export default RNTSTimePicker;

@@ -4,7 +4,6 @@ import { AppointmentState } from '@/shared/store/atoms/appointment';
 import { convertToISOString } from '@/shared/utils/date';
 import { PagePadding } from '@/widgets/appointment';
 import { CreateHeader, PlaceSettingButton, TimeInputContainer } from '@/widgets/createAppointment';
-
 import { useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 

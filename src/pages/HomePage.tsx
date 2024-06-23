@@ -1,6 +1,6 @@
 import fiClock from '@/assets/fiClock.svg';
 import fiMapFin from '@/assets/fiMapFin.svg';
-import ConfirmButton from '@/shared/components/ConfirmButton.tsx';
+import ConfirmButton from '@/shared/components/ConfirmButton.tsx/ConfrimButton';
 import { fetcher } from '@/shared/service/fetch';
 import { getAccessToken } from '@/shared/utils/axios/axiosUtils';
 import { Timeline } from '@/widgets/appointment';

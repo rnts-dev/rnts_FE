@@ -1,10 +1,10 @@
 import RNTSDatePicker from '@/shared/components/RNTSDatePicker/RNTSDatePicker';
-import RNTSTimePicker from '@/shared/components/RNTSTimePicker';
+import RNTSTimePicker from '@/shared/components/RNTSTimePicker/RNTSTimePicker';
 import useGlobalModal from '@/shared/manager/confirm/useHandleConfirm';
 import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import './preview.scss';
 
-export default function PreviewPage() {
+const PreviewPage = () => {
   const { prompt } = useGlobalModal();
 
   const handleOpenConfirmModal = async () => {
@@ -78,4 +78,6 @@ export default function PreviewPage() {
       </div>
     </>
   );
-}
+};
+
+export default PreviewPage;
