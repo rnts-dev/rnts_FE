@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 export const useSignupForm = () => {
@@ -7,16 +6,13 @@ export const useSignupForm = () => {
     watch,
     handleSubmit,
     setError,
-    trigger,
-    formState: { errors },
-  } = useForm({ mode: 'all', defaultValues: { id: '', email: '', authCode: '', password: '', confirmPassword: '' } });
 
-  useEffect(() => {
-    trigger();
-  }, [trigger]);
+    formState: { errors },
+  } = useForm({ mode: 'all', defaultValues: { id: '', email: '', nickname: '', authCode: '', password: '', confirmPassword: '' } });
 
   const idValue = watch('id');
   const emailValue = watch('email');
+  const nicknameValue = watch('nickname');
   const authCodeValue = watch('authCode');
   const passwordValue = watch('password');
   const confirmPasswordValue = watch('confirmPassword');
@@ -43,10 +39,16 @@ export const useSignupForm = () => {
 
   const authCodeValidate = {
     ...register('authCode', {
-      required: { value: true, message: '코드는 6자리 숫자여야 합니다.' },
+      required: { value: true, message: '코드를 입력해주세요' },
+    }),
+  };
+
+  const nicknameValidate = {
+    ...register('nickname', {
+      required: { value: true, message: '최소 2자 이상, 최대 8자 이내' },
       pattern: {
-        value: /^\d{6}$/,
-        message: '코드는 6자리 숫자여야 합니다.',
+        value: /^.{2,8}$/,
+        message: '최소 2자 이상, 최대 8자 이내여야 합니다.',
       },
     }),
   };
@@ -73,6 +75,8 @@ export const useSignupForm = () => {
     emailValue,
     authCodeValue,
     authCodeValidate,
+    nicknameValue,
+    nicknameValidate,
     passwordValue,
     confirmPasswordValue,
     idValidate,

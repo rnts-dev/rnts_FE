@@ -7,21 +7,19 @@ interface Props {
   value: string;
   register: any;
   error: any;
+  checkMsg?: string;
 }
 
-const InputContainer = ({ value, register, label, error, placeholder, type }: Props) => {
-  const checkIcon = error ? '/src/assets/auth/non-check.svg' : '/src/assets/auth/check.svg';
-
+const InputContainer = ({ value, checkMsg, register, label, placeholder, type, error }: Props) => {
   return (
     <S.InputContainer>
       <S.Label>
         {label}
         <S.RequiredImg src="/src/assets/required.svg" alt="requiredImg" />
       </S.Label>
-      <S.Input value={value} {...register} placeholder={placeholder} type={type} />
+      <S.Input value={value} {...register} placeholder={placeholder} type={type} err={error} />
       <S.ErrCheck>
-        <S.CheckIcon src={checkIcon} />
-        <p>영문 또는 숫자 조합으로 이루어진 4-16자 아이디</p>
+        <p>{checkMsg}</p>
       </S.ErrCheck>
     </S.InputContainer>
   );

@@ -15,7 +15,7 @@ interface Props {
 const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate, errors, handleChangeStep }: Props) => {
   const [isSendEmail, setIsSendEmail] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
-  const isValidInput = emailValue;
+  const isValidInput = emailValue && authCodeValue && !errors.email && !errors.authCode;
 
   return (
     <S.Layout>
@@ -45,7 +45,7 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
       </S.InputForm>
       <S.BtnWrap>
         {isValidInput && isConfirmEmail && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('third')} />}
-        {!(isValidInput || isConfirmEmail) && <S.NotActivateBtn>다음</S.NotActivateBtn>}
+        {(!isValidInput || !isConfirmEmail) && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
       </S.BtnWrap>
     </S.Layout>
   );

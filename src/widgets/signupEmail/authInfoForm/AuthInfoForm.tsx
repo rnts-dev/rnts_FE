@@ -15,7 +15,7 @@ interface Props {
 }
 
 const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPasswordValue, confirmPasswordValidate, idValue, idValidate, handleChangeStep }: Props) => {
-  const isValidInput = idValue && passwordValue && confirmPasswordValue;
+  const isValidInput = idValue && passwordValue && confirmPasswordValue && !errors.id && !errors.password && !errors.confirmPassword;
 
   return (
     <S.Layout>
@@ -30,7 +30,15 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
           onClick={() => console.log('confirm')}
           error={errors.id}
         />
-        <InputContainer value={passwordValue} register={passwordValidate} label="비밀번호" placeholder="비밀번호를 입력해주세요" type="password" error={errors.password} />
+        <InputContainer
+          value={passwordValue}
+          register={passwordValidate}
+          label="비밀번호"
+          placeholder="비밀번호를 입력해주세요"
+          type="password"
+          error={errors.password}
+          checkMsg="영문, 숫자, 특수문자를 포함하여 8-12자"
+        />
         <InputContainer
           value={confirmPasswordValue}
           register={confirmPasswordValidate}
@@ -43,7 +51,7 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
 
       <S.BtnWrap>
         {isValidInput && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('second')} />}
-        {!isValidInput && <S.NotActivateBtn>다음</S.NotActivateBtn>}
+        {!isValidInput && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
       </S.BtnWrap>
     </S.Layout>
   );

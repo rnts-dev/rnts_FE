@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface InputProps {
+  err: any;
+}
+
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,17 +25,17 @@ export const RequiredImg = styled.img`
   height: 4px;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<InputProps>`
   width: 100%;
   border-radius: 4px;
   border: 1px solid #bac7da;
   background: #fff;
-
+  border: ${({ err }) => (err ? '1px solid var(--Sub-Color-danger, #f74747)' : '1px solid #bac7da')};
   padding: 12px 18px;
 
   &:focus {
     border-radius: 4px;
-    border: 1px solid var(--Primary-Color-black, #000);
+    border: ${({ err }) => (err ? '1px solid var(--Sub-Color-danger, #f74747)' : '1px solid var(--Primary-Color-black, #000)')};
     background: var(--System-Color-white, #fff);
     outline: #000;
   }
