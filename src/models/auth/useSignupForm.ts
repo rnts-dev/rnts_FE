@@ -9,7 +9,7 @@ export const useSignupForm = () => {
     setError,
     trigger,
     formState: { errors },
-  } = useForm({ mode: 'all', defaultValues: { id: '', email: '', password: '', confirmPassword: '' } });
+  } = useForm({ mode: 'all', defaultValues: { id: '', email: '', authCode: '', password: '', confirmPassword: '' } });
 
   useEffect(() => {
     trigger();
@@ -17,6 +17,7 @@ export const useSignupForm = () => {
 
   const idValue = watch('id');
   const emailValue = watch('email');
+  const authCodeValue = watch('authCode');
   const passwordValue = watch('password');
   const confirmPasswordValue = watch('confirmPassword');
 
@@ -36,6 +37,16 @@ export const useSignupForm = () => {
       pattern: {
         value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
         message: '이메일 형식이 아닙니다.',
+      },
+    }),
+  };
+
+  const authCodeValidate = {
+    ...register('authCode', {
+      required: { value: true, message: '코드는 6자리 숫자여야 합니다.' },
+      pattern: {
+        value: /^\d{6}$/,
+        message: '코드는 6자리 숫자여야 합니다.',
       },
     }),
   };
@@ -60,6 +71,8 @@ export const useSignupForm = () => {
   return {
     idValue,
     emailValue,
+    authCodeValue,
+    authCodeValidate,
     passwordValue,
     confirmPasswordValue,
     idValidate,

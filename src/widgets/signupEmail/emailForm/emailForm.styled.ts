@@ -3,12 +3,20 @@ import styled from 'styled-components';
 export const Layout = styled.form`
   margin-top: 30px;
   display: flex;
+  height: 100%;
   flex-direction: column;
   gap: 20px;
 
   & > :last-child {
     margin-top: 200px;
   }
+`;
+
+export const InputForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 20px;
 `;
 
 export const EmailContainer = styled.div`
@@ -70,8 +78,13 @@ export const Input = styled.input`
 `;
 
 export const NotActivateBtn = styled.button`
+  width: 100%;
   border-radius: 10px;
   border: 1px solid var(--System-Color-gray-500, #bac7da);
   background: var(--System-Color-gray-200, #eef1f6);
   padding: 25px 70px;
+`;
+
+export const BtnWrap = styled.div`
+  width: 100%;
 `;
