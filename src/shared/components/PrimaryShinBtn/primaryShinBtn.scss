@@ -1,6 +1,5 @@
 .primary_shin_btn {
   transition: all 0.3s ease-in-out;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   padding-block: 0.5rem;
   padding-inline: 1.25rem;
   background-color: rgb(0 107 179);
@@ -11,7 +10,6 @@
   cursor: pointer;
   color: var(--Primary-Color-black, #000);
   gap: 10px;
-  // font-weight: bold;
   border-radius: 10px;
   border: 1px solid var(--System-Color-gray-600, #a1b2ca);
   background: var(--Primary-Color-green, #b0f93c);

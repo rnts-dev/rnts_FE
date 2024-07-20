@@ -1,4 +1,3 @@
-import MapSearch from '@/entities/map/ui/MapSearch';
 import PreviewPage from '@/pages/preview/PreviewPage';
 import ConfirmManager from '@/shared/manager/confirm/ConfirmManager';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
@@ -18,6 +17,8 @@ import NotFoundPage from './pages/NotFoundPage';
 import PenaltyListPage from './pages/penalty/PenaltyListPage';
 import SendPenaltyPage from './pages/penalty/SendPenaltyPage';
 import SelectTendencyPage from './pages/tendency/SelectTendencyPage';
+import { MapSearch } from './components/map';
+import EmailSignup from './pages/auth/emailSignup/EmailSignup';
 
 const colors = {
   personal: '',
@@ -28,6 +29,7 @@ const theme = extendTheme({ colors });
 
 const navMeta = [
   { title: '대시보드', url: '/', page: <HomePage /> },
+  { title: '이메일로 회원가입', url: '/signup-email', page: <EmailSignup /> },
   { title: '로그인', url: 'login', page: <LoginPage /> },
   { title: '카카오(re)', url: 'login/oauth2/code/kakao', page: <KakaoRedirectPage /> },
   { title: '지도', url: 'map', page: <MapSearch /> },

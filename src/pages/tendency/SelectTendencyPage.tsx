@@ -1,7 +1,4 @@
-import Header from '@/widgets/tendency/header/Header';
-import PagePadding from '@/widgets/tendency/pagePadding/PagePadding';
-import TendencyConfirmBtnWrap from '@/widgets/tendency/tendencyConfirmBtnWrap/TendencyConfirmBtnWrap';
-import TendencyList from '@/widgets/tendency/tendencyList/TendencyList';
+import { Header, PagePadding, TendencyConfirmBtnWrap, TendencyList } from '@/widgets/tendency';
 import { useState } from 'react';
 
 const SelectTendencyPage = () => {

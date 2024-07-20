@@ -1,0 +1,29 @@
+.kakao_login_btn {
+  width: 100%;
+  display: flex;
+  // margin-top: 241px;
+  margin-bottom: 38px;
+  height: 70px;
+  padding: 25px 70px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  border: 1px solid var(--System-Color-gray-600, #a1b2ca);
+  background: #ffe710;
+
+  color: var(--Primary-Color-black, #000);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.6px;
+
+  &::before {
+    content: url('/src/assets/auth/kakao.svg');
+    display: block;
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    clear: both;
+  }
+}

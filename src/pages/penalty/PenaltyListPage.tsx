@@ -1,7 +1,5 @@
-import MenuBar from '@/widgets/home/ui/menuBar/MenuBar';
-import Header from '@/widgets/penalty/ui/header/Header';
-import PagePadding from '@/widgets/penalty/ui/pagePadding/PagePadding';
-import PenaltyList from '@/widgets/penalty/ui/penaltyList/PenaltyList';
+import { MenuBar } from '@/widgets/home';
+import { Header, PagePadding, PenaltyList } from '@/widgets/penalty';
 
 const PenaltyListPage = () => {
   return (

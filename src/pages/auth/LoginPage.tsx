@@ -1,8 +1,9 @@
 import characterIllust from '@/assets/onboarding_illust.png';
-import KakaoBtn from '@/features/auth/kakao/ui/KakaoBtn';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './loginPage.scss';
+import { KakaoBtn } from '@/components/auth';
+import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 
 const LoginPage = () => {
   const [searchParams] = useSearchParams();
@@ -28,7 +29,14 @@ const LoginPage = () => {
           </p>
         </div>
       </div>
-      <KakaoBtn />
+
+      <div className="btn_container">
+        <PrimaryShinBtn text="일반 로그인" onClick={() => console.log('/signup-email')} image="/src/assets/auth/email.svg" />
+        <KakaoBtn />
+      </div>
+      <a href="/signup-email" className="move_signup">
+        계정이 없다면? 회원 가입하기
+      </a>
     </div>
   );
 };
