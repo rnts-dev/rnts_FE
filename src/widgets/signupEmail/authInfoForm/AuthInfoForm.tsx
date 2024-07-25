@@ -2,6 +2,10 @@ import * as S from './authInfoForm.styled';
 import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 import InputContainer from '@/shared/components/InputContainer/InputContainer';
 import ConfirmInputContainer from '@/shared/components/ConfirmInputContainer/ConfirmInputContainer';
+import { useState } from 'react';
+import PolicyModal from '@/components/policy/policyModal/PolicyModal';
+import { toast } from 'react-toastify';
+import ToastProvider from '@/shared/components/ToastProvider/ToastProvider';
 
 interface Props {
   idValue: string;
@@ -15,7 +19,12 @@ interface Props {
 }
 
 const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPasswordValue, confirmPasswordValidate, idValue, idValidate, handleChangeStep }: Props) => {
-  const isValidInput = idValue && passwordValue && confirmPasswordValue && !errors.id && !errors.password && !errors.confirmPassword;
+  // TODO: setIsValidId는 아이디 중복 확인이 통과하면 true로 변경
+  const [isValidId, setIsValidId] = useState(true);
+  const [isPolicyOpen, setIsPolicyOpen] = useState(true);
+  const [isToastOpen, setIsToastOpen] = useState(false);
+
+  const isValidInput = idValue && passwordValue && confirmPasswordValue && !errors.id && !errors.password && !errors.confirmPassword && isValidId;
 
   return (
     <S.Layout>
@@ -27,8 +36,9 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
           placeholder="영문 또는 숫자로 이루어진 4~16자"
           type="text"
           btnText="확인"
-          onClick={() => console.log('confirm')}
+          onClick={() => toast('사용 가능한 아이디에요', { onOpen: () => setIsToastOpen(true), onClose: () => setIsToastOpen(false) })}
           error={errors.id}
+          disabled={isToastOpen}
         />
         <InputContainer
           value={passwordValue}
@@ -49,10 +59,19 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
         />
       </S.InputForm>
 
-      <S.BtnWrap>
-        {isValidInput && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('second')} />}
-        {!isValidInput && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
-      </S.BtnWrap>
+      <S.ToastConatiner>
+        <S.ToastWrap>
+          <ToastProvider />
+        </S.ToastWrap>
+
+        <S.BtnWrap>
+          {isValidInput && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('second')} />}
+          {!isValidInput && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
+        </S.BtnWrap>
+      </S.ToastConatiner>
+
+      {/* 약관 동의 모달 */}
+      <PolicyModal isPolicyOpen={isPolicyOpen} setIsPolicyOpen={setIsPolicyOpen} />
     </S.Layout>
   );
 };

@@ -66,10 +66,11 @@ export const PolicyModal = styled.div<IsOpen>`
   }
 `;
 
-export const PolicyAllAccept = styled.div<IsConfirmed>`
+export const PolicyAllAccept = styled.button<IsConfirmed>`
   padding: 25px 21px;
+  width: 100%;
 
-  button {
+  div {
     display: flex;
     align-items: center;
     gap: 10px;

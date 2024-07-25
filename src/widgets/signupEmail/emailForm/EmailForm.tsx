@@ -2,6 +2,9 @@ import ConfirmInputContainer from '@/shared/components/ConfirmInputContainer/Con
 import * as S from './emailForm.styled';
 import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 import { useState } from 'react';
+import { useEmailSend } from '@/mutation/auth/useEmailSend';
+import ToastProvider from '@/shared/components/ToastProvider/ToastProvider';
+import { useConfirmEmail } from '@/mutation/auth/useConfirmEmail';
 
 interface Props {
   emailValue: string;
@@ -16,6 +19,10 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
   const [isSendEmail, setIsSendEmail] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
   const isValidInput = emailValue && authCodeValue && !errors.email && !errors.authCode;
+  const [isToastOpen, setIsToastOpen] = useState(false);
+
+  const { mutate: sendEmail } = useEmailSend(setIsToastOpen, setIsSendEmail);
+  const { mutate: confirmEmail } = useConfirmEmail(setIsConfirmEmail, setIsToastOpen);
 
   return (
     <S.Layout>
@@ -28,7 +35,8 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
           placeholder="abcd@example.co.kr"
           register={emailValidate}
           error={errors.email}
-          onClick={() => setIsSendEmail(true)}
+          onClick={() => sendEmail(emailValue)}
+          disabled={isToastOpen || isSendEmail}
         />
         {isSendEmail && (
           <ConfirmInputContainer
@@ -39,14 +47,21 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
             placeholder="코드 6자리를 입력하세요"
             register={authCodeValidate}
             error={errors.authCode}
-            onClick={() => setIsConfirmEmail(true)}
+            onClick={() => confirmEmail({ mail: emailValue, authCode: authCodeValue })}
           />
         )}
       </S.InputForm>
-      <S.BtnWrap>
-        {isValidInput && isConfirmEmail && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('third')} />}
-        {(!isValidInput || !isConfirmEmail) && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
-      </S.BtnWrap>
+
+      <S.ToastConatiner>
+        <S.ToastWrap>
+          <ToastProvider />
+        </S.ToastWrap>
+
+        <S.BtnWrap>
+          {isValidInput && isConfirmEmail && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('third')} />}
+          {(!isValidInput || !isConfirmEmail) && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
+        </S.BtnWrap>
+      </S.ToastConatiner>
     </S.Layout>
   );
 };
