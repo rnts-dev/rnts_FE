@@ -1,0 +1,16 @@
+.toastWrap {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.toast {
+  display: inline-flex;
+  position: absolute !important;
+  top: 50% !important;
+  right: 50% !important;
+  transform: translate(-50%, -50%);
+  text-align: center !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

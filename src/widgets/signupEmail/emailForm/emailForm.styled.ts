@@ -85,6 +85,18 @@ export const NotActivateBtn = styled.button`
   padding: 25px 70px;
 `;
 
+export const ToastConatiner = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
 export const BtnWrap = styled.div`
   width: 100%;
+`;
+
+export const ToastWrap = styled.div`
+  width: 100vw;
+  margin: 0 -24px;
+  position: absolute;
+  top: -120px;
 `;

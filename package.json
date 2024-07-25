@@ -26,6 +26,7 @@
     "react-hook-form": "^7.52.1",
     "react-kakao-maps-sdk": "^1.1.26",
     "react-router-dom": "^6.23.1",
+    "react-toastify": "^10.0.5",
     "styled-components": "^6.1.11",
     "tui-date-picker": "^4.3.3",
     "tui-time-picker": "^2.1.6",

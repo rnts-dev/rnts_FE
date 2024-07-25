@@ -57,8 +57,8 @@ export const useSignupForm = () => {
     ...register('password', {
       required: { value: true, message: '비밀번호를 입력해주세요.' },
       pattern: {
-        value: /^[a-zA-Z0-9]{4,16}$/,
-        message: '비밀번호는 영문 또는 숫자로 이루어진 4~16자여야 합니다.',
+        value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,12}$/,
+        message: '영문, 숫자, 특수문자를 포함하여 8~12자',
       },
     }),
   };

@@ -46,11 +46,11 @@ const PolicyModal = ({ isPolicyOpen, setIsPolicyOpen }: Props) => {
     <div>
       <S.PolicyBackground isOpen={isPolicyOpen} />
       <S.PolicyModal isOpen={isPolicyOpen}>
-        <S.PolicyAllAccept isConfirmed={isConfirmed}>
-          <button type="button" onClick={handleChangeAllPolicy}>
+        <S.PolicyAllAccept type="button" onClick={handleChangeAllPolicy} isConfirmed={isConfirmed}>
+          <div>
             {isConfirmed ? <img width={20} height={20} src="/src/assets/isCheckWhite.svg" alt="checkbox" /> : <img width={20} height={20} src="/src/assets/checkbox.svg" alt="checkbox" />}
             <span>약관 전체 동의</span>
-          </button>
+          </div>
         </S.PolicyAllAccept>
         <S.PolictyDetailContainer>
           <PolicyAccept isCheck={acceptServicePolicy} onChangeCheck={setAcceptServicePolicy} POLICY_LINK={POLICY_LINK.SERVICE} description="[필수] 서비스 이용 약관" />

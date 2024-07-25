@@ -47,7 +47,7 @@ export const Input = styled.input<InputProps>`
   }
 `;
 
-export const ValidateBtn = styled.div`
+export const ValidateBtn = styled.button`
   min-height: 50px;
   min-width: 50px;
 
