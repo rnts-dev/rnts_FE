@@ -1,8 +1,8 @@
 import fiCalendar from '@/assets/fiCalendar.svg';
 import fiClock from '@/assets/fiClock.svg';
-import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide';
+import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide/RNTSBottomSlide';
 import RNTSDatePicker from '@/shared/components/RNTSDatePicker/RNTSDatePicker';
-import RNTSTimePicker from '@/shared/components/RNTSTimePicker';
+import RNTSTimePicker from '@/shared/components/RNTSTimePicker/RNTSTimePicker';
 import { AppointmentState } from '@/shared/store/atoms/appointment';
 import { useDisclosure } from '@chakra-ui/react';
 import { useAtom } from 'jotai';

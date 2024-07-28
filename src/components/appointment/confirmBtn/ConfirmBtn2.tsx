@@ -1,4 +1,4 @@
-import ConfirmButton from '@/shared/components/ConfirmButton.tsx';
+import ConfirmButton from '@/shared/components/ConfirmButton.tsx/ConfrimButton';
 import './confirmBtm2.scss';
 
 interface ConfirmButton2 {
