@@ -1,8 +1,8 @@
 import characterIllust from '@/assets/onboarding_illust.png';
-import KakaoBtn from '@/features/auth/kakao/ui/KakaoBtn';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './loginPage.scss';
+import { KakaoBtn } from '@/components/auth';
 
 const LoginPage = () => {
   const [searchParams] = useSearchParams();

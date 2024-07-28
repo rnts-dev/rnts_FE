@@ -2,7 +2,7 @@ import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 import './tendencyConfirmBtnWrap.scss';
 import { useNavigate } from 'react-router-dom';
 
-const TendencyConfirmBtnWrap = () => {
+export const TendencyConfirmBtnWrap = () => {
   const navigate = useNavigate();
 
   return (
@@ -16,5 +16,3 @@ const TendencyConfirmBtnWrap = () => {
     </button>
   );
 };
-
-export default TendencyConfirmBtnWrap;

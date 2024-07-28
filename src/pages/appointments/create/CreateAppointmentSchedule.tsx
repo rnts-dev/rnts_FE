@@ -1,12 +1,9 @@
-import ConfirmBtn from '@/entities/appointment/ui/confirmBtn/ConfirmBtn';
-import Description from '@/entities/appointment/ui/description/Description';
+import { ConfirmBtn, Description } from '@/components/appointment';
 import { fetcher } from '@/shared/service/fetch';
 import { AppointmentState } from '@/shared/store/atoms/appointment';
 import { convertToISOString } from '@/shared/utils/date';
-import PagePadding from '@/widgets/appointment/ui/pagePadding/PagePadding';
-import CreateHeader from '@/widgets/createAppointment/ui/createHeader/CreateHeader';
-import PlaceSettingButton from '@/widgets/createAppointment/ui/placeSettingButton/PlaceSettingButton';
-import TimeInputContainer from '@/widgets/createAppointment/ui/timeInputContainer/TimeInputContainer';
+import { PagePadding } from '@/widgets/appointment';
+import { CreateHeader, PlaceSettingButton, TimeInputContainer } from '@/widgets/createAppointment';
 import { useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 

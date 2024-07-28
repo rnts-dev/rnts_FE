@@ -1,15 +1,10 @@
 import fiClock from '@/assets/fiClock.svg';
 import fiMapFin from '@/assets/fiMapFin.svg';
-import ConfirmButton from '@/shared/components/ConfirmButton.tsx';
+import ConfirmButton from '@/shared/components/ConfirmButton.tsx/ConfrimButton';
 import { fetcher } from '@/shared/service/fetch';
 import { getAccessToken } from '@/shared/utils/axios/axiosUtils';
-import Timeline from '@/widgets/appointment/ui/timeline/Timeline';
-import AppointmentHeader from '@/widgets/home/ui/appointmentHeader/AppointmentHeader';
-import HomeContentLayout from '@/widgets/home/ui/contentLayout/HomeContentLayout';
-import Header from '@/widgets/home/ui/header/Header';
-import MenuBar from '@/widgets/home/ui/menuBar/MenuBar';
-import NotAppointment from '@/widgets/home/ui/notAppointment/NotAppointment';
-import TimelinePadding from '@/widgets/home/ui/timelinePadding/TimelinePadding';
+import { Timeline } from '@/widgets/appointment';
+import { AppointmentHeader, Header, HomeContentLayout, MenuBar, NotAppointment, TimelinePadding } from '@/widgets/home';
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import moment from 'moment';

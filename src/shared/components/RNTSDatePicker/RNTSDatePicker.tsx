@@ -9,7 +9,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function RNTSDatePicker(props: Props) {
+const RNTSDatePicker = (props: Props) => {
   const { onClose } = props;
   const datepickerRef = useRef<DatePicker | null>(null);
   const [_, setAppointment] = useAtom(AppointmentState);
@@ -58,4 +58,6 @@ export default function RNTSDatePicker(props: Props) {
       </div>
     </>
   );
-}
+};
+
+export default RNTSDatePicker;

@@ -1,14 +1,14 @@
-import TendencyBtn from '@/entities/tendency/ui/tendencyBtn/TendencyBtn';
 import './tendencyList.scss';
 import rabbitIllust from '@/assets/rabbit_illust.png';
 import turtleIllust from '@/assets/turtle_illust 1.png';
+import { TendencyBtn } from '@/components/tendency';
 
 interface TendencyListProps {
   select: string;
   setSelect: (state: string) => void;
 }
 
-const TendencyList = ({ select, setSelect }: TendencyListProps) => {
+export const TendencyList = ({ select, setSelect }: TendencyListProps) => {
   return (
     <div className="tendency_list_container">
       <TendencyBtn
@@ -25,5 +25,3 @@ const TendencyList = ({ select, setSelect }: TendencyListProps) => {
     </div>
   );
 };
-
-export default TendencyList;
