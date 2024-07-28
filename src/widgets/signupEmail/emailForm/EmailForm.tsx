@@ -37,6 +37,7 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
           error={errors.email}
           onClick={() => sendEmail(emailValue)}
           disabled={isToastOpen || isSendEmail}
+          isValid={isSendEmail}
         />
         {isSendEmail && (
           <ConfirmInputContainer
@@ -48,6 +49,8 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
             register={authCodeValidate}
             error={errors.authCode}
             onClick={() => confirmEmail({ mail: emailValue, authCode: authCodeValue })}
+            disabled={isToastOpen || isConfirmEmail}
+            isValid={isConfirmEmail}
           />
         )}
       </S.InputForm>

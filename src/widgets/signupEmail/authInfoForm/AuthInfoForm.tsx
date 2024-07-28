@@ -4,8 +4,8 @@ import InputContainer from '@/shared/components/InputContainer/InputContainer';
 import ConfirmInputContainer from '@/shared/components/ConfirmInputContainer/ConfirmInputContainer';
 import { useState } from 'react';
 import PolicyModal from '@/components/policy/policyModal/PolicyModal';
-import { toast } from 'react-toastify';
 import ToastProvider from '@/shared/components/ToastProvider/ToastProvider';
+import { useExistLoginIdValidate } from '@/mutation/auth/useExistLoginIdValidate';
 
 interface Props {
   idValue: string;
@@ -20,9 +20,11 @@ interface Props {
 
 const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPasswordValue, confirmPasswordValidate, idValue, idValidate, handleChangeStep }: Props) => {
   // TODO: setIsValidId는 아이디 중복 확인이 통과하면 true로 변경
-  const [isValidId, setIsValidId] = useState(true);
+  const [isValidId, setIsValidId] = useState(false);
   const [isPolicyOpen, setIsPolicyOpen] = useState(true);
   const [isToastOpen, setIsToastOpen] = useState(false);
+
+  const { mutate: isExistLoginId } = useExistLoginIdValidate(setIsToastOpen, setIsValidId);
 
   const isValidInput = idValue && passwordValue && confirmPasswordValue && !errors.id && !errors.password && !errors.confirmPassword && isValidId;
 
@@ -36,9 +38,10 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
           placeholder="영문 또는 숫자로 이루어진 4~16자"
           type="text"
           btnText="확인"
-          onClick={() => toast('사용 가능한 아이디에요', { onOpen: () => setIsToastOpen(true), onClose: () => setIsToastOpen(false) })}
+          onClick={() => isExistLoginId(idValue)}
           error={errors.id}
-          disabled={isToastOpen}
+          disabled={isToastOpen || !idValue || isValidId}
+          isValid={isValidId}
         />
         <InputContainer
           value={passwordValue}

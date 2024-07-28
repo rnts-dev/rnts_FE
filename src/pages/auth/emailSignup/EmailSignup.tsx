@@ -6,6 +6,7 @@ import { useState } from 'react';
 import AuthInfoForm from '@/widgets/signupEmail/authInfoForm/AuthInfoForm';
 import EmailForm from '@/widgets/signupEmail/emailForm/EmailForm';
 import NicknameForm from '@/widgets/signupEmail/nicknameForm/NicknameForm';
+import { useSubmitSignup } from '@/mutation/auth/useSubmitSignup';
 
 const EmailSignup = () => {
   const [step, setStep] = useState<'first' | 'second' | 'third'>('first');
@@ -25,6 +26,12 @@ const EmailSignup = () => {
     errors,
   } = useSignupForm();
 
+  const { mutate: submitSignup } = useSubmitSignup();
+
+  const handleSubmitSignup = () => {
+    submitSignup({ loginId: idValue, email: emailValue, password: passwordValue, name: nicknameValue, nickname: nicknameValue, birth: '1996-09-17' });
+  };
+
   return (
     <S.Layout>
       <Header />
@@ -43,7 +50,7 @@ const EmailSignup = () => {
       {step === 'second' && (
         <EmailForm emailValue={emailValue} emailValidate={emailValidate} authCodeValue={authCodeValue} authCodeValidate={authCodeValidate} errors={errors} handleChangeStep={setStep} />
       )}
-      {step === 'third' && <NicknameForm nicknameValue={nicknameValue} nicknameValidate={nicknameValidate} error={errors.nickname} />}
+      {step === 'third' && <NicknameForm nicknameValue={nicknameValue} nicknameValidate={nicknameValidate} error={errors.nickname} handleSubmitSignup={handleSubmitSignup} />}
     </S.Layout>
   );
 };

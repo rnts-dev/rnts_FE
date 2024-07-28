@@ -18,12 +18,7 @@ fetcher.interceptors.request.use((configOrigin) => {
   return config;
 });
 
-fetcher.interceptors.response.use(
-  (response) => {
-    console.debug(response);
-    return response;
-  },
-  (error) => {
-    console.error(error);
-  },
-);
+fetcher.interceptors.response.use((response) => {
+  console.debug(response);
+  return response;
+});

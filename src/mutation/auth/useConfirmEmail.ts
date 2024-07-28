@@ -21,7 +21,18 @@ export const useConfirmEmail = (setIsConfirmEmail: (arg0: boolean) => void, setI
     onError: (err) => {
       if (isAxiosError(err)) {
         const status = err.response?.status;
-        console.log(status);
+
+        switch (status) {
+          case 400:
+            toast('인증 코드가 일치하지 않아요', { onOpen: () => setIsToastOpen(true), onClose: () => setIsToastOpen(false) });
+            setIsConfirmEmail(false);
+            break;
+
+          default:
+            toast('인증 코드 확인 중 오류가 발생했어요', { onOpen: () => setIsToastOpen(true), onClose: () => setIsToastOpen(false) });
+            setIsConfirmEmail(false);
+            break;
+        }
       }
     },
   });
