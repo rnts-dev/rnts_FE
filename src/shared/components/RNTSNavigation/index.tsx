@@ -1,4 +1,4 @@
-import MapSearch from '@/entities/map/ui/MapSearch';
+// import MapSearch from '@/entities/map/ui/MapSearch';
 import AppointmentsListPage from '@/pages/appointments/AppointmentsListPage';
 import CreateAppointmentPlace from '@/pages/appointments/create/CreateAppointmentPlace';
 import CreateAppointmentSchedule from '@/pages/appointments/create/CreateAppointmentSchedule';
@@ -22,7 +22,7 @@ const RNTSNavigation = () => {
     { title: '대시보드', url: '/', page: <HomePage /> },
     { title: '로그인', url: 'login', page: <LoginPage /> },
     { title: '카카오(re)', url: 'login/oauth2/code/kakao', page: <KakaoRedirectPage /> },
-    { title: '지도', url: 'map', page: <MapSearch /> },
+    // { title: '지도', url: 'map', page: <MapSearch /> },
     { title: '유형', url: 'tendency/select', page: <SelectTendencyPage /> },
     { title: '약속', url: 'appointment', page: <AppointmentsListPage /> },
     { title: '약속 생성', url: 'appointment/create/type', page: <CreateAppointmentType /> },
