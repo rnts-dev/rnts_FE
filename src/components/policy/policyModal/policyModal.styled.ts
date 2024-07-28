@@ -62,6 +62,7 @@ export const PolicyModal = styled.div<IsOpen>`
 
     100% {
       transform: translateY(100%);
+      display: none;
     }
   }
 `;

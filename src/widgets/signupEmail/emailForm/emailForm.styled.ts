@@ -92,6 +92,7 @@ export const ToastConatiner = styled.div`
 
 export const BtnWrap = styled.div`
   width: 100%;
+  margin-bottom: 36px;
 `;
 
 export const ToastWrap = styled.div`
