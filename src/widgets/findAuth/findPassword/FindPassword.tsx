@@ -94,7 +94,7 @@ const FindPassword = () => {
           <InputContainer
             label="새 비밀번호"
             placeholder="비밀번호를 입력하세요"
-            type="text"
+            type="password"
             value={passwordValue}
             maxLength={16}
             checkMsg={passwordErrors.password?.message}
@@ -104,7 +104,7 @@ const FindPassword = () => {
           <InputContainer
             label="비밀번호 확인"
             placeholder="비밀번호 재입력"
-            type="text"
+            type="password"
             value={confirmPasswordValue}
             maxLength={16}
             checkMsg={passwordErrors.confirmPassword?.message}
@@ -156,6 +156,10 @@ export const ToastWrapper = () => {
 
       <S.ToastWrap>
         <ToastProvider toastKey="failedConfirmEmail">인증코드가 올바르지 않습니다</ToastProvider>
+      </S.ToastWrap>
+
+      <S.ToastWrap>
+        <ToastProvider toastKey="successSendEmail">입력한 이메일로 인증 코드가 전송되었어요</ToastProvider>
       </S.ToastWrap>
 
       <S.ToastWrap>

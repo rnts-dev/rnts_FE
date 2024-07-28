@@ -14,7 +14,7 @@ export const useEmailSendRecovery = (setIsSendEmail: (arg0: boolean) => void) =>
     mutationFn: (mail: string) => fetcher.post(EMAIL_SEND_API, { mail }),
 
     onSuccess: () => {
-      showToast('sendEmail');
+      showToast('successSendEmail');
       setIsSendEmail(true);
     },
 

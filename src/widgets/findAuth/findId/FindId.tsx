@@ -109,7 +109,11 @@ export const ToastWrapper = () => {
       </S.ToastWrap>
 
       <S.ToastWrap>
-        <ToastProvider toastKey="successConfirmEmail">인증 완료</ToastProvider>
+        <ToastProvider toastKey="successSendEmail">입력한 이메일로 인증 코드가 전송되었어요</ToastProvider>
+      </S.ToastWrap>
+
+      <S.ToastWrap>
+        <ToastProvider toastKey="successConfirmEmail">이메일 인증 완료!</ToastProvider>
       </S.ToastWrap>
     </>
   );
