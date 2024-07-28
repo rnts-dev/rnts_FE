@@ -45,7 +45,7 @@ const PolicyModal = ({ isPolicyOpen, setIsPolicyOpen }: Props) => {
   };
 
   return (
-    <div>
+    <>
       <S.PolicyBackground isOpen={isPolicyOpen} />
       <S.PolicyModal isOpen={isPolicyOpen}>
         <S.PolicyAllAccept type="button" onClick={handleChangeAllPolicy} isConfirmed={isConfirmed}>
@@ -64,7 +64,7 @@ const PolicyModal = ({ isPolicyOpen, setIsPolicyOpen }: Props) => {
           확인
         </S.PolicySaveBtn>
       </S.PolicyModal>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 .login_page_padding {
-  height: 100vh;
+  // height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,6 @@
 
 .login_page_content {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -53,6 +52,7 @@
 }
 
 .btn_container {
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   gap: 14px;
