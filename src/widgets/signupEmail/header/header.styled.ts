@@ -9,6 +9,7 @@ export const Header = styled.header`
 `;
 
 export const Chevron_left_back = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
