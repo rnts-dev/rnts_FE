@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import * as S from './policyModal.styled';
 import PolicyAccept from '../policyAccept/PolicyAccept';
+import isCheckWhite from '@/assets/isCheckWhite.svg';
+import checkbox from '@/assets/checkbox.svg';
 
 interface Props {
   isPolicyOpen: boolean;
@@ -48,7 +50,7 @@ const PolicyModal = ({ isPolicyOpen, setIsPolicyOpen }: Props) => {
       <S.PolicyModal isOpen={isPolicyOpen}>
         <S.PolicyAllAccept type="button" onClick={handleChangeAllPolicy} isConfirmed={isConfirmed}>
           <div>
-            {isConfirmed ? <img width={20} height={20} src="/src/assets/isCheckWhite.svg" alt="checkbox" /> : <img width={20} height={20} src="/src/assets/checkbox.svg" alt="checkbox" />}
+            {isConfirmed ? <img width={20} height={20} src={isCheckWhite} alt="checkbox" /> : <img width={20} height={20} src={checkbox} alt="checkbox" />}
             <span>약관 전체 동의</span>
           </div>
         </S.PolicyAllAccept>
