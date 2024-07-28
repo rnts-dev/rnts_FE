@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
-const EMAIL_SEND_API = '/api/v1/public/mail/verification-request';
+const EMAIL_SEND_API = '/api/v1/public/mail/signUp';
 
 export const useEmailSend = (setIsToastOpen: (arg0: boolean) => void, setIsSendEmail: (arg0: boolean) => void) => {
   return useMutation({
@@ -20,6 +20,7 @@ export const useEmailSend = (setIsToastOpen: (arg0: boolean) => void, setIsSendE
         const status = err.response?.status;
         if (status === 400) {
           toast('이미 등록된 이메일이에요', { onOpen: () => setIsToastOpen(true), onClose: () => setIsToastOpen(false) });
+          setIsSendEmail(false);
         }
       }
     },

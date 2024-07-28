@@ -11,9 +11,10 @@ interface Props {
   checkMsg?: string;
   onClick: () => void;
   disabled?: boolean;
+  isValid?: boolean;
 }
 
-const ConfirmInputContainer = ({ value, register, label, placeholder, btnText, checkMsg, type, error, onClick, disabled = false }: Props) => {
+const ConfirmInputContainer = ({ value, register, label, placeholder, btnText, checkMsg, type, error, onClick, isValid = false, disabled = false }: Props) => {
   return (
     <S.InputContainer>
       <S.Label>
@@ -21,7 +22,7 @@ const ConfirmInputContainer = ({ value, register, label, placeholder, btnText, c
         <S.RequiredImg src="/src/assets/required.svg" alt="requiredImg" />
       </S.Label>
       <S.ValidateInputContainer>
-        <S.Input value={value} {...register} placeholder={placeholder} type={type} err={error} />
+        <S.Input value={value} {...register} placeholder={placeholder} type={type} err={error} disabled={isValid} />
         <S.ValidateBtn type="button" disabled={disabled} onClick={onClick}>
           {btnText}
         </S.ValidateBtn>
