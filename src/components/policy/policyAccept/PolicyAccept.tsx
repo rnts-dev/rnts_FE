@@ -35,7 +35,6 @@ const PolicyAccept = ({ POLICY_LINK, description, isCheck, onChangeCheck }: Prop
       {!POLICY_LINK && (
         <>
           <span>{description}</span>
-          <img width={24} height={24} src={arrowRight} alt="arrow-right" />
         </>
       )}
     </S.PolicyDetail>

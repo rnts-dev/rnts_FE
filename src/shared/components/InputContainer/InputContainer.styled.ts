@@ -50,4 +50,5 @@ export const ErrCheck = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
+  color: var(--Sub-Color-danger, #f74747);
 `;

@@ -34,7 +34,7 @@ const EmailSignup = () => {
 
   return (
     <S.Layout>
-      <Header />
+      <Header step={step} />
       {step === 'first' && (
         <AuthInfoForm
           handleChangeStep={setStep}

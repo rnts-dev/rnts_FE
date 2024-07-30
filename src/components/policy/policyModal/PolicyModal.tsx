@@ -60,7 +60,7 @@ const PolicyModal = ({ isPolicyOpen, setIsPolicyOpen }: Props) => {
           <PolicyAccept isCheck={acceptPrivacyPolicy} onChangeCheck={setAcceptPrivacyPolicy} POLICY_LINK={POLICY_LINK.PRIVACY} description="[필수] 개인정보 수집 및 이용 동의" />
           <PolicyAccept isCheck={acceptAgePolicy} onChangeCheck={setAcceptAgePolicy} description="[필수] 만 14세 이상입니다." />
         </S.PolictyDetailContainer>
-        <S.PolicySaveBtn type="button" onClick={onClickPolicySaveBtn} isConfirmed={isConfirmed}>
+        <S.PolicySaveBtn type="button" disabled={!isConfirmed} onClick={onClickPolicySaveBtn} isConfirmed={isConfirmed}>
           확인
         </S.PolicySaveBtn>
       </S.PolicyModal>

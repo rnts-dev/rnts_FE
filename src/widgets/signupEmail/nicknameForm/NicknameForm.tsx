@@ -12,7 +12,7 @@ const NicknameForm = ({ nicknameValue, nicknameValidate, handleSubmitSignup, err
   return (
     <S.Layout>
       <S.InputForm>
-        <S.Input value={nicknameValue} placeholder="최소 2자 이상, 최대 8자 이내" type="text" {...nicknameValidate} />
+        <S.Input value={nicknameValue} placeholder="최소 2자 이상, 최대 8자 이내" type="text" {...nicknameValidate} maxLength={8} />
       </S.InputForm>
       <S.BtnWrap>
         {!error && <PrimaryShinBtn text="저장" onClick={handleSubmitSignup} />}

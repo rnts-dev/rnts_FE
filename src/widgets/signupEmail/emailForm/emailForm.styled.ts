@@ -62,7 +62,6 @@ export const RequiredImg = styled.img`
 `;
 
 export const Input = styled.input`
-  width: 100%;
   border-radius: 4px;
   border: 1px solid #bac7da;
   background: #fff;
@@ -87,6 +86,9 @@ export const NotActivateBtn = styled.button`
 
 export const ToastConatiner = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 `;
 
@@ -96,8 +98,6 @@ export const BtnWrap = styled.div`
 `;
 
 export const ToastWrap = styled.div`
-  width: 100vw;
-  margin: 0 -24px;
   position: absolute;
   top: -120px;
 `;

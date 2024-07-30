@@ -85,13 +85,13 @@ export const NotActivateBtn = styled.button`
 `;
 
 export const ToastWrap = styled.div`
-  width: 100vw;
-  margin: 0 -24px;
   position: absolute;
-  top: 50px;
+  top: 100px;
 `;
 
 export const ToastConatiner = styled.div`
   width: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
 `;
