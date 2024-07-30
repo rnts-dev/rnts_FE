@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged = true && contains(github.event.pull_request.labels.*.name, 'deploy')
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'deploy')
     name: Deploy
     runs-on: ubuntu-latest
     steps:
