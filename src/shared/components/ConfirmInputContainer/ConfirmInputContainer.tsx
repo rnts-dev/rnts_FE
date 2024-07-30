@@ -9,12 +9,13 @@ interface Props {
   type: string;
   error: any;
   checkMsg?: string;
-  onClick: () => void;
   disabled?: boolean;
   isValid?: boolean;
+  maxLength?: number;
+  onClick: () => void;
 }
 
-const ConfirmInputContainer = ({ value, register, label, placeholder, btnText, checkMsg, type, error, onClick, isValid = false, disabled = false }: Props) => {
+const ConfirmInputContainer = ({ value, register, label, placeholder, btnText, checkMsg, type, error, maxLength = 100, onClick, isValid = false, disabled = false }: Props) => {
   return (
     <S.InputContainer>
       <S.Label>
@@ -22,14 +23,16 @@ const ConfirmInputContainer = ({ value, register, label, placeholder, btnText, c
         <S.RequiredImg src="/src/assets/required.svg" alt="requiredImg" />
       </S.Label>
       <S.ValidateInputContainer>
-        <S.Input value={value} {...register} placeholder={placeholder} type={type} err={error} disabled={isValid} />
+        <S.Input value={value} {...register} placeholder={placeholder} type={type} err={error} disabled={isValid} maxLength={maxLength} />
         <S.ValidateBtn type="button" disabled={disabled} onClick={onClick}>
           {btnText}
         </S.ValidateBtn>
       </S.ValidateInputContainer>
-      <S.ErrCheck>
-        <p>{checkMsg}</p>
-      </S.ErrCheck>
+      {error && (
+        <S.ErrCheck>
+          <p>{checkMsg}</p>
+        </S.ErrCheck>
+      )}
     </S.InputContainer>
   );
 };

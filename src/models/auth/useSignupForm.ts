@@ -1,14 +1,14 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-export const useSignupForm = () => {
+export const useSignupForm = (onChangeValue?: () => void) => {
   const {
     register,
     watch,
     handleSubmit,
     setError,
-
     formState: { errors },
-  } = useForm({ mode: 'all', defaultValues: { id: '', email: '', nickname: '', authCode: '', password: '', confirmPassword: '' } });
+  } = useForm({ mode: 'all', defaultValues: { id: '', email: '', nickname: '', authCode: '', password: '', confirmPassword: '' }, shouldFocusError: false });
 
   const idValue = watch('id');
   const emailValue = watch('email');
@@ -17,12 +17,18 @@ export const useSignupForm = () => {
   const passwordValue = watch('password');
   const confirmPasswordValue = watch('confirmPassword');
 
+  useEffect(() => {
+    if (onChangeValue !== undefined) {
+      onChangeValue();
+    }
+  }, [idValue]);
+
   const idValidate = {
     ...register('id', {
       required: { value: true, message: '아이디를 입력해주세요' },
       pattern: {
         value: /^[a-zA-Z0-9]{4,16}$/,
-        message: '아이디는 영문 또는 숫자로 이루어진 4~16자여야 합니다',
+        message: '영문 또는 영문+숫자 조합으로 이루어진 4-16자 아이디',
       },
     }),
   };

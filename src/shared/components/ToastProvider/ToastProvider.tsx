@@ -1,9 +1,17 @@
-import style from './ToastProvider.module.scss';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useAtom } from 'jotai';
+import * as S from './toastProvider.styled';
+import { toastState } from '@/shared/store/atoms/toast';
 
-const ToastProvider = () => {
-  return <ToastContainer className={style.toast} autoClose={500} draggable theme="dark" progressStyle={{ background: 'black' }} />;
+interface Props {
+  children: React.ReactNode;
+  toastKey: string;
+}
+
+const ToastProvider = ({ children, toastKey }: Props) => {
+  const [state] = useAtom(toastState);
+  const isOpen = state.key === toastKey && state.isOpen;
+
+  return <>{isOpen && <S.ToastWrap>{children}</S.ToastWrap>}</>;
 };
 
 export default ToastProvider;
