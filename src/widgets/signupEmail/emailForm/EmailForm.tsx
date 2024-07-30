@@ -14,10 +14,11 @@ interface Props {
   authCodeValue: string;
   authCodeValidate: any;
   errors: any;
+  resetAuthcodeValue: any;
   handleChangeStep: (step: 'first' | 'second' | 'third') => void;
 }
 
-const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate, errors, handleChangeStep }: Props) => {
+const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate, errors, resetAuthcodeValue, handleChangeStep }: Props) => {
   const [isSendEmail, setIsSendEmail] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
   const isValidInput = emailValue && authCodeValue && !errors.email && !errors.authCode;
@@ -28,6 +29,8 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
 
   useEffect(() => {
     setIsSendEmail(false);
+    setIsConfirmEmail(false);
+    resetAuthcodeValue();
   }, [emailValue]);
 
   useEffect(() => {
@@ -46,7 +49,7 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
           register={emailValidate}
           error={errors.email}
           onClick={() => sendEmail(emailValue)}
-          disabled={state.isOpen || isSendEmail}
+          disabled={state.isOpen}
         />
         {isSendEmail && (
           <ConfirmInputContainer

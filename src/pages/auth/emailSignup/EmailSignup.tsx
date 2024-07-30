@@ -24,6 +24,7 @@ const EmailSignup = () => {
     nicknameValue,
     nicknameValidate,
     errors,
+    resetAuthcodeValue,
   } = useSignupForm();
 
   const { mutate: submitSignup } = useSubmitSignup();
@@ -48,7 +49,15 @@ const EmailSignup = () => {
         />
       )}
       {step === 'second' && (
-        <EmailForm emailValue={emailValue} emailValidate={emailValidate} authCodeValue={authCodeValue} authCodeValidate={authCodeValidate} errors={errors} handleChangeStep={setStep} />
+        <EmailForm
+          emailValue={emailValue}
+          resetAuthcodeValue={resetAuthcodeValue}
+          emailValidate={emailValidate}
+          authCodeValue={authCodeValue}
+          authCodeValidate={authCodeValidate}
+          errors={errors}
+          handleChangeStep={setStep}
+        />
       )}
       {step === 'third' && <NicknameForm nicknameValue={nicknameValue} nicknameValidate={nicknameValidate} error={errors.nickname} handleSubmitSignup={handleSubmitSignup} />}
     </S.Layout>

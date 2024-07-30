@@ -7,6 +7,7 @@ export const useSignupForm = (onChangeValue?: () => void) => {
     watch,
     handleSubmit,
     setError,
+    setValue,
     formState: { errors },
   } = useForm({ mode: 'all', defaultValues: { id: '', email: '', nickname: '', authCode: '', password: '', confirmPassword: '' }, shouldFocusError: false });
 
@@ -22,6 +23,10 @@ export const useSignupForm = (onChangeValue?: () => void) => {
       onChangeValue();
     }
   }, [idValue]);
+
+  const resetAuthcodeValue = () => {
+    setValue('authCode', '');
+  };
 
   const idValidate = {
     ...register('id', {
@@ -90,6 +95,7 @@ export const useSignupForm = (onChangeValue?: () => void) => {
     passwordValidate,
     confirmPasswordValidate,
     errors,
+    resetAuthcodeValue,
     handleSubmit,
     setError,
   };
