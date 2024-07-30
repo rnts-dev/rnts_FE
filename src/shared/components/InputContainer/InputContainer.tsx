@@ -1,4 +1,5 @@
 import * as S from './InputContainer.styled';
+import requiredImg from '@/assets/required.svg';
 
 interface Props {
   label: string;
@@ -15,7 +16,7 @@ const InputContainer = ({ value, checkMsg, register, label, placeholder, type, e
     <S.InputContainer>
       <S.Label>
         {label}
-        <S.RequiredImg src="/src/assets/required.svg" alt="requiredImg" />
+        <S.RequiredImg src={requiredImg} alt="requiredImg" />
       </S.Label>
       <S.Input value={value} {...register} placeholder={placeholder} type={type} err={error} />
       {error && (
