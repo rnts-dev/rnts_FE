@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import './loginPage.scss';
 import { KakaoBtn } from '@/components/auth';
 import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
+import emailSvg from '@/assets/auth/email.svg';
 
 const LoginPage = () => {
   const [searchParams] = useSearchParams();
@@ -31,7 +32,7 @@ const LoginPage = () => {
       </div>
 
       <div className="btn_container">
-        <PrimaryShinBtn text="일반 로그인" onClick={() => console.log('/signup-email')} image="/src/assets/auth/email.svg" />
+        <PrimaryShinBtn text="일반 로그인" onClick={() => console.log('/signup-email')} image={emailSvg} />
         <KakaoBtn />
       </div>
       <a href="/signup-email" className="move_signup">
