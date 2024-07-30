@@ -1,4 +1,4 @@
-import MapSearch from '@/entities/map/ui/MapSearch';
+import { MapSearch } from '@/components/map';
 import AppointmentsListPage from '@/pages/appointments/AppointmentsListPage';
 import CreateAppointmentPlace from '@/pages/appointments/create/CreateAppointmentPlace';
 import CreateAppointmentSchedule from '@/pages/appointments/create/CreateAppointmentSchedule';
