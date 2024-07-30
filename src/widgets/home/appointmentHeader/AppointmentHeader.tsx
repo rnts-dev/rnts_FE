@@ -1,13 +1,11 @@
 import { ViewAllAppointment } from '@/components/appointment';
-import './appointmentHeader.scss';
+import * as S from './appointmentHeader.styled';
 
 export const AppointmentHeader = () => {
   return (
-    <div className="appointment_header">
-      <div>
-        <p>나의 약속</p>
-      </div>
+    <S.AppointmentHeader>
+      <p>나의 약속</p>
       <ViewAllAppointment />
-    </div>
+    </S.AppointmentHeader>
   );
 };
