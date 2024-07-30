@@ -1,4 +1,5 @@
 import * as S from './ConfirmInputContainer.styled';
+import requiredImg from '@/assets/required.svg';
 
 interface Props {
   value: string;
@@ -20,7 +21,7 @@ const ConfirmInputContainer = ({ value, register, label, placeholder, btnText, c
     <S.InputContainer>
       <S.Label>
         {label}
-        <S.RequiredImg src="/src/assets/required.svg" alt="requiredImg" />
+        <S.RequiredImg src={requiredImg} alt="requiredImg" />
       </S.Label>
       <S.ValidateInputContainer>
         <S.Input value={value} {...register} placeholder={placeholder} type={type} err={error} disabled={isValid} maxLength={maxLength} />

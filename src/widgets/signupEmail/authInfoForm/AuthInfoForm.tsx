@@ -53,6 +53,7 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
         <InputContainer
           value={passwordValue}
           register={passwordValidate}
+          maxLength={12}
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요"
           type="password"
@@ -62,6 +63,7 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
         <InputContainer
           value={confirmPasswordValue}
           register={confirmPasswordValidate}
+          maxLength={12}
           label="비밀번호 확인"
           placeholder="비밀번호를 한번 더 입력하세요"
           type="password"
@@ -73,10 +75,12 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
       <S.ToastConatiner>
         <ToastWrapper />
 
-        <S.BtnWrap>
-          {isValidInput && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('second')} />}
-          {!isValidInput && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
-        </S.BtnWrap>
+        {!isPolicyOpen && (
+          <S.BtnWrap>
+            {isValidInput && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('second')} />}
+            {!isValidInput && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
+          </S.BtnWrap>
+        )}
       </S.ToastConatiner>
 
       {/* 약관 동의 모달 */}

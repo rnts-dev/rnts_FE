@@ -19,24 +19,21 @@ const PolicyAccept = ({ POLICY_LINK, description, isCheck, onChangeCheck }: Prop
       {isCheck ? (
         <button type="button" onClick={() => onChangeCheck((prev: boolean) => !prev)}>
           <img width={16} height={16} src={check} alt="check" />
+          <span>{description}</span>
         </button>
       ) : (
         <button type="button" onClick={() => onChangeCheck((prev: boolean) => !prev)}>
           <img width={16} height={16} src={checkbox} alt="checkbox" />
+          <span>{description}</span>
         </button>
       )}
 
       {POLICY_LINK && (
         <Link to={POLICY_LINK} target="_blank">
-          <span>{description}</span>
           <img width={24} height={24} src={arrowRight} alt="arrow-right" />
         </Link>
       )}
-      {!POLICY_LINK && (
-        <>
-          <span>{description}</span>
-        </>
-      )}
+      {!POLICY_LINK && <></>}
     </S.PolicyDetail>
   );
 };
