@@ -46,24 +46,28 @@ const PolicyModal = ({ isPolicyOpen, setIsPolicyOpen }: Props) => {
 
   return (
     <>
-      <S.PolicyBackground isOpen={isPolicyOpen} />
-      <S.PolicyModal isOpen={isPolicyOpen}>
-        <S.PolicyAllAccept type="button" onClick={handleChangeAllPolicy} isConfirmed={isConfirmed}>
-          <div>
-            {isConfirmed ? <img width={20} height={20} src={isCheckWhite} alt="checkbox" /> : <img width={20} height={20} src={checkbox} alt="checkbox" />}
-            <span>약관 전체 동의</span>
-          </div>
-        </S.PolicyAllAccept>
-        <S.PolictyDetailContainer>
-          <PolicyAccept isCheck={acceptServicePolicy} onChangeCheck={setAcceptServicePolicy} POLICY_LINK={POLICY_LINK.SERVICE} description="[필수] 서비스 이용 약관" />
-          <PolicyAccept isCheck={acceptLocationPolicy} onChangeCheck={setAcceptLocationPolicy} POLICY_LINK={POLICY_LINK.LOCATION} description="[필수] 위치 기반 서비스 이용 약관 동의" />
-          <PolicyAccept isCheck={acceptPrivacyPolicy} onChangeCheck={setAcceptPrivacyPolicy} POLICY_LINK={POLICY_LINK.PRIVACY} description="[필수] 개인정보 수집 및 이용 동의" />
-          <PolicyAccept isCheck={acceptAgePolicy} onChangeCheck={setAcceptAgePolicy} description="[필수] 만 14세 이상입니다." />
-        </S.PolictyDetailContainer>
-        <S.PolicySaveBtn type="button" disabled={!isConfirmed} onClick={onClickPolicySaveBtn} isConfirmed={isConfirmed}>
-          확인
-        </S.PolicySaveBtn>
-      </S.PolicyModal>
+      {isPolicyOpen && (
+        <>
+          <S.PolicyBackground isOpen={isPolicyOpen} />
+          <S.PolicyModal isOpen={isPolicyOpen}>
+            <S.PolicyAllAccept type="button" onClick={handleChangeAllPolicy} isConfirmed={isConfirmed}>
+              <div>
+                {isConfirmed ? <img width={20} height={20} src={isCheckWhite} alt="checkbox" /> : <img width={20} height={20} src={checkbox} alt="checkbox" />}
+                <span>약관 전체 동의</span>
+              </div>
+            </S.PolicyAllAccept>
+            <S.PolictyDetailContainer>
+              <PolicyAccept isCheck={acceptServicePolicy} onChangeCheck={setAcceptServicePolicy} POLICY_LINK={POLICY_LINK.SERVICE} description="[필수] 서비스 이용 약관" />
+              <PolicyAccept isCheck={acceptLocationPolicy} onChangeCheck={setAcceptLocationPolicy} POLICY_LINK={POLICY_LINK.LOCATION} description="[필수] 위치 기반 서비스 이용 약관 동의" />
+              <PolicyAccept isCheck={acceptPrivacyPolicy} onChangeCheck={setAcceptPrivacyPolicy} POLICY_LINK={POLICY_LINK.PRIVACY} description="[필수] 개인정보 수집 및 이용 동의" />
+              <PolicyAccept isCheck={acceptAgePolicy} onChangeCheck={setAcceptAgePolicy} description="[필수] 만 14세 이상입니다." />
+            </S.PolictyDetailContainer>
+            <S.PolicySaveBtn type="button" disabled={!isConfirmed} onClick={onClickPolicySaveBtn} isConfirmed={isConfirmed}>
+              확인
+            </S.PolicySaveBtn>
+          </S.PolicyModal>
+        </>
+      )}
     </>
   );
 };
