@@ -33,9 +33,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1
 
-      - name: Upload to AWS S3
-        run: |
-          aws s3 cp \
-            --recursive \
-            --region ap-northeast-2 \
-            ./build s3://rnts-web
+     - name: Deploy to S3 bucket
+       run: aws s3 sync ./build s3://rnts-web
