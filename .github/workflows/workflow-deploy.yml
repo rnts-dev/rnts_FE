@@ -1,18 +1,12 @@
-name: Deploy to Amazon s3
+1
+name: Deploy for workflow (주의)
 
 on:
-  push:
-    branches: ['main']
-env:
-  AWS_REGION: ap-northeast-2
-  S3_BUCKET_NAME: rnts-web
-
-permissions:
-  contents: read
+  workflow_dispatch:
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'deploy')
+    if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code.
