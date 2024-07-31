@@ -15,10 +15,11 @@ interface Props {
   authCodeValidate: any;
   errors: any;
   resetAuthcodeValue: any;
+  trigger: any;
   handleChangeStep: (step: 'first' | 'second' | 'third') => void;
 }
 
-const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate, errors, resetAuthcodeValue, handleChangeStep }: Props) => {
+const EmailForm = ({ emailValue, emailValidate, authCodeValue, trigger, authCodeValidate, errors, resetAuthcodeValue, handleChangeStep }: Props) => {
   const [isSendEmail, setIsSendEmail] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
   const isValidInput = emailValue && authCodeValue && !errors.email && !errors.authCode;
@@ -37,7 +38,23 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
     setIsConfirmEmail(false);
   }, [authCodeValue]);
 
-  console.log(errors.email);
+  const handleSendEmail = (mail: string) => {
+    if (!mail) {
+      trigger('email');
+      return;
+    }
+
+    sendEmail(mail);
+  };
+
+  const handleConfirmEmail = (mail: string, authCode: string) => {
+    if (!authCode) {
+      trigger('authCode');
+      return;
+    }
+
+    confirmEmail({ mail, authCode });
+  };
 
   return (
     <S.Layout>
@@ -50,7 +67,7 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
           placeholder="abcd@example.co.kr"
           register={emailValidate}
           error={errors.email}
-          onClick={() => sendEmail(emailValue)}
+          onClick={() => handleSendEmail(emailValue)}
           disabled={state.isOpen || isSendEmail || errors.email}
         />
         {isSendEmail && (
@@ -62,7 +79,7 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
             placeholder="코드 6자리를 입력하세요"
             register={authCodeValidate}
             error={errors.authCode}
-            onClick={() => confirmEmail({ mail: emailValue, authCode: authCodeValue })}
+            onClick={() => handleConfirmEmail(emailValue, authCodeValue)}
             maxLength={6}
             disabled={state.isOpen || isConfirmEmail || errors.authCode}
           />

@@ -99,6 +99,7 @@ export const useSignupForm = (onChangeValue?: () => void) => {
     emailValidate,
     passwordValidate,
     confirmPasswordValidate,
+    trigger,
     errors,
     resetAuthcodeValue,
     handleSubmit,
