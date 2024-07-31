@@ -3,6 +3,8 @@ import * as S from './policyModal.styled';
 import PolicyAccept from '../policyAccept/PolicyAccept';
 import isCheckWhite from '@/assets/isCheckWhite.svg';
 import checkbox from '@/assets/checkbox.svg';
+import { useAtom } from 'jotai';
+import { setAccepct } from '@/shared/store/atoms/policy';
 
 interface Props {
   isPolicyOpen: boolean;
@@ -16,6 +18,7 @@ const POLICY_LINK = {
 };
 
 const PolicyModal = ({ isPolicyOpen, setIsPolicyOpen }: Props) => {
+  const [, handleAcceptPolicy] = useAtom(setAccepct);
   const [acceptServicePolicy, setAcceptServicePolicy] = useState(false);
   const [acceptLocationPolicy, setAcceptLocationPolicy] = useState(false);
   const [acceptPrivacyPolicy, setAcceptPrivacyPolicy] = useState(false);
@@ -40,6 +43,9 @@ const PolicyModal = ({ isPolicyOpen, setIsPolicyOpen }: Props) => {
 
   const onClickPolicySaveBtn = () => {
     setIsPolicyOpen(false);
+    setTimeout(() => {
+      handleAcceptPolicy();
+    }, 500);
   };
 
   return (

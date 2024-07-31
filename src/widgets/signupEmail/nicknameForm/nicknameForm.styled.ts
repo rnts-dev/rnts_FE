@@ -62,6 +62,12 @@ export const NotActivateBtn = styled.button`
   border: 1px solid var(--System-Color-gray-500, #bac7da);
   background: var(--System-Color-gray-200, #eef1f6);
   padding: 25px 70px;
+
+  color: var(--Primary-Color-black, #000);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.6px;
 `;
 
 export const BtnWrap = styled.div`

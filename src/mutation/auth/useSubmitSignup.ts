@@ -34,12 +34,12 @@ export const useSubmitSignup = () => {
 
         switch (status) {
           default:
-            alert('서버 점검중입니다. 잠시 후 다시 시도해주세요.');
+            alert('회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.');
             navigate('/login?id=null&appointment=null');
             break;
         }
       }
-      alert('서버 점검중입니다. 잠시 후 다시 시도해주세요.');
+      alert('회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.');
       navigate('/login?id=null&appointment=null');
     },
   });
