@@ -8,6 +8,7 @@ export const useSignupForm = (onChangeValue?: () => void) => {
     handleSubmit,
     setError,
     setValue,
+    trigger,
     formState: { errors },
   } = useForm({ mode: 'all', defaultValues: { id: '', email: '', nickname: '', authCode: '', password: '', confirmPassword: '' }, shouldFocusError: false });
 
@@ -17,6 +18,10 @@ export const useSignupForm = (onChangeValue?: () => void) => {
   const authCodeValue = watch('authCode');
   const passwordValue = watch('password');
   const confirmPasswordValue = watch('confirmPassword');
+
+  useEffect(() => {
+    trigger('nickname');
+  }, []);
 
   useEffect(() => {
     if (onChangeValue !== undefined) {
@@ -58,7 +63,7 @@ export const useSignupForm = (onChangeValue?: () => void) => {
     ...register('nickname', {
       required: { value: true, message: '최소 2자 이상, 최대 8자 이내' },
       pattern: {
-        value: /^.{2,8}$/,
+        value: /^(?=^[a-zA-Z0-9가-힣_-]+$).{2,8}$/,
         message: '최소 2자 이상, 최대 8자 이내여야 합니다.',
       },
     }),
