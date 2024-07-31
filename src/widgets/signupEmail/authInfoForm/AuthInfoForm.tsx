@@ -8,7 +8,7 @@ import ToastProvider from '@/shared/components/ToastProvider/ToastProvider';
 import { useExistLoginIdValidate } from '@/mutation/auth/useExistLoginIdValidate';
 import { useAtom } from 'jotai';
 import { toastState } from '@/shared/store/atoms/toast';
-import { policyState, setNonAccepct } from '@/shared/store/atoms/policy';
+import { policyState } from '@/shared/store/atoms/policy';
 
 interface Props {
   idValue: string;
