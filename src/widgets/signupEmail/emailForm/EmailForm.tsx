@@ -37,6 +37,8 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
     setIsConfirmEmail(false);
   }, [authCodeValue]);
 
+  console.log(errors.email);
+
   return (
     <S.Layout>
       <S.InputForm>
@@ -49,7 +51,7 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
           register={emailValidate}
           error={errors.email}
           onClick={() => sendEmail(emailValue)}
-          disabled={state.isOpen}
+          disabled={state.isOpen || isSendEmail || errors.email}
         />
         {isSendEmail && (
           <ConfirmInputContainer
@@ -62,7 +64,7 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, authCodeValidate,
             error={errors.authCode}
             onClick={() => confirmEmail({ mail: emailValue, authCode: authCodeValue })}
             maxLength={6}
-            disabled={state.isOpen || isConfirmEmail}
+            disabled={state.isOpen || isConfirmEmail || errors.authCode}
           />
         )}
       </S.InputForm>
