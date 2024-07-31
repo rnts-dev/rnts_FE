@@ -43,7 +43,6 @@ const RNTSNavigation = () => {
           <MenuButton isActive={isOpen} as={Button}>
             네비게이션바
           </MenuButton>
-
           <MenuList>
             {navMeta.map((menu) => (
               <Link key={menu.title} to={menu.url}>
