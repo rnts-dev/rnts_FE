@@ -7,8 +7,10 @@ import AuthInfoForm from '@/widgets/signupEmail/authInfoForm/AuthInfoForm';
 import EmailForm from '@/widgets/signupEmail/emailForm/EmailForm';
 import NicknameForm from '@/widgets/signupEmail/nicknameForm/NicknameForm';
 import { useSubmitSignup } from '@/mutation/auth/useSubmitSignup';
+import { useNavigate } from 'react-router-dom';
 
 const EmailSignup = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState<'first' | 'second' | 'third'>('first');
   const {
     idValue,
@@ -34,9 +36,19 @@ const EmailSignup = () => {
     submitSignup({ loginId: idValue, email: emailValue, password: passwordValue, name: nicknameValue, nickname: nicknameValue, birth: '1996-09-17' });
   };
 
+  const handleBack = () => {
+    if (step === 'first') {
+      navigate(-1);
+    } else if (step === 'second') {
+      setStep('first');
+    } else if (step === 'third') {
+      setStep('second');
+    }
+  };
+
   return (
     <S.Layout>
-      <Header step={step} />
+      <Header step={step} handleBack={handleBack} />
       {step === 'first' && (
         <AuthInfoForm
           handleChangeStep={setStep}

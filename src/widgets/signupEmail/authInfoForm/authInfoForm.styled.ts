@@ -10,6 +10,7 @@ export const Layout = styled.form`
 export const InputForm = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   gap: 20px;
 `;
 
@@ -72,7 +73,7 @@ export const Input = styled.input`
 `;
 
 export const BtnWrap = styled.div`
-  margin: 216px 0 36px;
+  margin: 216px 0px 38px;
   width: 100%;
 `;
 
@@ -82,11 +83,16 @@ export const NotActivateBtn = styled.button`
   border: 1px solid var(--System-Color-gray-500, #bac7da);
   background: var(--System-Color-gray-200, #eef1f6);
   padding: 25px 70px;
+  color: var(--Primary-Color-black, #000);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.6px;
 `;
 
 export const ToastWrap = styled.div`
-  position: absolute;
-  top: 100px;
+  position: fixed;
+  bottom: 134px;
 `;
 
 export const ToastConatiner = styled.div`

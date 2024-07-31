@@ -71,6 +71,7 @@ export const ErrCheck = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
+  margin-top: -5px;
   font-size: 12px;
   color: var(--Sub-Color-danger, #f74747);
 `;

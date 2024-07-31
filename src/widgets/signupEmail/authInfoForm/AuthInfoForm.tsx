@@ -8,6 +8,7 @@ import ToastProvider from '@/shared/components/ToastProvider/ToastProvider';
 import { useExistLoginIdValidate } from '@/mutation/auth/useExistLoginIdValidate';
 import { useAtom } from 'jotai';
 import { toastState } from '@/shared/store/atoms/toast';
+import { policyState, setNonAccepct } from '@/shared/store/atoms/policy';
 
 interface Props {
   idValue: string;
@@ -22,15 +23,14 @@ interface Props {
 }
 
 const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPasswordValue, confirmPasswordValidate, idValue, idValidate, trigger, handleChangeStep }: Props) => {
-  // TODO: setIsValidId는 아이디 중복 확인이 통과하면 true로 변경
+  const [isPolicyAccept] = useAtom(policyState);
   const [isValidId, setIsValidId] = useState(false);
   const [isPolicyOpen, setIsPolicyOpen] = useState(true);
   const [state] = useAtom(toastState);
 
   const { mutate: isExistLoginId } = useExistLoginIdValidate(setIsValidId);
-
   const isValidInput = idValue && passwordValue && confirmPasswordValue && !errors.id && !errors.password && !errors.confirmPassword && isValidId;
-
+  console.log(isPolicyOpen);
   useEffect(() => {
     setIsValidId(false);
   }, [idValue]);
@@ -85,16 +85,16 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
       <S.ToastConatiner>
         <ToastWrapper />
 
-        {!isPolicyOpen && (
+        {
           <S.BtnWrap>
             {isValidInput && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('second')} />}
             {!isValidInput && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
           </S.BtnWrap>
-        )}
+        }
       </S.ToastConatiner>
 
       {/* 약관 동의 모달 */}
-      <PolicyModal isPolicyOpen={isPolicyOpen} setIsPolicyOpen={setIsPolicyOpen} />
+      {!isPolicyAccept.isAccept && <PolicyModal isPolicyOpen={isPolicyOpen} setIsPolicyOpen={setIsPolicyOpen} />}
     </S.Layout>
   );
 };
