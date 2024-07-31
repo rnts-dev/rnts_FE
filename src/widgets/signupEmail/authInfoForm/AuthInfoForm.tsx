@@ -17,10 +17,11 @@ interface Props {
   confirmPasswordValue: string;
   confirmPasswordValidate: any;
   errors: any;
+  trigger: any;
   handleChangeStep: (step: 'first' | 'second') => void;
 }
 
-const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPasswordValue, confirmPasswordValidate, idValue, idValidate, handleChangeStep }: Props) => {
+const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPasswordValue, confirmPasswordValidate, idValue, idValidate, trigger, handleChangeStep }: Props) => {
   // TODO: setIsValidId는 아이디 중복 확인이 통과하면 true로 변경
   const [isValidId, setIsValidId] = useState(false);
   const [isPolicyOpen, setIsPolicyOpen] = useState(true);
@@ -34,6 +35,15 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
     setIsValidId(false);
   }, [idValue]);
 
+  const handleIsExistId = (id: string) => {
+    if (!id) {
+      trigger('id');
+      return;
+    }
+
+    isExistLoginId(id);
+  };
+
   return (
     <S.Layout>
       <S.InputForm>
@@ -45,10 +55,10 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
           maxLength={16}
           type="text"
           btnText="확인"
-          onClick={() => isExistLoginId(idValue)}
+          onClick={() => handleIsExistId(idValue)}
           error={errors.id}
           checkMsg="영문 또는 영문+숫자 조합으로 이루어진 4-16자 아이디"
-          disabled={state.isOpen || !idValue || errors.id}
+          disabled={state.isOpen || errors.id}
         />
         <InputContainer
           value={passwordValue}

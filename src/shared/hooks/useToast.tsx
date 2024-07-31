@@ -5,11 +5,11 @@ const useToast = () => {
   const [, openToast] = useAtom(setIsOpen);
   const [, closeToast] = useAtom(setIsClose);
 
-  const showToast = (key: string, duration: number = 2000) => {
+  const showToast = (key: string) => {
     openToast(key);
     setTimeout(() => {
       closeToast();
-    }, duration);
+    }, 2000);
   };
 
   return showToast;

@@ -24,6 +24,7 @@ const EmailSignup = () => {
     nicknameValue,
     nicknameValidate,
     errors,
+    trigger,
     resetAuthcodeValue,
   } = useSignupForm();
 
@@ -45,12 +46,14 @@ const EmailSignup = () => {
           passwordValidate={passwordValidate}
           confirmPasswordValue={confirmPasswordValue}
           confirmPasswordValidate={confirmPasswordValidate}
+          trigger={trigger}
           errors={errors}
         />
       )}
       {step === 'second' && (
         <EmailForm
           emailValue={emailValue}
+          trigger={trigger}
           resetAuthcodeValue={resetAuthcodeValue}
           emailValidate={emailValidate}
           authCodeValue={authCodeValue}
