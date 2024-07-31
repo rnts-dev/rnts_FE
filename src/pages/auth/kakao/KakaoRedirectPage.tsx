@@ -1,7 +1,8 @@
 import { fetcher } from '@/shared/service/fetch';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-export default function KakaoRedirectPage() {
+
+const KakaoRedirectPage = () => {
   const navigate = useNavigate();
   // const [user, setUser] = useState('');
 
@@ -32,4 +33,6 @@ export default function KakaoRedirectPage() {
     });
   }, []);
   return <div>KakaoLogin Redirect 페이지</div>;
-}
+};
+
+export default KakaoRedirectPage;

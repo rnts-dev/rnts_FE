@@ -1,44 +1,47 @@
 import RNTSDatePicker from '@/shared/components/RNTSDatePicker/RNTSDatePicker';
-import RNTSTimePicker from '@/shared/components/RNTSTimePicker';
-import useGlobalModal from '@/shared/manager/confirm/useHandleConfirm';
+import RNTSTimePicker from '@/shared/components/RNTSTimePicker/RNTSTimePicker';
+import { DialogType, useDialog } from '@/shared/hooks/modal/useDialog';
 import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import './preview.scss';
 
-export default function PreviewPage() {
-  const { prompt } = useGlobalModal();
+const PreviewPage = () => {
+  // 필요한만큼의 다이얼로그를 선언 합니다.
+  const confirm = useDialog({});
+  const alert = useDialog({});
 
+  // 다이얼로그 오픈 로직
   const handleOpenConfirmModal = async () => {
-    const modal = await prompt({
-      type: 'confirm',
+    confirm.open({
+      type: DialogType.CONFIRM,
       header: '초대받은 약속',
-      contents: <p>사당식당 밥 약속</p>,
-      confirmTitle: '초대 수락',
-      cancelTitle: '거절',
+      children: <p>사당식당 밥 약속</p>,
+      cancelProps: {
+        component: <button>거절</button>,
+        onClick: () => confirm.close,
+      },
+      confirmProps: {
+        component: <button>초대 수락</button>,
+        onClick: () => {
+          console.log('초대 수락 클릭');
+          confirm.close();
+        },
+      },
     });
-
-    if (modal) {
-      console.log('확인 눌렀을 때의 액션 넣으면 됩니다.');
-    }
-    if (!modal) {
-      console.log('취소 눌렀을 때의 액션 넣으면 됩니다.');
-    }
   };
 
   const handleOpenAlertModal = async () => {
-    const modal = await prompt({
-      type: 'alert',
+    alert.open({
+      type: DialogType.ALERT,
       header: '출발했어?',
-      description: '2분 빨리 도착했어요',
-      contents: <p>캐릭터 일러스트</p>,
-      confirmTitle: '오늘은 아무도 안 늦었어요',
+      children: <p>캐릭터 일러스트</p>,
+      confirmProps: {
+        component: <p>오늘은 아무도 안 늦었어요</p>,
+        onClick: () => {
+          console.log('확인');
+          confirm.close();
+        },
+      },
     });
-
-    if (modal) {
-      console.log('확인 눌렀을 때의 액션 넣으면 됩니다.');
-    }
-    if (!modal) {
-      console.log('취소 눌렀을 때의 액션 넣으면 됩니다.');
-    }
   };
 
   return (
@@ -75,7 +78,13 @@ export default function PreviewPage() {
             </TabPanel>
           </TabPanels>
         </Tabs>
+
+        {/* 다이얼로그 렌더 하는 부분 */}
+        {confirm.rendered()}
+        {alert.rendered()}
       </div>
     </>
   );
-}
+};
+
+export default PreviewPage;
