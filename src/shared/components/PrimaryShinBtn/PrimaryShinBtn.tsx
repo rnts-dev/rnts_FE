@@ -9,7 +9,7 @@ interface PrimaryShinBtnProps {
 const PrimaryShinBtn = ({ text, onClick, image }: PrimaryShinBtnProps) => {
   return (
     <button className="primary_shin_btn" type="button" onClick={onClick}>
-      <img src={image} alt="" />
+      {image && <img src={image} alt="" />}
       {text}
     </button>
   );
