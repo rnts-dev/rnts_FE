@@ -72,4 +72,5 @@ export const NotActivateBtn = styled.button`
 
 export const BtnWrap = styled.div`
   width: 100%;
+  margin-bottom: 36px;
 `;
