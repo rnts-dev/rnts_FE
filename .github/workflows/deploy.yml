@@ -45,4 +45,4 @@ jobs:
           aws-region: ap-northeast-1
 
       - name: Upload to S3
- dist s3://rnts-web
+        run: aws s3 cp --recursive --region us-east-1 dist s3://rnts-web
