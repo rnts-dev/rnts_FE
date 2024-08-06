@@ -1,12 +1,13 @@
 import characterIllust from '@/assets/onboarding_illust.png';
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './loginPage.scss';
 import { KakaoBtn } from '@/components/auth';
 import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 import emailSvg from '@/assets/auth/email.svg';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const LoginPage = () => {
       </div>
 
       <div className="btn_container">
-        <PrimaryShinBtn text="일반 로그인" onClick={() => console.log('/signup-email')} image={emailSvg} />
+        <PrimaryShinBtn text="일반 로그인" onClick={() => navigate('/email-login')} image={emailSvg} />
         <KakaoBtn />
       </div>
       <a href="/signup-email" className="move_signup">
