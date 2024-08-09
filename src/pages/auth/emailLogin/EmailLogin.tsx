@@ -6,7 +6,7 @@ import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 
 const EmailLogin = () => {
   const navigate = useNavigate();
-  const { idValue, passwordValue, idValidate, passwordValidate, errors, trigger, handleSubmit, setError } = useSigninForm();
+  const { idValue, passwordValue, idValidate, passwordValidate, errors, trigger, handleSubmit } = useSigninForm();
 
   const isValid = !errors.id && !errors.password && idValue && passwordValue;
 
