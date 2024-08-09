@@ -27,7 +27,7 @@ export const useSigninForm = () => {
     ...register('password', {
       required: { value: true, message: '비밀번호를 입력해주세요.' },
       pattern: {
-        value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,12}$/,
+        value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/,
         message: '영문, 숫자, 특수문자를 포함하여 8~12자',
       },
     }),
