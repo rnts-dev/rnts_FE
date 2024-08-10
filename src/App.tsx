@@ -19,6 +19,7 @@ import SendPenaltyPage from './pages/penalty/SendPenaltyPage';
 import SelectTendencyPage from './pages/tendency/SelectTendencyPage';
 import { MapSearch } from './components/map';
 import EmailSignup from './pages/auth/emailSignup/EmailSignup';
+import EmailLogin from './pages/auth/emailLogin/EmailLogin';
 
 const colors = {
   personal: '',
@@ -31,6 +32,7 @@ const navMeta = [
   { title: '대시보드', url: '/', page: <HomePage /> },
   { title: '이메일로 회원가입', url: '/signup-email', page: <EmailSignup /> },
   { title: '로그인', url: 'login', page: <LoginPage /> },
+  { title: '이메일로 로그인', url: 'email-login', page: <EmailLogin /> },
   { title: '카카오(re)', url: 'login/oauth2/code/kakao', page: <KakaoRedirectPage /> },
   { title: '지도', url: 'map', page: <MapSearch /> },
   { title: '유형', url: 'tendency/select', page: <SelectTendencyPage /> },

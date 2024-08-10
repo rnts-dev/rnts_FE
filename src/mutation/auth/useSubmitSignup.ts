@@ -25,6 +25,7 @@ export const useSubmitSignup = () => {
     },
 
     onSuccess: () => {
+      localStorage.removeItem('policyState');
       navigate('/tendency/select');
     },
 

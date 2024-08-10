@@ -10,17 +10,18 @@ interface Props {
   error: any;
   checkMsg?: string;
   maxLength: number;
+  notRequired?: boolean;
 }
 
-const InputContainer = ({ value, checkMsg, register, label, maxLength, placeholder, type, error }: Props) => {
+const InputContainer = ({ value, checkMsg, register, label, maxLength, placeholder, type, error, notRequired }: Props) => {
   return (
     <S.InputContainer>
       <S.Label>
         {label}
-        <S.RequiredImg src={requiredImg} alt="requiredImg" />
+        {!notRequired && <S.RequiredImg src={requiredImg} alt="requiredImg" />}
       </S.Label>
       <S.Input value={value} {...register} placeholder={placeholder} type={type} err={error} maxLength={maxLength} />
-      {error && (
+      {error && checkMsg && (
         <S.ErrCheck>
           <p>{checkMsg}</p>
         </S.ErrCheck>
