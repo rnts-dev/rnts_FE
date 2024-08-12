@@ -16,20 +16,12 @@ export const useSigninForm = () => {
   const idValidate = {
     ...register('id', {
       required: { value: true, message: '아이디를 입력해주세요' },
-      pattern: {
-        value: /^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,16}$/,
-        message: '영문 또는 영문+숫자 조합으로 이루어진 4-16자 아이디',
-      },
     }),
   };
 
   const passwordValidate = {
     ...register('password', {
       required: { value: true, message: '비밀번호를 입력해주세요.' },
-      pattern: {
-        value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/,
-        message: '영문, 숫자, 특수문자를 포함하여 8~12자',
-      },
     }),
   };
 
