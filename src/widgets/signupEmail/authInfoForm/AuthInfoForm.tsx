@@ -68,7 +68,7 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
           placeholder="비밀번호를 입력해주세요"
           type="password"
           error={errors.password}
-          checkMsg="영문, 숫자, 특수문자를 포함하여 8-12자"
+          checkMsg="영문, 숫자, 특수문자를 포함하여 8-16자"
         />
         <InputContainer
           value={confirmPasswordValue}
