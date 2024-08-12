@@ -85,12 +85,12 @@ const AuthInfoForm = ({ errors, passwordValue, passwordValidate, confirmPassword
       <S.ToastConatiner>
         <ToastWrapper />
 
-        {
+        {isPolicyAccept.isAccept && (
           <S.BtnWrap>
             {isValidInput && <PrimaryShinBtn text="다음" onClick={() => handleChangeStep('second')} />}
             {!isValidInput && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
           </S.BtnWrap>
-        }
+        )}
       </S.ToastConatiner>
 
       {/* 약관 동의 모달 */}
