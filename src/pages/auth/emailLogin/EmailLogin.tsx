@@ -3,11 +3,13 @@ import * as S from './emailLogin.styled';
 import InputContainer from '@/shared/components/InputContainer/InputContainer';
 import { useSigninForm } from '@/models/auth/useSigninForm';
 import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
+import { useLogin } from '@/mutation/auth/useLogin';
+import ToastProvider from '@/shared/components/ToastProvider/ToastProvider';
 
 const EmailLogin = () => {
   const navigate = useNavigate();
   const { idValue, passwordValue, idValidate, passwordValidate, errors, trigger, handleSubmit } = useSigninForm();
-
+  const { mutate } = useLogin();
   const isValid = !errors.id && !errors.password && idValue && passwordValue;
 
   const onClickNotActiveBtn = () => {
@@ -47,7 +49,8 @@ const EmailLogin = () => {
           notRequired={true}
           checkMsg="영문, 숫자, 특수문자를 포함하여 8~12자"
         />
-        {isValid && <PrimaryShinBtn text="로그인" onClick={handleSubmit((data) => console.log(data))} />}
+
+        {isValid && <PrimaryShinBtn text="로그인" onClick={handleSubmit((data) => mutate({ loginId: data.id, password: data.password }))} />}
         {!isValid && (
           <S.NotActivateBtn type="button" onClick={onClickNotActiveBtn}>
             로그인
@@ -62,7 +65,21 @@ const EmailLogin = () => {
         <S.LinkDevider />
         <Link to="/signup-email">회원가입</Link>
       </S.LinkContainer>
+
+      <S.ToastConatiner>
+        <ToastWrapper />
+      </S.ToastConatiner>
     </S.EmailLoginLayout>
+  );
+};
+
+const ToastWrapper = () => {
+  return (
+    <>
+      <S.ToastWrap>
+        <ToastProvider toastKey="invalidLogin">아이디 또는 비밀번호를 잘못 입력했어요</ToastProvider>
+      </S.ToastWrap>
+    </>
   );
 };
 
