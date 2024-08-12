@@ -5,6 +5,7 @@ import { useSigninForm } from '@/models/auth/useSigninForm';
 import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 import { useLogin } from '@/mutation/auth/useLogin';
 import ToastProvider from '@/shared/components/ToastProvider/ToastProvider';
+import chevronLeft from '@/assets/chevronLeft.svg';
 
 const EmailLogin = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const EmailLogin = () => {
     <S.EmailLoginLayout>
       <S.Header>
         <S.BackBtn onClick={() => navigate(-1)}>
-          <img src="src/assets/chevronLeft.svg" alt="back" />
+          <img src={chevronLeft} alt="back" />
         </S.BackBtn>
         <span>일반 로그인</span>
       </S.Header>
