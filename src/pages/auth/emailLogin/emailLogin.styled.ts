@@ -80,3 +80,15 @@ export const LinkDevider = styled.div`
   height: 13px;
   background: #dbe2ec;
 `;
+
+export const ToastConatiner = styled.div`
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+`;
+
+export const ToastWrap = styled.div`
+  position: sticky;
+  bottom: 1px;
+`;
