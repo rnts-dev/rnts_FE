@@ -39,7 +39,7 @@ export const PolicyModal = styled.div<IsOpen>`
   background: #fff;
   width: 100%;
   position: absolute;
-  bottom: 110px;
+  bottom: 0;
   left: 0;
   z-index: 1000;
   padding: 36px 24px 40px;
