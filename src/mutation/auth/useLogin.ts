@@ -35,6 +35,10 @@ export const useLogin = () => {
           case 500:
             showToast('invalidLogin');
             break;
+
+          default:
+            showToast('invalidLogin');
+            break;
         }
       }
     },
