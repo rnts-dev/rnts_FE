@@ -13,10 +13,18 @@ export const NotActivateBtn = styled.button`
   letter-spacing: -0.6px;
 `;
 
+export const InputContainer = styled.div`
+  width: 100%;
+  height: calc(100vh - 476px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-grow: 1;
+`;
+
 export const BtnWrap = styled.div`
-  position: fixed;
-  bottom: 58px;
-  width: calc(100% - 48px);
+  margin-bottom: 38px;
+  width: 100%;
 `;
 
 export const ToastConatiner = styled.div`

@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 
-export const FindIdForm = styled.form`
-  margin-top: 36px;
+export const InputContainer = styled.div`
+  width: 100%;
+  height: calc(100vh - 452px);
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 24px;
-
-  & > :last-child {
-    margin-top: 245px;
-    margin-bottom: 38px;
-  }
 `;
 
 export const NotActivateBtn = styled.button`
@@ -26,9 +23,8 @@ export const NotActivateBtn = styled.button`
 `;
 
 export const BtnWrap = styled.div`
-  position: fixed;
-  bottom: 58px;
-  width: calc(100% - 48px);
+  margin-bottom: 38px;
+  width: 100%;
 `;
 
 export const ToastConatiner = styled.div`

@@ -59,7 +59,7 @@ const FindPassword = () => {
   return (
     <>
       {!nextStep && (
-        <>
+        <S.InputContainer>
           <ConfirmInputContainer
             value={emailValue}
             register={emailValidate}
@@ -84,11 +84,11 @@ const FindPassword = () => {
               onClick={onClickConfirmAuthCode}
             />
           )}
-        </>
+        </S.InputContainer>
       )}
 
       {nextStep && (
-        <>
+        <S.InputContainer>
           <InputContainer label="새 비밀번호" placeholder="비밀번호를 입력하세요" type="text" value={passwordValue} maxLength={16} error={passwordErros.password} register={passwordValidate} />
           <InputContainer
             label="비밀번호 확인"
@@ -99,7 +99,7 @@ const FindPassword = () => {
             error={passwordErros.confirmPassword}
             register={confirmPasswordValidate}
           />
-        </>
+        </S.InputContainer>
       )}
 
       <S.ToastConatiner>

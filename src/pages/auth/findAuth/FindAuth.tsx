@@ -3,6 +3,7 @@ import * as S from './findAuth.styled';
 import { useState } from 'react';
 import FindId from '@/widgets/findAuth/findId/FindId';
 import FindPassword from '@/widgets/findAuth/findPassword/FindPassword';
+import prevIcon from '@/assets/chevronLeft.svg';
 
 const FindAuth = () => {
   const [searchParams, _] = useSearchParams();
@@ -14,7 +15,7 @@ const FindAuth = () => {
     <S.FindIdLayout>
       <S.Header>
         <S.BackBtn onClick={() => navigate('/email-login')}>
-          <img src="src/assets/chevronLeft.svg" alt="back" />
+          <img src={prevIcon} alt="back" />
         </S.BackBtn>
         <span>아이디/비밀번호 찾기</span>
       </S.Header>
