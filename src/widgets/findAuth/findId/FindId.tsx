@@ -48,34 +48,36 @@ const FindId = () => {
 
   return (
     <>
-      <ConfirmInputContainer
-        value={emailValue}
-        register={emailValidate}
-        label="이메일"
-        placeholder="이메일 주소를 입력하세요"
-        btnText="인증"
-        type="text"
-        error={errors.email}
-        onClick={onClickSendEmail}
-      />
-
-      {isSendEmail && (
+      <S.InputContainer>
         <ConfirmInputContainer
-          value={authCodeValue}
-          register={authCodeValidate}
-          label="인증 코드"
-          placeholder="코드 6자리를 입력하세요"
+          value={emailValue}
+          register={emailValidate}
+          label="이메일"
+          placeholder="이메일 주소를 입력하세요"
+          btnText="인증"
           type="text"
-          btnText="확인"
-          error={errors.authCode}
-          maxLength={6}
-          onClick={onClickConfirmAuthCode}
+          error={errors.email}
+          onClick={onClickSendEmail}
         />
-      )}
 
-      <S.ToastConatiner>
-        <ToastWrapper />
-      </S.ToastConatiner>
+        {isSendEmail && (
+          <ConfirmInputContainer
+            value={authCodeValue}
+            register={authCodeValidate}
+            label="인증 코드"
+            placeholder="코드 6자리를 입력하세요"
+            type="text"
+            btnText="확인"
+            error={errors.authCode}
+            maxLength={6}
+            onClick={onClickConfirmAuthCode}
+          />
+        )}
+
+        <S.ToastConatiner>
+          <ToastWrapper />
+        </S.ToastConatiner>
+      </S.InputContainer>
 
       <S.BtnWrap>
         {!isValid && (
