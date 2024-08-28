@@ -28,9 +28,9 @@ const EmailLogin = () => {
       </S.SigninForm>
 
       <S.LinkContainer>
-        <Link to="/auth/find-id">아이디 찾기</Link>
+        <Link to="/find-auth?type=id">아이디 찾기</Link>
         <S.LinkDevider />
-        <Link to="/auth/find-password">비밀번호 찾기</Link>
+        <Link to="/find-auth?type=password">비밀번호 찾기</Link>
         <S.LinkDevider />
         <Link to="/signup-email">회원가입</Link>
       </S.LinkContainer>

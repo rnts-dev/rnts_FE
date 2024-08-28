@@ -18,10 +18,10 @@ const ModalManager = ({ title, description, children, button }: { title: string;
   }, [step]);
 
   return (
-    <Modal isOpen={modalOpen} onClose={handleCloseModal} size="sm">
+    <Modal isCentered isOpen={modalOpen} onClose={handleCloseModal} size="sm">
       <ModalOverlay />
 
-      <ModalContent>
+      <ModalContent className="modal_layout">
         <div className="header">
           <p className="title">{title}</p>
           <p className="description">{description}</p>

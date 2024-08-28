@@ -7,6 +7,7 @@ import ToastProvider from '@/shared/components/ToastProvider/ToastProvider';
 import { useConfirmEmail } from '@/mutation/auth/useConfirmEmail';
 import { useAtom } from 'jotai';
 import { toastState } from '@/shared/store/atoms/toast';
+import { useEmailSendRecovery } from '@/mutation/auth/useEmailSendRecovery';
 
 interface Props {
   emailValue: string;
@@ -16,16 +17,18 @@ interface Props {
   errors: any;
   resetAuthcodeValue: any;
   trigger: any;
-  handleChangeStep: (step: 'first' | 'second' | 'third') => void;
+  onSubmit: any;
+  type?: 'recovery' | 'signup';
 }
 
-const EmailForm = ({ emailValue, emailValidate, authCodeValue, trigger, authCodeValidate, errors, resetAuthcodeValue, handleChangeStep }: Props) => {
+const EmailForm = ({ emailValue, emailValidate, authCodeValue, trigger, authCodeValidate, errors, resetAuthcodeValue, onSubmit, type = 'signup' }: Props) => {
   const [isSendEmail, setIsSendEmail] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
   const isValidInput = emailValue && authCodeValue && !errors.email && !errors.authCode;
 
   const [state] = useAtom(toastState);
   const { mutate: sendEmail } = useEmailSend(setIsSendEmail);
+  const { mutate: sendEmailRecovery } = useEmailSendRecovery(setIsSendEmail);
   const { mutate: confirmEmail } = useConfirmEmail(setIsConfirmEmail);
 
   useEffect(() => {
@@ -44,7 +47,14 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, trigger, authCode
       return;
     }
 
-    sendEmail(mail);
+    if (type === 'signup') {
+      sendEmail(mail);
+      return;
+    }
+
+    if (type === 'recovery') {
+      sendEmailRecovery(mail);
+    }
   };
 
   const handleConfirmEmail = (mail: string, authCode: string) => {
@@ -53,7 +63,10 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, trigger, authCode
       return;
     }
 
-    confirmEmail({ mail, authCode });
+    if (type === 'signup') {
+      confirmEmail({ mail, authCode });
+      return;
+    }
   };
 
   return (
@@ -90,7 +103,7 @@ const EmailForm = ({ emailValue, emailValidate, authCodeValue, trigger, authCode
         <ToastWrapper />
 
         <S.BtnWrap>
-          {isValidInput && isConfirmEmail && isSendEmail && <PrimaryShinBtn text="가입하기" onClick={() => handleChangeStep('third')} />}
+          {isValidInput && isConfirmEmail && isSendEmail && <PrimaryShinBtn text="가입하기" onClick={onSubmit} />}
           {(!isValidInput || !isConfirmEmail) && <S.NotActivateBtn disabled>다음</S.NotActivateBtn>}
         </S.BtnWrap>
       </S.ToastConatiner>

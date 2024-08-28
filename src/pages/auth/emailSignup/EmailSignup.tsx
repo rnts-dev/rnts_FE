@@ -71,7 +71,7 @@ const EmailSignup = () => {
           authCodeValue={authCodeValue}
           authCodeValidate={authCodeValidate}
           errors={errors}
-          handleChangeStep={setStep}
+          onSubmit={() => setStep('third')}
         />
       )}
       {step === 'third' && <NicknameForm nicknameValue={nicknameValue} nicknameValidate={nicknameValidate} error={errors.nickname} handleSubmitSignup={handleSubmitSignup} />}
