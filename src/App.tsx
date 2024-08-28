@@ -20,6 +20,7 @@ import SelectTendencyPage from './pages/tendency/SelectTendencyPage';
 import { MapSearch } from './components/map';
 import EmailSignup from './pages/auth/emailSignup/EmailSignup';
 import EmailLogin from './pages/auth/emailLogin/EmailLogin';
+import FindAuth from './pages/auth/findAuth/FindAuth';
 
 const colors = {
   personal: '',
@@ -34,6 +35,7 @@ const navMeta = [
   { title: '로그인', url: 'login', page: <LoginPage /> },
   { title: '이메일로 로그인', url: 'email-login', page: <EmailLogin /> },
   { title: '카카오(re)', url: 'login/oauth2/code/kakao', page: <KakaoRedirectPage /> },
+  { title: '아이디/비밀번호 찾기', url: 'find-auth', page: <FindAuth /> },
   { title: '지도', url: 'map', page: <MapSearch /> },
   { title: '유형', url: 'tendency/select', page: <SelectTendencyPage /> },
   { title: '약속', url: 'appointment', page: <AppointmentsListPage /> },

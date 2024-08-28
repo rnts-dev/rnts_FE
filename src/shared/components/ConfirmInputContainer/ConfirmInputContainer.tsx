@@ -3,7 +3,7 @@ import requiredImg from '@/assets/required.svg';
 
 interface Props {
   value: string;
-  register: any;
+  register?: any;
   label: string;
   placeholder: string;
   btnText: string;
