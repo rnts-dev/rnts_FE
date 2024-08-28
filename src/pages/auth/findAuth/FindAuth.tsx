@@ -2,12 +2,13 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as S from './findAuth.styled';
 import { useState } from 'react';
 import FindId from '@/widgets/findAuth/findId/FindId';
+import FindPassword from '@/widgets/findAuth/findPassword/FindPassword';
 
 const FindAuth = () => {
   const [searchParams, _] = useSearchParams();
-  const path = searchParams.get('type');
+  const pathType = searchParams.get('type');
   const navigate = useNavigate();
-  const [type, setType] = useState<'loginId' | 'password'>('loginId');
+  const [type, setType] = useState<'loginId' | 'password'>(pathType === 'password' || pathType === 'loginId' ? pathType : 'loginId');
 
   return (
     <S.FindIdLayout>
@@ -28,7 +29,8 @@ const FindAuth = () => {
       </S.SetFormContainer>
 
       <S.FindIdForm>
-        <FindId />
+        {type === 'loginId' && <FindId />}
+        {type === 'password' && <FindPassword />}
       </S.FindIdForm>
     </S.FindIdLayout>
   );

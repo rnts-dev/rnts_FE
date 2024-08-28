@@ -80,7 +80,6 @@ const FindId = () => {
       <S.BtnWrap>
         {!isValid && (
           <S.NotActivateBtn type="button" onClick={onClickNotActiveBtn}>
-            {/* <S.NotActivateBtn type="button" onClick={handleOpenFindIdModal}> */}
             아이디 찾기
           </S.NotActivateBtn>
         )}

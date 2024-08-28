@@ -6,8 +6,8 @@ interface Props {
   placeholder: string;
   type: string;
   value: string;
-  register: any;
-  error: any;
+  register?: any;
+  error?: any;
   checkMsg?: string;
   maxLength: number;
   notRequired?: boolean;
