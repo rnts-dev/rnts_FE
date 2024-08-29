@@ -15,6 +15,7 @@ export const useRequestPasswordReset = (setIsConfirmEmail: (arg0: boolean) => vo
     },
 
     onSuccess: (data: { token: string }) => {
+      showToast('successConfirmEmail');
       setIsConfirmEmail(true);
       setPasswordToken(data.token);
     },

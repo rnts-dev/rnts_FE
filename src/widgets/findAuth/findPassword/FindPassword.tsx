@@ -19,15 +19,15 @@ const FindPassword = () => {
   const [passwordToken, setPasswordToken] = useState('');
 
   const { emailValue, emailValidate, authCodeValue, authCodeValidate, errors, trigger } = useSignupForm();
-  const { passwordValidate, passwordValue, confirmPasswordValue, confirmPasswordValidate, errors: passwordErros, trigger: passwordTrigger } = useResetPasswordForm();
+  const { passwordValidate, passwordValue, confirmPasswordValue, confirmPasswordValidate, errors: passwordErrors, trigger: passwordTrigger } = useResetPasswordForm();
 
   const { mutate: sendEmailRecovery } = useEmailSendRecovery(setIsSendEmail);
   const { mutate: requestPasswordResetToken } = useRequestPasswordReset(setIsConfirmEmail, setPasswordToken);
   const { mutate: resetPassword } = useResetPassword();
 
   const isValid = !errors.email && emailValue && !errors.authCode && authCodeValue && isConfirmEmail;
-  const isPasswordValid = !passwordErros.password && passwordValue && !passwordErros.confirmPassword && confirmPasswordValue;
-  console.log(passwordErros);
+  const isPasswordValid = !passwordErrors.password && passwordValue && !passwordErrors.confirmPassword && confirmPasswordValue;
+  console.log(passwordErrors);
 
   const onClickSendEmail = () => {
     if (!emailValue || !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(emailValue)) {
@@ -55,6 +55,8 @@ const FindPassword = () => {
   const onClickResetPasswordBtn = () => {
     resetPassword({ password: passwordValue, token: passwordToken });
   };
+
+  console.log(passwordErrors);
 
   return (
     <>
@@ -89,14 +91,24 @@ const FindPassword = () => {
 
       {nextStep && (
         <S.InputContainer>
-          <InputContainer label="새 비밀번호" placeholder="비밀번호를 입력하세요" type="text" value={passwordValue} maxLength={16} error={passwordErros.password} register={passwordValidate} />
+          <InputContainer
+            label="새 비밀번호"
+            placeholder="비밀번호를 입력하세요"
+            type="text"
+            value={passwordValue}
+            maxLength={16}
+            checkMsg={passwordErrors.password?.message}
+            error={passwordErrors.password}
+            register={passwordValidate}
+          />
           <InputContainer
             label="비밀번호 확인"
             placeholder="비밀번호 재입력"
             type="text"
             value={confirmPasswordValue}
             maxLength={16}
-            error={passwordErros.confirmPassword}
+            checkMsg={passwordErrors.confirmPassword?.message}
+            error={passwordErrors.confirmPassword}
             register={confirmPasswordValidate}
           />
         </S.InputContainer>
@@ -144,6 +156,10 @@ export const ToastWrapper = () => {
 
       <S.ToastWrap>
         <ToastProvider toastKey="failedConfirmEmail">인증코드가 올바르지 않습니다</ToastProvider>
+      </S.ToastWrap>
+
+      <S.ToastWrap>
+        <ToastProvider toastKey="successConfirmEmail">인증 완료</ToastProvider>
       </S.ToastWrap>
     </>
   );
