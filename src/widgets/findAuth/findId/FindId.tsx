@@ -107,6 +107,10 @@ export const ToastWrapper = () => {
       <S.ToastWrap>
         <ToastProvider toastKey="failedConfirmEmail">인증코드가 올바르지 않습니다</ToastProvider>
       </S.ToastWrap>
+
+      <S.ToastWrap>
+        <ToastProvider toastKey="successConfirmEmail">인증 완료</ToastProvider>
+      </S.ToastWrap>
     </>
   );
 };

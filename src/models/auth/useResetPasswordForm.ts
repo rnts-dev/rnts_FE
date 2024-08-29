@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 export const useResetPasswordForm = () => {
@@ -12,6 +13,13 @@ export const useResetPasswordForm = () => {
 
   const passwordValue = watch('password');
   const confirmPasswordValue = watch('confirmPassword');
+
+  useEffect(() => {
+    if (!passwordValue) {
+      return;
+    }
+    trigger('confirmPassword');
+  }, [passwordValue]);
 
   const passwordValidate = {
     ...register('password', {
