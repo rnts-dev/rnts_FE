@@ -1,15 +1,13 @@
-import { getMyAppt } from '@/shared/service/mock/getMyAppointment';
+import { getCustomAppointment } from '@/shared/service/mock/getCustomAppointment';
 import { getAccessToken } from '@/shared/utils/axios/axiosUtils';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 // const BASE_URL = import.meta.env.VITE_RNTS_PUBLIC_API;
 
 if (import.meta.env.MODE === 'mock') {
-  console.log('gㅎㅎ히히히');
-
   const mock = new MockAdapter(axios, { delayResponse: 200 });
 
-  mock.onGet('/api/userappt/myappt').reply(200, getMyAppt);
+  mock.onGet('/api/v1/custom-appointment-types').reply(200, getCustomAppointment);
 }
 
 export const fetcher = axios.create({
@@ -18,7 +16,6 @@ export const fetcher = axios.create({
 });
 
 if (import.meta.env.MODE !== 'mock') {
-  console.log(',.,,,dfsdf??', import.meta.env.VITE_IS_MOCK);
   fetcher.interceptors.request.use((configOrigin) => {
     const config = configOrigin;
     const accessToken = getAccessToken();
