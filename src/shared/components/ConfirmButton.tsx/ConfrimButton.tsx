@@ -12,10 +12,10 @@ const ConfirmButton = (props: ConfirmButton) => {
   const { onConfirm, onCancel, cancelTitle, confirmTitle } = props;
   return (
     <>
-      <Button onClick={onCancel} textColor="#BAC7DA" width={'100%'} colorScheme="#A1B2CA" variant="outline">
+      <Button onClick={onCancel} textColor="#BAC7DA" width={'100%'} height={'70px'} colorScheme="#A1B2CA" variant="outline">
         {cancelTitle || '취소'}
       </Button>
-      <Button onClick={onConfirm} borderColor="#A1B2CA" background="#B0F93C" width={'100%'} colorScheme="#A1B2CA" variant="outline">
+      <Button onClick={onConfirm} borderColor="#A1B2CA" background="#B0F93C" width={'100%'} height={'70px'} colorScheme="#A1B2CA" variant="outline">
         {confirmTitle || '확인'}
       </Button>
     </>

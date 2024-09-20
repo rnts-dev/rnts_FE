@@ -33,7 +33,7 @@ export const TimeInputContainer = () => {
           }}
           className="appointment_create_picker">
           <img src={fiClock} alt="fi_clock" />
-          <p className={appointment.HHMM && 'select'}>{appointment.HHMM ? appointment.HHMM : '오전 10:30'}</p>
+          <p className={appointment.HHMM && 'select'}>{appointment.HHMM ? `${appointment.AmPm} ${appointment.HHMM}` : '오전 10:30'}</p>
         </button>
       </div>
       {
@@ -43,7 +43,7 @@ export const TimeInputContainer = () => {
               <RNTSDatePicker onClose={onClose} />
             </div>
           ) : (
-            <div style={{ height: '300px' }}>
+            <div style={{ height: '336px' }}>
               <RNTSTimePicker onClose={onClose} />
             </div>
           )}
