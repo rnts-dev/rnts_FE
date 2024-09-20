@@ -4,7 +4,7 @@ import { fetcher } from '@/shared/service/fetch';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
-const EMAIL_SEND_API = '/api/v1/public/mail/signUp';
+const EMAIL_SEND_API = '/api/v1/public/mail/sign-up';
 
 export const useEmailSend = (setIsSendEmail: (arg0: boolean) => void) => {
   const showToast = useToast();

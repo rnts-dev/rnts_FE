@@ -2,7 +2,7 @@ import { fetcher } from '@/shared/service/fetch';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-const RESET_PASSWORD_API = '/api/v1/public/resetPassword';
+const RESET_PASSWORD_API = '/api/v1/public/password/change';
 
 export const useResetPassword = () => {
   const navigate = useNavigate();

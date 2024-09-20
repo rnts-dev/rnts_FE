@@ -2,7 +2,7 @@ import useToast from '@/shared/hooks/useToast';
 import { fetcher } from '@/shared/service/fetch';
 import { useMutation } from '@tanstack/react-query';
 
-const CONFIRM_REQUEST_PASSWORD_RESET_API = '/api/v1/public/requestPasswordReset';
+const CONFIRM_REQUEST_PASSWORD_RESET_API = '/api/v1/public/password/code';
 
 export const useRequestPasswordReset = (setIsConfirmEmail: (arg0: boolean) => void, setPasswordToken: (token: string) => void) => {
   const showToast = useToast();

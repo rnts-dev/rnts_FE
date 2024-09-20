@@ -11,10 +11,10 @@ export const useEmailSendRecovery = (setIsSendEmail: (arg0: boolean) => void) =>
 
   return useMutation({
     mutationKey: [EMAIL_SEND_API],
-    mutationFn: (mail: string) => fetcher.post(EMAIL_SEND_API, { mail }),
+    mutationFn: (mail: string) => fetcher.post(`${EMAIL_SEND_API}`, { mail }),
 
     onSuccess: () => {
-      showToast('sendEmail');
+      showToast('successSendEmail');
       setIsSendEmail(true);
     },
 

@@ -3,7 +3,7 @@ import { fetcher } from '@/shared/service/fetch';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
-const EXIST_LOGIN_ID_VALIDATE_API = '/api/v1/public/existedLoginId';
+const EXIST_LOGIN_ID_VALIDATE_API = '/api/v1/public/member/check-id';
 
 export const useExistLoginIdValidate = (setIsValidId: (arg0: boolean) => void) => {
   const showToast = useToast();
