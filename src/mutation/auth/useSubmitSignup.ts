@@ -5,23 +5,23 @@ import { useNavigate } from 'react-router-dom';
 
 interface SignupData {
   loginId: string;
-  email: string;
+  mail: string;
   password: string;
   name: string;
   nickname: string;
   birth: string;
 }
 
-const SIGNUP_API = '/api/v1/public/members';
+const SIGNUP_API = '/api/v1/public/member';
 
 export const useSubmitSignup = () => {
   const navigate = useNavigate();
   return useMutation({
     mutationKey: [SIGNUP_API],
     mutationFn: (data: SignupData) => {
-      const { loginId, email, password, name, nickname, birth } = data;
+      const { loginId, mail, password, name, nickname, birth } = data;
 
-      return fetcher.post(SIGNUP_API, { loginId, email, password, name, nickname, birth });
+      return fetcher.post(SIGNUP_API, { loginId, mail, password, name, nickname, birth });
     },
 
     onSuccess: () => {

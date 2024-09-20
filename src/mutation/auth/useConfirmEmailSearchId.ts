@@ -2,7 +2,7 @@ import useToast from '@/shared/hooks/useToast';
 import { fetcher } from '@/shared/service/fetch';
 import { useMutation } from '@tanstack/react-query';
 
-const CONFIRM_EMAIL_API = '/api/v1/public/searchId';
+const CONFIRM_EMAIL_API = '/api/v1/public/member/search-id';
 
 export const useConfirmEmailSearchId = (setIsConfirmEmail: (arg0: boolean) => void, setFindId: (findId: string) => void) => {
   const showToast = useToast();

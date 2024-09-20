@@ -121,7 +121,7 @@ const ToastWrapper = () => {
         <ToastProvider toastKey="isExistEmail">이미 등록된 이메일이에요</ToastProvider>
       </S.ToastWrap>
       <S.ToastWrap>
-        <ToastProvider toastKey="serverError">서버가 점검중입니다</ToastProvider>
+        <ToastProvider toastKey="serverError">서버를 점검중입니다</ToastProvider>
       </S.ToastWrap>
       <S.ToastWrap>
         <ToastProvider toastKey="successConfirmEmail">이메일 인증 완료!</ToastProvider>
