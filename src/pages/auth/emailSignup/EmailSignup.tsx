@@ -33,7 +33,7 @@ const EmailSignup = () => {
   const { mutate: submitSignup } = useSubmitSignup();
 
   const handleSubmitSignup = () => {
-    submitSignup({ loginId: idValue, email: emailValue, password: passwordValue, name: nicknameValue, nickname: nicknameValue, birth: '1996-09-17' });
+    submitSignup({ loginId: idValue, mail: emailValue, password: passwordValue, name: nicknameValue, nickname: nicknameValue, birth: '1996-09-17' });
   };
 
   const handleBack = () => {

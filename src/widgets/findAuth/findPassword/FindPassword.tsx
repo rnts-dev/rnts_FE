@@ -165,6 +165,10 @@ export const ToastWrapper = () => {
       <S.ToastWrap>
         <ToastProvider toastKey="successConfirmEmail">인증 완료</ToastProvider>
       </S.ToastWrap>
+
+      <S.ToastWrap>
+        <ToastProvider toastKey="serverError">서버를 점검중입니다</ToastProvider>
+      </S.ToastWrap>
     </>
   );
 };
