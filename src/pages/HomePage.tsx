@@ -1,6 +1,9 @@
 import fiClock from '@/assets/fiClock.svg';
 import fiMapFin from '@/assets/fiMapFin.svg';
+import ClipBoardBox from '@/shared/components/ClipBoardBox/ClipBoardBox';
 import ConfirmButton from '@/shared/components/ConfirmButton.tsx/ConfrimButton';
+import CopyBox from '@/shared/components/CopyBox/CopyBox';
+import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
 import { fetcher } from '@/shared/service/fetch';
 import { getAccessToken } from '@/shared/utils/axios/axiosUtils';
 import { Timeline } from '@/widgets/appointment';
@@ -84,51 +87,27 @@ const HomePage = () => {
           <ModalOverlay />
 
           <ModalContent>
-            <div className="header">
+            <div className="header" style={{ marginBottom: '-20px' }}>
               <p className="title">초대 링크를 생성했어요</p>
               <p className="description">복사해서 초대할 친구에게 보내 주세요!</p>
             </div>
 
-            <ModalBody>
-              <div style={{ display: 'flex' }}>
-                {CREAT_URL}
-                <Button
-                  onClick={() => {
-                    navigator.clipboard.writeText(CREAT_URL);
-                  }}>
-                  복사
-                </Button>
-              </div>
-            </ModalBody>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <ModalBody>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <ClipBoardBox text={CREAT_URL} />
+                  <CopyBox
+                    text="복사"
+                    onClick={() => {
+                      navigator.clipboard.writeText(CREAT_URL);
+                    }}
+                  />
+                </div>
+              </ModalBody>
 
-            <div>
-              <button
-                style={{
-                  width: '100%',
-                  height: '36px',
-                  paddingLeft: 36,
-                  paddingRight: 36,
-                  paddingTop: 12,
-                  paddingBottom: 12,
-                  background: '#B0F93C',
-                  borderRadius: 8,
-                  overflow: 'hidden',
-                  border: '1px #A1B2CA solid',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: 26,
-                  display: 'inline-flex',
-                  textAlign: 'center',
-                  color: 'black',
-                  fontSize: 14,
-                  fontFamily: 'Pretendard',
-                  fontWeight: '500',
-                  lineHeight: 20,
-                  wordWrap: 'break-word',
-                }}
-                onClick={() => setModal('')}>
-                확인
-              </button>
+              <div style={{ padding: '0px 22px 22px' }}>
+                <PrimaryShinBtn text="확인" onClick={() => setModal('')} />
+              </div>
             </div>
           </ModalContent>
         </Modal>
