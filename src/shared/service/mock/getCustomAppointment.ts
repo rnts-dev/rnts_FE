@@ -1,4 +1,4 @@
-export const getMyAppt = [
+export const getCustomAppointment = [
   {
     id: 1,
     typeName: '커스텀1',

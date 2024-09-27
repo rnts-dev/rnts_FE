@@ -1,4 +1,5 @@
 export { AddAppointmentBtn } from './addAppointmentBtn/AddAppointmentBtn';
+export { AppointmentTendencyGrid } from './appointmentTendencyGrid/AppointmentTendencyGrid';
 export { AppointmentCard } from './card/AppointmentCard';
 export { ConfirmBtn } from './confirmBtn/ConfirmBtn';
 export { ConfirmButton2 } from './confirmBtn/ConfirmBtn2';
