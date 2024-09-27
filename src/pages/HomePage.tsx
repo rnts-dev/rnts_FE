@@ -1,9 +1,10 @@
 import fiClock from '@/assets/fiClock.svg';
 import fiMapFin from '@/assets/fiMapFin.svg';
 import ClipBoardBox from '@/shared/components/ClipBoardBox/ClipBoardBox';
-import ConfirmButton from '@/shared/components/ConfirmButton.tsx/ConfrimButton';
+import ConfirmButton from '@/shared/components/ConfirmButton/ConfrimButton';
 import CopyBox from '@/shared/components/CopyBox/CopyBox';
 import PrimaryShinBtn from '@/shared/components/PrimaryShinBtn/PrimaryShinBtn';
+
 import { fetcher } from '@/shared/service/fetch';
 import { getAccessToken } from '@/shared/utils/axios/axiosUtils';
 import { Timeline } from '@/widgets/appointment';

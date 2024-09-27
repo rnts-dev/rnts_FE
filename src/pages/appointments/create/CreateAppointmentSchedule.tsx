@@ -11,15 +11,16 @@ const CreateAppointmentSchedule = () => {
   const navigate = useNavigate();
   const appointment = useAtomValue(AppointmentState);
   const isComplete = appointment.place && appointment.YYMMDD && appointment.HHMM;
+
   const onClickConfirmBtn = async () => {
     const appointmentId = await fetcher
       .post('/api/appointment/', {
         title: appointment.name,
         appointmentType: appointment.appointmentType,
         time: convertToISOString(appointment.YYMMDD, appointment.HHMM),
-        place: appointment.place,
-        latitude: appointment.latitude,
-        longitude: appointment.longitude,
+        place: appointment.place || '',
+        latitude: appointment.latitude || 37,
+        longitude: appointment.longitude || 127,
       })
       .then((res: any) => res.data);
 
@@ -32,7 +33,7 @@ const CreateAppointmentSchedule = () => {
       <TimeInputContainer />
       <Description title="약속 장소" description="모일 장소를 선택하세요." />
       <PlaceSettingButton onclick={() => navigate('/appointment/create/place')} />
-      <ConfirmBtn isComplete={!!isComplete} onClick={() => onClickConfirmBtn()} title="완료" />
+      <ConfirmBtn isComplete={!!isComplete} onClick={onClickConfirmBtn} title="완료" />
     </PagePadding>
   );
 };
