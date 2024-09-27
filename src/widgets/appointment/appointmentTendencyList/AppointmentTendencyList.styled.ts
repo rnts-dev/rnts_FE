@@ -4,8 +4,13 @@ export const AppointmentTendencyList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
   margin-top: 50px;
+
+  > span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 export const AppointmentTendencyListGrid = styled.div`

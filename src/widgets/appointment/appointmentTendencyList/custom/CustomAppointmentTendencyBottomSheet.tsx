@@ -9,7 +9,10 @@ import ioThunderWhite from '@/assets/ioThunderWhite.svg';
 import { AppointmentTendencyGrid, ConfirmButton2, Description } from '@/components/appointment';
 import Input from '@/shared/components/Input/Input';
 import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide/RNTSBottomSlide';
+import { postCustomAppointment } from '@/shared/service/appointment/type/postCustomAppointment';
 import { CustomAppointmentTypeState } from '@/shared/store/atoms/customAppointmentType';
+import { pick } from '@fxts/core';
+import { useMutation } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import * as S from './CustomAppointmentTendencyBottomSheet.styled';
 
@@ -19,15 +22,22 @@ interface CustomAppointmentTendency {
 }
 
 const customAppointmentTypeMeta = [
-  { src: ioRestaurant, selectedSrc: ioRestaurantWhite, typeName: '1' },
-  { src: ioHobby, selectedSrc: ioHobbyWhite, typeName: '2' },
-  { src: ioThunder, selectedSrc: ioThunderWhite, typeName: '3' },
-  { src: ioClass, selectedSrc: ioClassWhite, typeName: '4' },
+  { imageUrl: ioRestaurant, selectedImageUrl: ioRestaurantWhite, typeName: '1' },
+  { imageUrl: ioHobby, selectedImageUrl: ioHobbyWhite, typeName: '2' },
+  { imageUrl: ioThunder, selectedImageUrl: ioThunderWhite, typeName: '3' },
+  { imageUrl: ioClass, selectedImageUrl: ioClassWhite, typeName: '4' },
 ];
 
 export const CustomAppointmentTendencyBottomSheet = (props: CustomAppointmentTendency) => {
   const { isOpen, onClose } = props;
   const [customAppointmentType, setCustomAppointmentType] = useAtom(CustomAppointmentTypeState);
+
+  const { mutate } = useMutation({
+    mutationFn: (data: { id: string; imageUrl: string; typeName: string }) => {
+      const body = pick(['imageUrl', 'typeName'], data);
+      return postCustomAppointment(body);
+    },
+  });
 
   const handleSelectTendency = (selectedKey: string) => {
     setCustomAppointmentType((prev) => {
@@ -49,20 +59,23 @@ export const CustomAppointmentTendencyBottomSheet = (props: CustomAppointmentTen
   };
 
   const handleConfirm = () => {
-    console.log('APITODO : 커스텀 유형 POST', customAppointmentType);
+    mutate(customAppointmentType);
     onClose();
   };
 
   return (
     <RNTSBottomSlide isOpen={isOpen} onClose={onClose}>
-      <S.CustomAppointmentTendency>
-        <Description title="아이콘 선택" description="약속 유형을 나타낼 아이콘을 선택하세요." />
+      <S.Container>
+        <S.InputGroup>
+          <Description title="아이콘 선택" description="약속 유형을 나타낼 아이콘을 선택하세요." />
+          <AppointmentTendencyGrid tendencyList={customAppointmentTypeMeta} selectedItem={customAppointmentType.id} onSelect={handleSelectTendency} />
+        </S.InputGroup>
 
-        <AppointmentTendencyGrid tendencyList={customAppointmentTypeMeta} selectedItem={customAppointmentType.id} onSelect={handleSelectTendency} />
-
-        <Description title="유형 이름" description="유형 이름을 정해 주세요." />
-        <Input value={customAppointmentType.typeName ? customAppointmentType.typeName : ''} placeholder="띄어쓰기 포함 최대 6자 이내" onChange={handleAppointmentTendencyName} />
-      </S.CustomAppointmentTendency>
+        <S.InputGroup>
+          <Description title="유형 이름" description="유형 이름을 정해 주세요." />
+          <Input value={customAppointmentType.typeName ? customAppointmentType.typeName : ''} placeholder="띄어쓰기 포함 최대 6자 이내" onChange={handleAppointmentTendencyName} />
+        </S.InputGroup>
+      </S.Container>
 
       <ConfirmButton2 onConfirm={handleConfirm} onCancel={onClose} />
     </RNTSBottomSlide>

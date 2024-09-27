@@ -1,4 +1,4 @@
-export const getMyAppt = [
+export const postCustomAppointment = [
   {
     id: 4,
     typeName: '커스텀4',

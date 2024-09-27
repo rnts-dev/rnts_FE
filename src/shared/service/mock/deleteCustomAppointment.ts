@@ -1,3 +1,3 @@
-export const getMyAppt = {
+export const deleteCustomAppointment = {
   result: 'success!',
 };

@@ -12,7 +12,6 @@ const CreateAppointmentSchedule = () => {
   const appointment = useAtomValue(AppointmentState);
   const isComplete = appointment.place && appointment.YYMMDD && appointment.HHMM;
 
-  // TODO : 수정
   const onClickConfirmBtn = async () => {
     const appointmentId = await fetcher
       .post('/api/appointment/', {
@@ -32,11 +31,9 @@ const CreateAppointmentSchedule = () => {
     <PagePadding>
       <CreateHeader title="약속 시간" description="약속 시간을 선택하세요." />
       <TimeInputContainer />
-
       <Description title="약속 장소" description="모일 장소를 선택하세요." />
       <PlaceSettingButton onclick={() => navigate('/appointment/create/place')} />
-
-      <ConfirmBtn isComplete={true} onClick={onClickConfirmBtn} title="완료" />
+      <ConfirmBtn isComplete={!!isComplete} onClick={onClickConfirmBtn} title="완료" />
     </PagePadding>
   );
 };

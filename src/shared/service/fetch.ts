@@ -1,4 +1,5 @@
 import { getCustomAppointment } from '@/shared/service/mock/getCustomAppointment';
+import { postCustomAppointment } from '@/shared/service/mock/postCustomAppointment';
 import { getAccessToken } from '@/shared/utils/axios/axiosUtils';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -8,6 +9,7 @@ if (import.meta.env.MODE === 'mock') {
   const mock = new MockAdapter(axios, { delayResponse: 200 });
 
   mock.onGet('/api/v1/custom-appointment-types').reply(200, getCustomAppointment);
+  mock.onPost('/api/v1/custom-appointment-type').reply(200, postCustomAppointment);
 }
 
 export const fetcher = axios.create({
