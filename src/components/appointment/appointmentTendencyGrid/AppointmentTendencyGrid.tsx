@@ -17,14 +17,15 @@ import { editCustomAppointment } from '@/mutation/appointment/editCustomAppointm
 interface AppointmentTendencyGrid<T> {
   tendencyList: Array<T>;
   selectedItem: string;
-  onSelect: (selectedKey: string, imageUrl: string, selectedImageUrl: string) => any;
+  onSelectSendName?: (selectedKey: string, sendName: string, id: number) => void;
+  onSelect?: (selectedKey: string, imageUrl: string, selectedImageUrl: string, sendName: string) => any;
   type?: 'DETAIL';
   refetchAppointmentType: () => void;
 }
 
 export const AppointmentTendencyGrid = <T extends { typeName: string; selectedImageUrl: string; imageUrl: string; isCustom?: boolean }>(props: AppointmentTendencyGrid<T>) => {
   const [_, setModal] = useAtom(modalState);
-  const { tendencyList, selectedItem, onSelect, type, refetchAppointmentType } = props;
+  const { tendencyList, selectedItem, onSelect, type, refetchAppointmentType, onSelectSendName } = props;
   const [customAppointmentType, _setCustomAppointmentType] = useAtom(CustomAppointmentTypeState);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -33,7 +34,8 @@ export const AppointmentTendencyGrid = <T extends { typeName: string; selectedIm
   const [tendencyId, setTendencyId] = useState<number>(0);
 
   const handleChangeAppointmentTendency = (item: any) => {
-    onSelect(item.typeName, item.imageUrl, item.selectedImageUrl);
+    onSelect && onSelect(item.typeName, item.imageUrl, item.selectedImageUrl, item.sendName);
+    onSelectSendName && onSelectSendName(item.typeName, item.sendName, item.id);
     setCustomAppointmentChange(undefined);
   };
 
@@ -51,7 +53,6 @@ export const AppointmentTendencyGrid = <T extends { typeName: string; selectedIm
     setModal('appointmentDelete');
   };
 
-  //TODO: custom appointment Edit --> Modal & API connecting
   const onClickEditIcon = (appointmentId: number) => {
     onSelectTendency(appointmentId);
     setModal('appointmentEdit');
@@ -78,7 +79,6 @@ export const AppointmentTendencyGrid = <T extends { typeName: string; selectedIm
                 <S.AppointmentTendencyIconAddon
                   onClick={() => {
                     customAppointmentChange === 'DELETE' ? onClickDeleteIcon(item.id) : onClickEditIcon(item.id);
-                    // e.stopPropagation();
                   }}>
                   {customAppointmentChange === 'DELETE' ? (
                     <img src={IoRemove} />
@@ -98,7 +98,7 @@ export const AppointmentTendencyGrid = <T extends { typeName: string; selectedIm
       </S.AppointmentTendencyListGrid>
 
       <DeleteCustomAppointmentModal appointmentId={tendencyId} refetchAppointmentType={refetchAppointmentType} />
-      <EditCustomAppointment appointmentId={tendencyId} refetchAppointmentType={refetchAppointmentType} onClickConfirm={onClickEditBtn} />
+      <EditCustomAppointment onClickConfirm={onClickEditBtn} />
 
       <CustomAppointmentTendencyBottomSheet
         isOpen={isOpen}

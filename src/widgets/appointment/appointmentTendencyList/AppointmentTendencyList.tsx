@@ -28,13 +28,13 @@ import * as S from './AppointmentTendencyList.styled';
 
 // TODO : 동적으로 변함
 const appointmentTendencyData = [
-  { imageUrl: ioRestaurant, selectedImageUrl: ioRestaurantWhite, typeName: '식사' },
-  { imageUrl: ioHobby, selectedImageUrl: ioHobbyWhite, typeName: '취미' },
+  { imageUrl: ioRestaurant, selectedImageUrl: ioRestaurantWhite, typeName: '식사', sendName: 'MEAL' },
+  { imageUrl: ioHobby, selectedImageUrl: ioHobbyWhite, typeName: '취미', sendName: 'HOBBY' },
   { imageUrl: ioThunder, selectedImageUrl: ioThunderWhite, typeName: '모임' },
-  { imageUrl: ioClass, selectedImageUrl: ioClassWhite, typeName: '스터디' },
+  { imageUrl: ioClass, selectedImageUrl: ioClassWhite, typeName: '스터디', sendName: 'STUDY' },
   { imageUrl: ioFamliy, selectedImageUrl: ioFamliyWhite, typeName: '가족' },
   { imageUrl: ioDate, selectedImageUrl: ioDateWhite, typeName: '데이트' },
-  { imageUrl: checkbox, selectedImageUrl: checkbox, typeName: '기타' },
+  { imageUrl: checkbox, selectedImageUrl: checkbox, typeName: '기타', sendName: 'DEFAULT' },
   { imageUrl: addIcon, selectedImageUrl: addIcon, typeName: 'custom' },
 ];
 
@@ -51,14 +51,18 @@ export const AppointmentTendencyList = () => {
     refetchOnReconnect: true,
   });
 
-  const handleSelectTendency = (selectedKey: string) => {
+  const handleSelectTendency = (selectedKey: string, sendName: string, id: number) => {
     if (selectedKey === 'custom') {
       onOpen();
     }
+    console.log('selectedKey', selectedKey);
+    console.log('appointment', appointment);
     setAppointment((prev) => {
       return {
         ...prev,
         appointmentType: selectedKey || 'custom',
+        sendName,
+        customAppointmentTypeId: id,
       };
     });
   };
@@ -103,7 +107,7 @@ export const AppointmentTendencyList = () => {
         <AppointmentTendencyGrid
           tendencyList={concatTendencyList}
           selectedItem={appointment.appointmentType}
-          onSelect={handleSelectTendency}
+          onSelectSendName={handleSelectTendency}
           type="DETAIL"
           refetchAppointmentType={refetchAppointmentType}
         />

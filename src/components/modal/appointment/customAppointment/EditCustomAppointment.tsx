@@ -3,22 +3,13 @@ import { Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chak
 import redCaution from '@/assets/redCaution.svg';
 import { modalState } from '@/shared/store/atoms/modal';
 import { useAtom } from 'jotai';
-import { editCustomAppointment } from '@/mutation/appointment/editCustomAppointment';
 
 interface Props {
-  appointmentId: number;
-  refetchAppointmentType: () => void;
   onClickConfirm?: () => void;
 }
 
-const EditCustomAppointment = ({ appointmentId, refetchAppointmentType, onClickConfirm }: Props) => {
+const EditCustomAppointment = ({ onClickConfirm }: Props) => {
   const [modal, setModal] = useAtom(modalState);
-  const { mutate: editCustomAppointmentMutate } = editCustomAppointment(refetchAppointmentType);
-
-  const onClickEditBtn = (appointmentId: number) => {
-    editCustomAppointmentMutate(appointmentId);
-    setModal('');
-  };
 
   return (
     <Modal isOpen={modal === 'appointmentEdit'} onClose={() => setModal('')} size="sm" isCentered>

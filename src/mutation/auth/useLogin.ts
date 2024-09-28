@@ -18,9 +18,9 @@ export const useLogin = () => {
     },
 
     onSuccess: (data: { data: { Authorization: string }; headers: { authorization: string } }) => {
-      console.log('data.headers', data.headers);
       const token = data.headers.authorization.split(' ')[1];
       localStorage.setItem('ACCESS_TOKEN', token);
+
       navigate('/');
     },
 

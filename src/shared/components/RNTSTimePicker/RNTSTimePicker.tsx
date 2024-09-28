@@ -17,8 +17,8 @@ const RNTSTimePicker = ({ onClose }: Props) => {
   const [hour, setHour] = useState(1);
   const [minute, setMinute] = useState(5);
 
-  const handleChangeAmPm = (type: 'am' | 'pm') => {
-    type === 'am' ? setAmPmIndicator('오전') : setAmPmIndicator('오후');
+  const handleChangeAmPm = () => {
+    amPmIndicator === '오전' ? setAmPmIndicator('오후') : setAmPmIndicator('오전');
   };
 
   const onInputChangeHour = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,9 +100,9 @@ const RNTSTimePicker = ({ onClose }: Props) => {
     <S.TimePickerWrap>
       <S.TimePickerContainer>
         <S.SelectContainer>
-          <ArrowBox arrowImg={arrowUp} onClick={() => handleChangeAmPm('am')} />
+          <ArrowBox arrowImg={arrowUp} onClick={() => handleChangeAmPm()} />
           <p>{amPmIndicator}</p>
-          <ArrowBox arrowImg={arrowBottom} onClick={() => handleChangeAmPm('pm')} />
+          <ArrowBox arrowImg={arrowBottom} onClick={() => handleChangeAmPm()} />
         </S.SelectContainer>
 
         <S.TimeContainer>

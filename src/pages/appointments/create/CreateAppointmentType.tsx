@@ -16,7 +16,7 @@ const CreateAppointmentType = () => {
       return {
         ...prev,
         name: '',
-        appointmentType: '식사',
+        appointmentType: 'DEFAULT',
         YYMMDD: '',
         HHMM: '',
         place: '',

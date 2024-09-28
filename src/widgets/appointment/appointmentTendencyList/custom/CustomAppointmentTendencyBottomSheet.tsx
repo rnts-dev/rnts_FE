@@ -36,7 +36,6 @@ export const CustomAppointmentTendencyBottomSheet = (props: CustomAppointmentTen
 
   const { mutate } = useMutation({
     mutationFn: (data: { id: string; imageUrl: string; typeName: string }) => {
-      console.log('data', data);
       const body = pick(['imageUrl', 'typeName'], data);
       return postCustomAppointment(body);
     },

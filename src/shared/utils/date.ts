@@ -8,7 +8,7 @@ export function formatDate(dateString: string): string {
   return `${year}-${month}-${day}`;
 }
 
-export function formatDateForAppointmentCard(dateString: Date) {
+export function formatDateForAppointmentCard(dateString: string) {
   const date = new Date(dateString);
   const month = date.toLocaleString('default', { month: 'long' });
   const day = date.getDate();
@@ -21,15 +21,16 @@ export function formatDateForAppointmentCard(dateString: Date) {
   return `${month} ${day}일 (${dayOfWeek}) ${ampm} ${hourFormat}시 ${minutes}분`;
 }
 
-export function convertToISOString(YYMMDD: string, HHMM: string): string {
+export function convertToISOString(YYMMDD: string, AmPm: string, HHMM: string): string {
   const [year, month, day] = YYMMDD.split('-').map(Number);
   const [hour, minute] = HHMM.split(':').map(Number);
+  const adjustedHour = AmPm === '오전' ? hour + 0 : hour + 12;
   const date = moment()
     .utc()
     .year(year)
     .month(month - 1)
     .date(day)
-    .hour(hour)
+    .hour(adjustedHour)
     .minute(minute)
     .second(0);
 

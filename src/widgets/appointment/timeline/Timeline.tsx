@@ -4,19 +4,17 @@ import ioFamliy from '@/assets/ioFamliy.svg';
 import ioHobby from '@/assets/iohobby.svg';
 import ioRestaurant from '@/assets/ioRestaurant.svg';
 import ioThunder from '@/assets/ioThunder.svg';
-
-import { Appointment } from '@/shared/utils/types/appointment.types';
 import { Step, StepIndicator, Stepper, StepSeparator, StepStatus, useSteps } from '@chakra-ui/react';
-
 import './timeline.scss';
 import { createFlagAppointment, createFlagTextAppointment } from '@/models/appointment/mappingTimeline';
 import { AppointmentCard } from '@/components/appointment';
+import { MyAppointment } from '@/shared/utils/types/appointment.types';
 
 const appointmentTendencyData = [
-  { src: ioRestaurant, title: '식사' },
-  { src: ioHobby, title: '취미' },
+  { src: ioRestaurant, title: 'MEAL' },
+  { src: ioHobby, title: 'HOBBY' },
   { src: ioThunder, title: '모임' },
-  { src: ioClass, title: '스터디' },
+  { src: ioClass, title: 'STUDY' },
   { src: ioFamliy, title: '가족' },
   { src: ioDate, title: '데이트' },
 ];
@@ -33,7 +31,7 @@ export function Circle({ title }: { title: string }) {
 interface TimelineProps {
   isFlag?: boolean;
   isHome?: boolean;
-  appointmentList: Appointment[];
+  appointmentList: MyAppointment[];
 }
 
 export function Timeline({ isFlag, isHome, appointmentList }: TimelineProps) {
@@ -42,12 +40,12 @@ export function Timeline({ isFlag, isHome, appointmentList }: TimelineProps) {
     count: appointmentList.length,
   });
 
-  createFlagTextAppointment(appointmentList);
-  createFlagAppointment(appointmentList);
+  const appointmentFlagTextList = createFlagTextAppointment(appointmentList);
+  const appointmentFlagList = createFlagAppointment(appointmentFlagTextList);
 
   return (
     <Stepper index={activeStep} orientation="vertical" height="400px" gap="0" className="chakra_stepper_container">
-      {appointmentList.map((step, index) => (
+      {appointmentFlagList.map((step, index) => (
         <Step key={index}>
           {step.flag && isFlag && (
             <div className="flag">
@@ -56,12 +54,12 @@ export function Timeline({ isFlag, isHome, appointmentList }: TimelineProps) {
             </div>
           )}
           <StepIndicator className="indicator">
-            <StepStatus complete={<Circle title={step.apType} />} incomplete={<Circle title={step.apType} />} active={<Circle title={step.apType} />} />
+            <StepStatus complete={<Circle title={step.appointmentType} />} incomplete={<Circle title={step.appointmentType} />} active={<Circle title={step.appointmentType} />} />
           </StepIndicator>
           {isHome ? (
-            <AppointmentCard isCheckinBtn isShared title={step.apTitle} profileImgList={step.imageUrl} place={step.apPlace} time={step.apTime} uaid={step.uaid} />
+            <AppointmentCard isCheckinBtn isShared title={step.title} place={step.place} time={step.appointmentTime} uaid={step.id} />
           ) : (
-            <AppointmentCard title={step.apTitle} profileImgList={step.imageUrl} place={step.apPlace} time={step.apTime} uaid={step.uaid} />
+            <AppointmentCard title={step.title} place={step.place} time={step.appointmentTime} uaid={step.id} />
           )}
 
           <StepSeparator className="separator" />
