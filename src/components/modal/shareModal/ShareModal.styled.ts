@@ -1,4 +1,7 @@
-.header {
+import styled from 'styled-components';
+
+export const Header = styled.div`
+  margin-bottom: -20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +13,7 @@
     align-self: 'stretch';
     text-align: 'center';
     color: 'black';
-    font-size: 20px;
+    font-size: 20;
     font-family: 'Pretendard';
     font-weight: 600;
     line-height: 28px;
@@ -27,4 +30,19 @@
     line-height: 24px; /* 150% */
     letter-spacing: -0.6px;
   }
-}
+`;
+
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const LinkCopy = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const BtnLayout = styled.div`
+  padding: 0px 22px 22px;
+`;

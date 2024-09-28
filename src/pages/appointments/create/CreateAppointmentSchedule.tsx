@@ -1,5 +1,5 @@
 import { ConfirmBtn, Description } from '@/components/appointment';
-import { fetcher } from '@/shared/service/fetch';
+import { createAppointment } from '@/mutation/appointment/createAppointment';
 import { AppointmentState } from '@/shared/store/atoms/appointment';
 import { convertToISOString } from '@/shared/utils/date';
 import { PagePadding } from '@/widgets/appointment';
@@ -9,22 +9,25 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateAppointmentSchedule = () => {
   const navigate = useNavigate();
+  const { mutate: createAppointmentMutate } = createAppointment();
   const appointment = useAtomValue(AppointmentState);
   const isComplete = appointment.place && appointment.YYMMDD && appointment.HHMM;
 
-  const onClickConfirmBtn = async () => {
-    const appointmentId = await fetcher
-      .post('/api/appointment/', {
-        title: appointment.name,
-        appointmentType: appointment.appointmentType,
-        time: convertToISOString(appointment.YYMMDD, appointment.HHMM),
-        place: appointment.place || '',
-        latitude: appointment.latitude || 37,
-        longitude: appointment.longitude || 127,
-      })
-      .then((res: any) => res.data);
-
-    await navigate(`/?id=${appointmentId}`);
+  const onClickConfirmBtn = () => {
+    console.log(appointment.customAppointmentTypeId);
+    createAppointmentMutate({
+      title: appointment.name,
+      // TODO: appintmentType 지현님 작업 완료되면 주석된 코드로 교체하기
+      appointmentType: appointment.sendName,
+      // appointmentType: 'HOBBY',
+      customAppointmentTypeId: appointment.customAppointmentTypeId,
+      appointmentTime: convertToISOString(appointment.YYMMDD, appointment.AmPm, appointment.HHMM),
+      location: {
+        place: appointment.place,
+        latitude: Number(appointment.latitude),
+        longitude: Number(appointment.longitude),
+      },
+    });
   };
 
   return (

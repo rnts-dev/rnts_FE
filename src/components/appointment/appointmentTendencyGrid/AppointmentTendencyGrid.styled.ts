@@ -54,3 +54,18 @@ export const AppointmentTendencyIconAddon = styled.span<{ $selected?: boolean }>
     height: 200%;
   }
 `;
+
+export const EditEllipse = styled.div`
+  position: relative;
+  width: 24px;
+  height: 24px;
+`;
+
+export const EditPencilIcon = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+`;

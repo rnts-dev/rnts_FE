@@ -1,3 +1,5 @@
+import BiTrash from '@/assets/delete/BiTrash.svg';
+import BiPencil from '@/assets/edit/BiPencil.svg';
 import addIcon from '@/assets/addIcon.svg';
 import checkbox from '@/assets/checkbox.svg';
 import ioClass from '@/assets/ioClass.svg';
@@ -24,37 +26,32 @@ import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import * as S from './AppointmentTendencyList.styled';
 
-type AppointmentTendencyData = { src: string; selectedSrc: string; typeName: string };
-interface CustomAppointmentTendencyData extends AppointmentTendencyData {
-  isCustom?: boolean;
-}
-
 // TODO : 동적으로 변함
 const appointmentTendencyData = [
-  { imageUrl: ioRestaurant, selectedImageUrl: ioRestaurantWhite, typeName: '식사' },
-  { imageUrl: ioHobby, selectedImageUrl: ioHobbyWhite, typeName: '취미' },
+  { imageUrl: ioRestaurant, selectedImageUrl: ioRestaurantWhite, typeName: '식사', sendName: 'MEAL' },
+  { imageUrl: ioHobby, selectedImageUrl: ioHobbyWhite, typeName: '취미', sendName: 'HOBBY' },
   { imageUrl: ioThunder, selectedImageUrl: ioThunderWhite, typeName: '모임' },
-  { imageUrl: ioClass, selectedImageUrl: ioClassWhite, typeName: '스터디' },
+  { imageUrl: ioClass, selectedImageUrl: ioClassWhite, typeName: '스터디', sendName: 'STUDY' },
   { imageUrl: ioFamliy, selectedImageUrl: ioFamliyWhite, typeName: '가족' },
   { imageUrl: ioDate, selectedImageUrl: ioDateWhite, typeName: '데이트' },
-  { imageUrl: checkbox, selectedImageUrl: checkbox, typeName: '기타' },
+  { imageUrl: checkbox, selectedImageUrl: checkbox, typeName: '기타', sendName: 'DEFAULT' },
   { imageUrl: addIcon, selectedImageUrl: addIcon, typeName: 'custom' },
 ];
 
 export const AppointmentTendencyList = () => {
   const [appointment, setAppointment] = useAtom(AppointmentState);
-  const [customAppointmentChange, setCustomAppointmentChange] = useAtom(CustomAppointmentChangeMode);
+  const [_, setCustomAppointmentChange] = useAtom(CustomAppointmentChangeMode);
   const { onOpen, onClose, isOpen } = useDisclosure();
   const [concatTendencyList, setConcatTendencyList] = useState(appointmentTendencyData);
 
-  const { data: customTendencyData } = useQuery({
+  const { data: customTendencyData, refetch: refetchAppointmentType } = useQuery({
     queryKey: ['/api/v1/custom-appointment-types'],
     queryFn: () => getCustomAppointment(),
     refetchOnMount: true,
     refetchOnReconnect: true,
   });
 
-  const handleSelectTendency = (selectedKey: string) => {
+  const handleSelectTendency = (selectedKey: string, sendName: string, id: number) => {
     if (selectedKey === 'custom') {
       onOpen();
     }
@@ -62,6 +59,8 @@ export const AppointmentTendencyList = () => {
       return {
         ...prev,
         appointmentType: selectedKey || 'custom',
+        sendName,
+        customAppointmentTypeId: id,
       };
     });
   };
@@ -69,19 +68,22 @@ export const AppointmentTendencyList = () => {
   const popoverBtn = [
     {
       title: '수정',
+      img: BiPencil,
       onClick: () => setCustomAppointmentChange('EDIT'),
     },
     {
       title: '삭제',
+      img: BiTrash,
       onClick: () => setCustomAppointmentChange('DELETE'),
     },
   ];
 
   useEffect(() => {
+    setConcatTendencyList(appointmentTendencyData);
     setConcatTendencyList((prev) => [
       ...prev.slice(0, -1),
       ...(customTendencyData
-        ? customTendencyData.map((item) => ({
+        ? customTendencyData.map((item: any) => ({
             ...item,
             isCustom: true,
           }))
@@ -100,10 +102,10 @@ export const AppointmentTendencyList = () => {
           <MorePopover contentMetaList={popoverBtn} />
         </span>
 
-        <AppointmentTendencyGrid tendencyList={concatTendencyList} selectedItem={appointment.appointmentType} onSelect={handleSelectTendency} type="DETAIL" />
+        <AppointmentTendencyGrid tendencyList={concatTendencyList} selectedItem={appointment} onSelectSendName={handleSelectTendency} type="DETAIL" refetchAppointmentType={refetchAppointmentType} />
       </S.AppointmentTendencyList>
 
-      <CustomAppointmentTendencyBottomSheet isOpen={isOpen} onClose={onClose} />
+      <CustomAppointmentTendencyBottomSheet isOpen={isOpen} onClose={onClose} refetchAppointmentType={refetchAppointmentType} />
     </>
   );
 };

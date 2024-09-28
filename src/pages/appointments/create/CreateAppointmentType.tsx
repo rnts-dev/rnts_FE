@@ -16,7 +16,7 @@ const CreateAppointmentType = () => {
       return {
         ...prev,
         name: '',
-        appointmentType: '식사',
+        appointmentType: 'DEFAULT',
         YYMMDD: '',
         HHMM: '',
         place: '',
@@ -38,14 +38,14 @@ const CreateAppointmentType = () => {
   const isComplete = appointment.name && appointment.appointmentType;
 
   return (
-    <PagePadding>
-      <CreateHeader title="약속 이름" description="약속 이름을 적어 주세요." />
-      <Input value={appointment.name ? appointment.name : ''} placeholder="한글, 영문, 특수문자 포함 최대 8자 이내" onChange={handleAppointmentName} />
-
-      <AppointmentTendencyList />
-
-      <ConfirmBtn isComplete={!!isComplete} onClick={() => navigate('/appointment/create/schedule')} />
-    </PagePadding>
+    <>
+      <PagePadding>
+        <CreateHeader title="약속 이름" description="약속 이름을 적어 주세요." />
+        <Input value={appointment.name ? appointment.name : ''} placeholder="한글, 영문, 특수문자 포함 최대 8자 이내" onChange={handleAppointmentName} />
+        <AppointmentTendencyList />
+        <ConfirmBtn isComplete={!!isComplete} onClick={() => navigate('/appointment/create/schedule')} />
+      </PagePadding>
+    </>
   );
 };
 

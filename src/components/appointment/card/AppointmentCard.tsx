@@ -7,7 +7,6 @@ import { checkinStep } from '@/shared/store/atoms/checkin';
 import { modalState } from '@/shared/store/atoms/modal';
 import { calculrateDistance } from '@/shared/utils/calculator';
 import { formatDateForAppointmentCard } from '@/shared/utils/date';
-import { convertToDate } from '@/models/appointment/mappingTimeline';
 import { useMutation } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
 import { useState } from 'react';
@@ -19,13 +18,13 @@ interface AppoinmentCardProps {
   isShared?: boolean;
   isCheckinBtn?: boolean;
   title: string;
-  profileImgList: string[];
+  profileImgList?: string[];
   place: string;
-  time: number[];
+  time: string;
   uaid: number;
 }
 
-export const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList, place, time, uaid }: AppoinmentCardProps) => {
+export const AppointmentCard = ({ isShared, isCheckinBtn, title, place, time, uaid }: AppoinmentCardProps) => {
   const { location } = useGetLocation();
 
   const onClickCheckin = async () => {
@@ -95,9 +94,9 @@ export const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList,
         </div>
       </div>
       <div className="profile_container">
-        {profileImgList.map((item) => {
+        {/* {profileImgList.map((item) => {
           return <img className="profile" src={item || ''} alt="" />;
-        })}
+        })} */}
       </div>
       <div className="schedule">
         <img src={fiMapFin} alt="dotImg" />
@@ -105,7 +104,7 @@ export const AppointmentCard = ({ isShared, isCheckinBtn, title, profileImgList,
       </div>
       <div className="schedule">
         <img src={fiClock} alt="dotImg" />
-        <p>{String(formatDateForAppointmentCard(convertToDate(time)))}</p>
+        <p>{String(formatDateForAppointmentCard(time.toString()))}</p>
       </div>
       {isCheckinBtn && (
         <div className="appointment_card_checkin_btn_wrap">

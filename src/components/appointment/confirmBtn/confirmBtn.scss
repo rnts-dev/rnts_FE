@@ -1,5 +1,5 @@
 .appointment_create_confirm_btn {
-  width: 100%;
+  width: calc(100% - 48px);
   display: flex;
   height: 70px;
   padding: 25px 70px;
@@ -10,6 +10,10 @@
   border-radius: 10px;
   border: 1px solid var(--System-Color-gray-500, #bac7da);
   background: var(--System-Color-gray-200, #eef1f6);
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
 
   &.select {
     border-radius: 10px;

@@ -12,14 +12,15 @@ export const useLogin = () => {
 
   return useMutation({
     mutationKey: [EMAIL_LOGIN_API],
-    mutationFn: (data: { loginId: string; password: string }): Promise<{ data: { Authorization: string } }> => {
+    mutationFn: (data: { loginId: string; password: string }): Promise<{ data: { Authorization: string }; headers: { authorization: string } }> => {
       const { loginId, password } = data;
       return fetcher.post(EMAIL_LOGIN_API, { loginId, password });
     },
 
-    onSuccess: (data: { data: { Authorization: string } }) => {
-      const { Authorization } = data.data;
-      localStorage.setItem('ACCESS_TOKEN', Authorization);
+    onSuccess: (data: { data: { Authorization: string }; headers: { authorization: string } }) => {
+      const token = data.headers.authorization.split(' ')[1];
+      localStorage.setItem('ACCESS_TOKEN', token);
+
       navigate('/');
     },
 
