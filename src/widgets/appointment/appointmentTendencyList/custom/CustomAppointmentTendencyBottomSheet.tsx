@@ -20,6 +20,7 @@ interface CustomAppointmentTendency {
   isOpen: boolean;
   refetchAppointmentType: () => void;
   onClose: () => void;
+  onClickConfirmBtn?: () => void;
 }
 
 const customAppointmentTypeMeta = [
@@ -30,7 +31,7 @@ const customAppointmentTypeMeta = [
 ];
 
 export const CustomAppointmentTendencyBottomSheet = (props: CustomAppointmentTendency) => {
-  const { isOpen, onClose, refetchAppointmentType } = props;
+  const { isOpen, onClose, refetchAppointmentType, onClickConfirmBtn } = props;
   const [customAppointmentType, setCustomAppointmentType] = useAtom(CustomAppointmentTypeState);
 
   const { mutate } = useMutation({
@@ -83,7 +84,7 @@ export const CustomAppointmentTendencyBottomSheet = (props: CustomAppointmentTen
         </S.InputGroup>
       </S.Container>
 
-      <ConfirmButton2 onConfirm={handleConfirm} onCancel={onClose} />
+      <ConfirmButton2 onConfirm={onClickConfirmBtn || handleConfirm} onCancel={onClose} />
     </RNTSBottomSlide>
   );
 };
