@@ -55,8 +55,6 @@ export const AppointmentTendencyList = () => {
     if (selectedKey === 'custom') {
       onOpen();
     }
-    console.log('selectedKey', selectedKey);
-    console.log('appointment', appointment);
     setAppointment((prev) => {
       return {
         ...prev,
@@ -104,13 +102,7 @@ export const AppointmentTendencyList = () => {
           <MorePopover contentMetaList={popoverBtn} />
         </span>
 
-        <AppointmentTendencyGrid
-          tendencyList={concatTendencyList}
-          selectedItem={appointment.appointmentType}
-          onSelectSendName={handleSelectTendency}
-          type="DETAIL"
-          refetchAppointmentType={refetchAppointmentType}
-        />
+        <AppointmentTendencyGrid tendencyList={concatTendencyList} selectedItem={appointment} onSelectSendName={handleSelectTendency} type="DETAIL" refetchAppointmentType={refetchAppointmentType} />
       </S.AppointmentTendencyList>
 
       <CustomAppointmentTendencyBottomSheet isOpen={isOpen} onClose={onClose} refetchAppointmentType={refetchAppointmentType} />

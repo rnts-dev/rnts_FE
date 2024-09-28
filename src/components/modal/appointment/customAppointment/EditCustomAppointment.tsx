@@ -5,10 +5,10 @@ import { modalState } from '@/shared/store/atoms/modal';
 import { useAtom } from 'jotai';
 
 interface Props {
-  onClickConfirm?: () => void;
+  onClickConfirmBtn: () => void;
 }
 
-const EditCustomAppointment = ({ onClickConfirm }: Props) => {
+const EditCustomAppointment = ({ onClickConfirmBtn }: Props) => {
   const [modal, setModal] = useAtom(modalState);
 
   return (
@@ -28,7 +28,7 @@ const EditCustomAppointment = ({ onClickConfirm }: Props) => {
           <ModalFooter>
             <S.BtnContainer>
               <S.CancelBtn onClick={() => setModal('')}>취소</S.CancelBtn>
-              <S.EditBtn onClick={onClickConfirm}>확인</S.EditBtn>
+              <S.ConfirmBtn onClick={onClickConfirmBtn}>확인</S.ConfirmBtn>
             </S.BtnContainer>
           </ModalFooter>
         </S.Layout>

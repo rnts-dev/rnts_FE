@@ -9,14 +9,15 @@ import { useEffect, useState } from 'react';
 import * as S from './AppointmentTendencyGrid.styled';
 import { modalState } from '@/shared/store/atoms/modal';
 import DeleteCustomAppointmentModal from '@/components/modal/appointment/customAppointment/DeleteCustomAppointment';
-import EditCustomAppointment from '@/components/modal/appointment/customAppointment/EditCustomAppointment';
 import { useDisclosure } from '@chakra-ui/react';
 import { CustomAppointmentTendencyBottomSheet } from '@/widgets/appointment/appointmentTendencyList/custom/CustomAppointmentTendencyBottomSheet';
 import { editCustomAppointment } from '@/mutation/appointment/editCustomAppointment';
+import { AppointmentAtoms } from '@/shared/utils/types/appointment.types';
+import EditCustomAppointment from '@/components/modal/appointment/customAppointment/EditCustomAppointment';
 
 interface AppointmentTendencyGrid<T> {
   tendencyList: Array<T>;
-  selectedItem: string;
+  selectedItem: AppointmentAtoms;
   onSelectSendName?: (selectedKey: string, sendName: string, id: number) => void;
   onSelect?: (selectedKey: string, imageUrl: string, selectedImageUrl: string, sendName: string) => any;
   type?: 'DETAIL';
@@ -71,9 +72,19 @@ export const AppointmentTendencyGrid = <T extends { typeName: string; selectedIm
     <>
       <S.AppointmentTendencyListGrid>
         {tendencyList.map((item: any) => (
-          <S.AppointmentTendencyCard key={item.typeName} onClick={() => handleChangeAppointmentTendency(item)}>
-            <S.AppointmentTendencyIcon $selected={isSame(item.typeName, selectedItem)}>
-              <img src={isSame(item.typeName, selectedItem) ? item.selectedImageUrl : item.imageUrl} />
+          <S.AppointmentTendencyCard key={item.isCustom ? item.id : item.typeName} onClick={() => handleChangeAppointmentTendency(item)}>
+            <S.AppointmentTendencyIcon $selected={item.isCustom ? item.id === selectedItem.customAppointmentTypeId : isSame(item.typeName, selectedItem.appointmentType)}>
+              <img
+                src={
+                  item.isCustom
+                    ? item.id === selectedItem.customAppointmentTypeId
+                      ? item.selectedImageUrl
+                      : item.imageUrl
+                    : isSame(item.typeName, selectedItem.appointmentType)
+                      ? item.selectedImageUrl
+                      : item.imageUrl
+                }
+              />
 
               {item.isCustom && customAppointmentChange && (
                 <S.AppointmentTendencyIconAddon
@@ -98,7 +109,7 @@ export const AppointmentTendencyGrid = <T extends { typeName: string; selectedIm
       </S.AppointmentTendencyListGrid>
 
       <DeleteCustomAppointmentModal appointmentId={tendencyId} refetchAppointmentType={refetchAppointmentType} />
-      <EditCustomAppointment onClickConfirm={onClickEditBtn} />
+      <EditCustomAppointment onClickConfirmBtn={onClickEditBtn} />
 
       <CustomAppointmentTendencyBottomSheet
         isOpen={isOpen}

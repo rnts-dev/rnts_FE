@@ -1,11 +1,3 @@
-import ioClass from '@/assets/ioClass.svg';
-import ioClassWhite from '@/assets/ioClassWhite.svg';
-import ioHobby from '@/assets/iohobby.svg';
-import ioHobbyWhite from '@/assets/ioHobbyWhite.svg';
-import ioRestaurant from '@/assets/ioRestaurant.svg';
-import ioRestaurantWhite from '@/assets/ioRestaurantWhite.svg';
-import ioThunder from '@/assets/ioThunder.svg';
-import ioThunderWhite from '@/assets/ioThunderWhite.svg';
 import { AppointmentTendencyGrid, ConfirmButton2, Description } from '@/components/appointment';
 import Input from '@/shared/components/Input/Input';
 import RNTSBottomSlide from '@/shared/components/RNTSBottomSlide/RNTSBottomSlide';
@@ -15,6 +7,7 @@ import { pick } from '@fxts/core';
 import { useMutation } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import * as S from './CustomAppointmentTendencyBottomSheet.styled';
+import { AppointmentState } from '@/shared/store/atoms/appointment';
 
 interface CustomAppointmentTendency {
   isOpen: boolean;
@@ -24,14 +17,15 @@ interface CustomAppointmentTendency {
 }
 
 const customAppointmentTypeMeta = [
-  { imageUrl: ioRestaurant, selectedImageUrl: ioRestaurantWhite, typeName: '1' },
-  { imageUrl: ioHobby, selectedImageUrl: ioHobbyWhite, typeName: '2' },
-  { imageUrl: ioThunder, selectedImageUrl: ioThunderWhite, typeName: '3' },
-  { imageUrl: ioClass, selectedImageUrl: ioClassWhite, typeName: '4' },
+  { imageUrl: 'https://rnts-fe.s3.ap-northeast-2.amazonaws.com/icon/ioRestaurant.svg', selectedImageUrl: 'https://rnts-fe.s3.ap-northeast-2.amazonaws.com/icon/ioRestaurantWhite.svg', typeName: '1' },
+  { imageUrl: 'https://rnts-fe.s3.ap-northeast-2.amazonaws.com/icon/iohobby.svg', selectedImageUrl: 'https://rnts-fe.s3.ap-northeast-2.amazonaws.com/icon/ioHobbyWhite.svg', typeName: '2' },
+  { imageUrl: 'https://rnts-fe.s3.ap-northeast-2.amazonaws.com/icon/ioThunder.svg', selectedImageUrl: 'https://rnts-fe.s3.ap-northeast-2.amazonaws.com/icon/ioThunderWhite.svg', typeName: '3' },
+  { imageUrl: 'https://rnts-fe.s3.ap-northeast-2.amazonaws.com/icon/ioClass.svg', selectedImageUrl: 'https://rnts-fe.s3.ap-northeast-2.amazonaws.com/icon/ioClassWhite.svg', typeName: '4' },
 ];
 
 export const CustomAppointmentTendencyBottomSheet = (props: CustomAppointmentTendency) => {
   const { isOpen, onClose, refetchAppointmentType, onClickConfirmBtn } = props;
+  const [appointment, _setAppointment] = useAtom(AppointmentState);
   const [customAppointmentType, setCustomAppointmentType] = useAtom(CustomAppointmentTypeState);
 
   const { mutate } = useMutation({
@@ -74,7 +68,7 @@ export const CustomAppointmentTendencyBottomSheet = (props: CustomAppointmentTen
       <S.Container>
         <S.InputGroup>
           <Description title="아이콘 선택" description="약속 유형을 나타낼 아이콘을 선택하세요." />
-          <AppointmentTendencyGrid tendencyList={customAppointmentTypeMeta} selectedItem={customAppointmentType.id} onSelect={handleSelectTendency} refetchAppointmentType={refetchAppointmentType} />
+          <AppointmentTendencyGrid tendencyList={customAppointmentTypeMeta} selectedItem={appointment} onSelect={handleSelectTendency} refetchAppointmentType={refetchAppointmentType} />
         </S.InputGroup>
 
         <S.InputGroup>

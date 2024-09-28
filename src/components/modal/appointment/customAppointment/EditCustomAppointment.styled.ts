@@ -64,7 +64,7 @@ export const CancelBtn = styled.button`
   letter-spacing: -0.2px;
 `;
 
-export const EditBtn = styled.button`
+export const ConfirmBtn = styled.button`
   display: flex;
   padding: 12px 36px;
   justify-content: center;

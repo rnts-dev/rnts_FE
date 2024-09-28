@@ -21,6 +21,19 @@ export interface CreateAppointment {
   };
 }
 
+export interface AppointmentAtoms {
+  name: string;
+  appointmentType: string;
+  sendName: string;
+  customAppointmentTypeId: number;
+  YYMMDD: string;
+  AmPm: string;
+  HHMM: string;
+  place: string;
+  latitude: string;
+  longitude: string;
+}
+
 export interface MyAppointment {
   id: number;
   title: string;
